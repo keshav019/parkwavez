@@ -1,0 +1,66 @@
+version: "3"
+services:
+  mysqlservice:
+    image: mysql:5.7
+    ports:
+      - "3307:3307"
+    container_name: mysql-container
+    network_mode: host
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+
+  mongodbservice:
+    image: mongo:latest
+    container_name: mongo-container
+    network_mode: host
+    hostname: localhost
+    ports:
+      - "27018:27018"
+
+  user-authentication-service:
+    container_name: user-authentication-service
+    build: user-authentication-service/
+    ports:
+      - "8087:8087"
+    network_mode: host
+    hostname: localhost
+    depends_on:
+      - mysqlservice
+      - eureka-server
+    restart: always
+
+  product-webapp:
+    container_name: product-webapp
+    build: product-webapp/
+    network_mode: host
+    hostname: localhost
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-server
+      - apigateway
+    restart: always
+
+
+  api-gateway:
+    container_name: spring-cloud-api-gateway
+    build: api-gateway/
+    network_mode: host
+    hostname: localhost
+    ports:
+      - "8096:8096"
+    depends_on:
+      - eureka-server
+
+  eureka-server:
+    container_name: eureka-server
+    build: eureka-server/
+    restart: always
+    network_mode: host
+    hostname: localhost
+    ports:
+      - "8761:8761"
+
