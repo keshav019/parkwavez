@@ -6,4 +6,5 @@ import com.example.paymentservice.entities.MyOrder;
 
 public interface MyOrderRepository extends JpaRepository<MyOrder ,Long > {
 
+	public MyOrder findByOrderId(String orderId);
 }
