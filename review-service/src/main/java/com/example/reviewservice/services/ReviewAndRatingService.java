@@ -12,8 +12,15 @@ public interface ReviewAndRatingService {
     public List<ReviewAndRating> getReviewAndRatings();
 
     //get all ratings by userId
-    public List<ReviewAndRating> getReviewAndRatingByUserId(Long userId);
+    public List<ReviewAndRating> getReviewAndRatingByUserId(String userId);
+
+    //get all ratings by providerId
+    public List<ReviewAndRating> getReviewAndRatingByProviderId(String providerId);
 
     //get all ratings by bookingId
-    public  List<ReviewAndRating> getReviewAndRatingByBookingId(Long bookingId);
+    public  List<ReviewAndRating> getReviewAndRatingByBookingId(String bookingId);
+
+    //delete ratings by userId
+    public Long deleteByUserId(String userId);
+
 }
