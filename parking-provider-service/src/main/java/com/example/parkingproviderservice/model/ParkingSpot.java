@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Document(indexName = "parking_spot")
 public class ParkingSpot {
     @Id
-    private Long parkingSpotId;
+    private String parkingSpotId;
     @Field(type = FieldType.Keyword)
     private int parkingSpotNumber;
     private boolean isOccupied;
