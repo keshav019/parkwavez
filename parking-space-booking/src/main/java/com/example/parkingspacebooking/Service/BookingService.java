@@ -14,7 +14,9 @@ public interface BookingService {
 	  
 	  
 	  Booking getBookingById(String BookingId);
+	  List<Booking> getBookingByUserId(String UserId);
 
 	    List<Booking> getAllBooking();
+	    boolean isSpotAlreadyBooked(long spotId);
 
 }

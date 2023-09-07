@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.parkingspacebooking.Exception.SpotAlreadyBookedException;
 import com.example.parkingspacebooking.Model.Booking;
 import com.example.parkingspacebooking.Repository.BookingRepository;
 
@@ -21,10 +22,23 @@ public class BookingServiceImpl implements BookingService {
 	public Booking addBooking(Booking booking) {
 		// TODO Auto-generated method stub
 		
+        if (isSpotAlreadyBooked(booking.getSpotId())) {
+            throw new SpotAlreadyBookedException("This spot is already booked.");
+        }
+
+		
 		 booking.setBookingId(UUID.randomUUID().toString().split("-")[0]);
 	        return repository.save(booking);
 		
 	}
+	
+	
+	
+    public boolean isSpotAlreadyBooked(long spotId) {
+        // Check if a booking with the same spotId exists
+        return repository.existsBySpotId(spotId);
+    }
+
 
 	@Override
 	public Booking updateBooking(Booking booking) {
@@ -64,6 +78,21 @@ public class BookingServiceImpl implements BookingService {
 		repository.deleteById(BookingId);
         return BookingId+" Booking has been canceled ";
 	}
+
+	@Override
+	public List<Booking> getBookingByUserId(String UserId) {
+		// TODO Auto-generated method stub
+		return repository.findByUserId(UserId);
+		//return null;
+	}
+
+	
+
+	//@Override
+	//public Booking getBookingByUserId(String UserId) {
+		// TODO Auto-generated method stub
+	//	return repository.findById(UserId).get();
+	//}
 
 	
 

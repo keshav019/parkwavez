@@ -46,8 +46,16 @@ public class BookingController {
 	        return service.getBookingById(BookingId);
 	 }
 	 
+	 @GetMapping("/User/{UserId}")
+	   public List<Booking> getBookingByUserId(@PathVariable String UserId){
+	       return  service.getBookingByUserId(UserId);
+		// System.out.println("Working");
+	 //return null;
+	 }
+	 
+	 
 	 @GetMapping
-	    public List<Booking> getNews() {
+	    public List<Booking> getBooking() {
 	        return service.getAllBooking();
 	    }
 
