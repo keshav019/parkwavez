@@ -24,8 +24,9 @@ public class Booking {
 	
 	@Id
 	private String bookingId;
-	private long UserId;
-	private long SpotId;
+	
+	private String userId;
+	private long spotId;
 	 private Date Booking_date;
 	 private LocalDateTime Check_In;
 	 private LocalDateTime Check_Out;

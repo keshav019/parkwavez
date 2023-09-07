@@ -1,7 +1,8 @@
 package com.example.parkingproviderservice.model;
 
 public enum SpotType {
-    Standard,
-    Handicap,
-    ElectricVehicleCharging
+    TwoWheeler,
+    FourWheeler,
+    BigVehicle,
+    Handicap
 }
