@@ -1,6 +1,7 @@
 package com.example.parkingproviderservice.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,15 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
 		if (!isExist) {
 			throw new ResourceNotFoundException("Parking area not present with : " + areaId);
 		}
+		List<ParkingSpot> insertedSpots = parkingSpotRepository.findByParkingAreaId(areaId);
+		Optional<Integer> maxParkingSpotNumber = insertedSpots.stream().map(ParkingSpot::getParkingSpotNumber)
+				.max(Integer::compareTo);
+		if (!maxParkingSpotNumber.isEmpty()) {
+			parkingSpot.setParkingSpotNumber(maxParkingSpotNumber.get() + 1);
+		} else {
+			parkingSpot.setParkingSpotNumber(1);
+		}
+		parkingSpot.setOccupied(false);
 		parkingSpot.setParkingAreaId(areaId);
 		return parkingSpotRepository.save(parkingSpot);
 	}

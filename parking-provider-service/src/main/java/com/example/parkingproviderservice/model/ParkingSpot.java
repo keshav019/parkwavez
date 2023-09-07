@@ -23,6 +23,7 @@ public class ParkingSpot {
     private float price;
     @Field(type = FieldType.Keyword)
     private SpotType spotType;
+    @Field(type = FieldType.Keyword)
     private String parkingAreaId; // Refrence to parkingArea
 }
 

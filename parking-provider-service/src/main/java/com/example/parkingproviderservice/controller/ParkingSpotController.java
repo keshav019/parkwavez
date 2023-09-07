@@ -48,7 +48,6 @@ public class ParkingSpotController {
 	@GetMapping("/get-by-number/{areaId}/{spotNumber}")
 	public ResponseEntity<ParkingSpot> getParkingSpotByNumber(@PathVariable String areaId, @PathVariable int spotNumber)
 			throws ResourceNotFoundException {
-		System.out.println(spotNumber);
 		ParkingSpot parkingSpot = parkingSpotService.getParkingSpotByNumber(areaId, spotNumber);
 		return ResponseEntity.ok(parkingSpot);
 	}
