@@ -1,28 +1,28 @@
 package com.example.parkingproviderservice.model;
 
-import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "parking_area")
 public class ParkingArea {
     @Id
-    private Long areaId;
+    @Field(type = FieldType.Keyword)
+    private String areaId;
+    @Field(type = FieldType.Keyword)
     private String parkingName;
     private int totalNoSpot;
-    private Address address;  
-    private Long providerId;  //Refrence to Provider 
-    @Transient
-    private List<ParkingSpot> spots;
+    private Address address;
+    @Field(type = FieldType.Keyword)
+    private long providerId;  //Refrence to Provider 
 }
