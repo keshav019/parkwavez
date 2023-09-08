@@ -52,7 +52,7 @@ public class PaymentServiceApplication {
 		System.out.println(order);
 		
 		MyOrder myOrder = new MyOrder();
-		myOrder.setAmount(order.get("amount/100")+"");
+		myOrder.setAmount(order.get("amount")+"");
 		myOrder.setOrderId(order.get("id"));
 		myOrder.setPaymentId(null);
 		myOrder.setStatus("created");
