@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -21,6 +23,8 @@ public class ReviewAndRating{
     private String bookingId;
     private String providerId;
     private String userId;
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating cannot be greater than 5")
     private int rating;
     private String reviewDesc;
     private Date reviewDateAndTime;

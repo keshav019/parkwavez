@@ -1,12 +1,17 @@
 package com.example.reviewservice.controllers;
 
 import com.example.reviewservice.entity.ReviewAndRating;
+import com.example.reviewservice.exceptions.GetReviewAndRatingException;
+import com.example.reviewservice.exceptions.NoDataFoundException;
+import com.example.reviewservice.exceptions.ReviewAndRatingException;
 import com.example.reviewservice.services.ReviewAndRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,37 +24,82 @@ public class ReviewAndRatingController {
 
     //create rating
     @PostMapping
-    public ResponseEntity<ReviewAndRating> create(@RequestBody ReviewAndRating reviewAndRating){
-        return ResponseEntity.status(HttpStatus.CREATED).body(reviewAndRatingService.addReviewAndRating(reviewAndRating));
+    public ResponseEntity<ReviewAndRating> create(@Valid @RequestBody ReviewAndRating reviewAndRating) {
+        try {
+            // Code to add the review and rating
+            ReviewAndRating savedReview = reviewAndRatingService.addReviewAndRating(reviewAndRating);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedReview);
+        } catch (Exception e) {
+            throw new ReviewAndRatingException("Failed to create review and rating: " + e.getMessage());
+        }
     }
 
 
     //get all
     @GetMapping
-    public ResponseEntity<List<ReviewAndRating>> getReviewAndRatings(){
-        return ResponseEntity.ok(reviewAndRatingService.getReviewAndRatings());
+    public ResponseEntity<?> getReviewAndRatings(){
+        try {
+            List<ReviewAndRating> reviewAndRatings = reviewAndRatingService.getReviewAndRatings();
+
+            if (reviewAndRatings.isEmpty()) {
+                throw new NoDataFoundException("No review and ratings data found.");
+            }
+
+            return ResponseEntity.ok(reviewAndRatings);
+        } catch (Exception e) {
+            throw new GetReviewAndRatingException("Failed to retrieve review and ratings: " + e.getMessage());
+        }
     }
 
 
     //get all by userId
     @GetMapping("/users/{userId}")
-    public ResponseEntity<List<ReviewAndRating>> getReviewAndRatingsByUserId(@PathVariable String userId){
-        return ResponseEntity.ok(reviewAndRatingService.getReviewAndRatingByUserId(userId));
-    }
+    public ResponseEntity<?> getReviewAndRatingsByUserId(@PathVariable String userId) {
+        try {
+            List<ReviewAndRating> reviewAndRatings = reviewAndRatingService.getReviewAndRatingByUserId(userId);
 
+            if (reviewAndRatings.isEmpty()) {
+                throw new NoDataFoundException("No review and ratings data found for user ID: " + userId);
+            }
+
+            return ResponseEntity.ok(reviewAndRatings);
+        } catch (Exception e) {
+            throw new GetReviewAndRatingException("Failed to retrieve review and ratings by user ID: " + e.getMessage());
+        }
+    }
 
     //get all by bookingId
     @GetMapping("/bookings/{bookingId}")
-    public ResponseEntity<List<ReviewAndRating>> getReviewAndRatingsByBookingId( @PathVariable String bookingId){
-        return ResponseEntity.ok(reviewAndRatingService.getReviewAndRatingByBookingId(bookingId));
-    }
+    public ResponseEntity<?> getReviewAndRatingsByBookingId(@PathVariable String bookingId) {
+        try {
+            List<ReviewAndRating> reviewAndRatings = reviewAndRatingService.getReviewAndRatingByBookingId(bookingId);
 
+            if (reviewAndRatings.isEmpty()) {
+                throw new NoDataFoundException("No review and ratings data found for booking ID: " + bookingId);
+            }
+
+            return ResponseEntity.ok(reviewAndRatings);
+        } catch (Exception e) {
+            throw new GetReviewAndRatingException("Failed to retrieve review and ratings by booking ID: " + e.getMessage());
+        }
+    }
 
     //get all by providerId
     @GetMapping("/providers/{providerId}")
-    public ResponseEntity<List<ReviewAndRating>> getReviewAndRatingsByProviderId( @PathVariable String providerId){
-        return ResponseEntity.ok(reviewAndRatingService.getReviewAndRatingByProviderId(providerId));
+    public ResponseEntity<?> getReviewAndRatingsByProviderId(@PathVariable String providerId) {
+        try {
+            List<ReviewAndRating> reviewAndRatings = reviewAndRatingService.getReviewAndRatingByProviderId(providerId);
+
+            if (reviewAndRatings.isEmpty()) {
+                throw new NoDataFoundException("No review and ratings data found for provider ID: " + providerId);
+            }
+
+            return ResponseEntity.ok(reviewAndRatings);
+        } catch (Exception e) {
+            throw new GetReviewAndRatingException("Failed to retrieve review and ratings by provider ID: " + e.getMessage());
+        }
     }
+
 
 
     //delete review and rating by userId
