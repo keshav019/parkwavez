@@ -3,6 +3,8 @@ package com.example.parkingproviderservice.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
@@ -55,6 +57,16 @@ public class ParkingAreaServiceImpl implements ParkingAreaService {
 		return parkingAreaRepository.findById(areaId)
 				.orElseThrow(() -> new ResourceNotFoundException("ParkingArea not found with Id : " + areaId));
 
+	}
+
+	@Override
+	public Page<ParkingArea> getByCity(String city, Pageable pagable) {
+		return parkingAreaRepository.findByAddressCity(city, pagable);
+	}
+
+	@Override
+	public List<ParkingArea> findNearByParkingArea(double latitude, double longitude, String range) {
+		return  parkingAreaRepository.findByAddressLocationNear(latitude, longitude, range);
 	}
 
 }

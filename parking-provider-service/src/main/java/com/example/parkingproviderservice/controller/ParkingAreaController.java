@@ -3,6 +3,7 @@ package com.example.parkingproviderservice.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.elasticsearch.common.unit.DistanceUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -86,6 +87,32 @@ public class ParkingAreaController {
 			throws ResourceNotFoundException {
 		parkingAreaService.delete(providerId, areaId);
 		return ResponseEntity.ok("Deleted");
+	}
+
+	@GetMapping("/get-by-city")
+	public ResponseEntity<Page<ParkingArea>> findByCity(@RequestParam String city,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "areaId_asc") String sortBy) {
+		List<Sort.Order> sorts = new ArrayList<>();
+		String[] _fields = sortBy.split(",");
+		for (String field : _fields) {
+			String[] _field = field.split("_");
+			sorts.add(new Sort.Order(Sort.Direction.fromString(_field[1].toUpperCase()), _field[0]));
+		}
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sorts));
+		Page<ParkingArea> parkingAreas = parkingAreaService.getByCity(city, pageable);
+		return ResponseEntity.ok(parkingAreas);
+	}
+
+	@GetMapping("/get-near-by")
+	public ResponseEntity<List<ParkingArea>> getNearyBy(
+			@RequestParam double latitude,
+			@RequestParam double longitude,
+			@RequestParam(defaultValue = "1") String range,
+			@RequestParam(defaultValue = "KILOMETERS") DistanceUnit unit) {
+		range=range+unit.toString();
+		List<ParkingArea> parkingAreas = parkingAreaService.findNearByParkingArea(latitude, longitude, range);
+		return ResponseEntity.ok(parkingAreas);
 	}
 
 }

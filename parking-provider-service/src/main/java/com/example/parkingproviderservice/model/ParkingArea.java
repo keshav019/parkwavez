@@ -22,6 +22,7 @@ public class ParkingArea {
     @Field(type = FieldType.Keyword)
     private String parkingName;
     private int totalNoSpot;
+    @Field(type = FieldType.Object)
     private Address address;
     @Field(type = FieldType.Keyword)
     private long providerId;  //Refrence to Provider 
