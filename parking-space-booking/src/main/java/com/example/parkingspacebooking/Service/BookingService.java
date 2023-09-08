@@ -14,6 +14,7 @@ public interface BookingService {
 	  
 	  
 	  Booking getBookingById(String BookingId);
+	  List<Booking> getBookingByStatus(String Status);
 	  List<Booking> getBookingByUserId(String UserId);
 
 	    List<Booking> getAllBooking();

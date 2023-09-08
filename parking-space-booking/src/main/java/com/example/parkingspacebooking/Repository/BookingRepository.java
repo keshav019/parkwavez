@@ -14,6 +14,7 @@ import com.example.parkingspacebooking.Model.Booking;
 public interface BookingRepository  extends MongoRepository<Booking, String>{
 
 List<Booking> findByUserId(String UserId);
+List<Booking> findByStatus(String status);
 boolean existsBySpotId(long spotId);
 
 	

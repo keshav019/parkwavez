@@ -53,6 +53,11 @@ public class BookingController {
 	 //return null;
 	 }
 	 
+	 @GetMapping("/Status/{Status}")
+	   public List<Booking> getBookingByStatus(@PathVariable String Status){
+	       return  service.getBookingByStatus(Status);
+	 }
+	 
 	 
 	 @GetMapping
 	    public List<Booking> getBooking() {

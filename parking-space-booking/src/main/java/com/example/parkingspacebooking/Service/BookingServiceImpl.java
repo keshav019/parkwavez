@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.parkingspacebooking.Exception.BookingNotFoundException;
 import com.example.parkingspacebooking.Exception.SpotAlreadyBookedException;
 import com.example.parkingspacebooking.Model.Booking;
 import com.example.parkingspacebooking.Repository.BookingRepository;
@@ -18,6 +19,7 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
     private BookingRepository repository;
 
+	
 	@Override
 	public Booking addBooking(Booking booking) {
 		// TODO Auto-generated method stub
@@ -28,8 +30,11 @@ public class BookingServiceImpl implements BookingService {
 
 		
 		 booking.setBookingId(UUID.randomUUID().toString().split("-")[0]);
-	        return repository.save(booking);
+		 Booking savedBooking=repository.save(booking);
+	       // return repository.save(booking);
 		
+	       // kafkaProducerService.sendMessage(savedBooking.getSpotId().toString(), savedBooking.getEmailId());
+	     return savedBooking;   
 	}
 	
 	
@@ -43,15 +48,25 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public Booking updateBooking(Booking booking) {
 		// TODO Auto-generated method stub
-		Booking exitingBooking = repository.findById(booking.getBookingId()).get();
-        exitingBooking.setUserId(booking.getUserId());
-        exitingBooking.setSpotId(booking.getSpotId());
-        exitingBooking.setBooking_date(booking.getBooking_date());
-        exitingBooking.setCheck_In(booking.getCheck_In());
-        exitingBooking.setCheck_Out(booking.getCheck_Out());
-        exitingBooking.setStatus(booking.getStatus());
+		//Booking existingBooking = repository.findById(booking.getBookingId()).get();
+		 Booking existingBooking = repository.findById(booking.getBookingId()).orElse(null);
+		if (existingBooking == null) {
+            // Handle the case when the booking doesn't exist
+            throw new BookingNotFoundException("Booking not found.");
+        }
+		
+        existingBooking.setUserId(booking.getUserId());
+        existingBooking.setSpotId(booking.getSpotId());
+        existingBooking.setBooking_date(booking.getBooking_date());
+        existingBooking.setCheck_In(booking.getCheck_In());
+        existingBooking.setCheck_Out(booking.getCheck_Out());
+        existingBooking.setStatus(booking.getStatus());
     
-        return repository.save(exitingBooking);
+        
+        Booking updatedBooking = repository.save(existingBooking);
+
+        
+        return repository.save(existingBooking);
 	
 	}
 
@@ -86,13 +101,16 @@ public class BookingServiceImpl implements BookingService {
 		//return null;
 	}
 
+
+
+	@Override
+	public List<Booking> getBookingByStatus(String Status) {
+		// TODO Auto-generated method stub
+		return repository.findByStatus(Status);
+	}
+
 	
 
-	//@Override
-	//public Booking getBookingByUserId(String UserId) {
-		// TODO Auto-generated method stub
-	//	return repository.findById(UserId).get();
-	//}
 
 	
 

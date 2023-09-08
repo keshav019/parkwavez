@@ -30,6 +30,7 @@ public class Booking {
 	 private Date Booking_date;
 	 private LocalDateTime Check_In;
 	 private LocalDateTime Check_Out;
-	 private String Status;
+	 private String status;
+	 private String emailId;
 
 }
