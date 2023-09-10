@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.notificationservice.service.NotificationService;
 import com.kafkaProducer.UserDTO;
+import com.kafkaProducer.UserSpotIdDTO;
 
 @Service
 public class KafkaMessageListener {
@@ -17,11 +18,19 @@ public class KafkaMessageListener {
     @Autowired
 	private NotificationService notificationService;
     
-    @KafkaListener(topics = "topicNew6", groupId = "group12")
+    @KafkaListener(topics = "topicNew62", groupId = "group14")
     public void consume(UserDTO user) {
         log.info("consumer consume {}", user);
         String emailBody = "Dear " + user.getUserName() + " Your Application Created with User Id " + user.getUserId() + " .";
         notificationService.sendEmail(user.getEmail(), "Account Successfully Created", emailBody);
     }
+    
+    @KafkaListener(topics = "vacancyCreated2", groupId = "group14")
+    public void consume2(UserSpotIdDTO user2) {
+        log.info("consumer consume {}", user2);        
+        String emailBody = "Dear " + user2.getUserName() + " spot ID " + user2.getSpotId() + " is now available for booking.";
+        notificationService.sendEmail(user2.getUserEmail(), "Your Subscribed Spot is now available for Booking", emailBody);
+    }
+    
 }
 
