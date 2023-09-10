@@ -5,113 +5,141 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="users")
-public class ApplicationUser implements UserDetails{
+@Table(name = "users")
+public class ApplicationUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer userId;
-	@Column(unique=true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(unique = true)
     private String username;
+
+    @Column(name = "email_id")
+    private String emailId;
+
     private String password;
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(
-        name="user_role_junction",
-        joinColumns = {@JoinColumn(name="user_id")},
-        inverseJoinColumns = {@JoinColumn(name="role_id")}
-    )
-    private Set<Role> authorities;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public ApplicationUser() {
-		super();
-		authorities = new HashSet<>();
-	}
-	
+        super();
+    }
 
-	public ApplicationUser(Integer userId, String username, String password, Set<Role> authorities) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.authorities = authorities;
-	}
+    public ApplicationUser(String firstName, String lastName, String username, String emailId, String password, Role role) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.emailId = emailId;
+        this.password = password;
+        this.role = role;
+    }
 
-    public Integer getUserId() {
-		return this.userId;
-	}
-	
-	public void setId(Integer userId) {
-		this.userId = userId;
-	}
-	
-	public void setAuthorities(Set<Role> authorities) {
-		this.authorities = authorities;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return this.authorities;
-	}
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	/* If you want account locking capabilities create variables and ways to set them for the methods below */
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     
+    
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(role.name()));
+        return authorities;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
