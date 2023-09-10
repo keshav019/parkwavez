@@ -20,8 +20,6 @@ public class ParkingSpot {
     private int parkingSpotNumber;
     private boolean isOccupied;
     @Field(type = FieldType.Keyword)
-    private float price;
-    @Field(type = FieldType.Keyword)
     private SpotType spotType;
     @Field(type = FieldType.Keyword)
     private String parkingAreaId; // Refrence to parkingArea

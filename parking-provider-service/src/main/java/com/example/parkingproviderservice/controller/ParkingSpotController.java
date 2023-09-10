@@ -24,7 +24,7 @@ public class ParkingSpotController {
 	@Autowired
 	private ParkingSpotService parkingSpotService;
 
-	@PostMapping("/{areaId}/add")
+	@PostMapping("/provider/{areaId}/add")
 	public ResponseEntity<ParkingSpot> addParkingSpot(@PathVariable String areaId, @RequestBody ParkingSpot parkingSpot)
 			throws ResourceNotFoundException {
 		parkingSpot = parkingSpotService.addParkingSpot(areaId, parkingSpot);

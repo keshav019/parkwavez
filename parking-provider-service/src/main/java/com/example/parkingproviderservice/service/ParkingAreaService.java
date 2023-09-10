@@ -1,10 +1,6 @@
 package com.example.parkingproviderservice.service;
 
 
-
-
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -26,5 +22,5 @@ public interface ParkingAreaService {
 
 	public Page<ParkingArea> getByCity(String city, Pageable pagable);
 
-	public List<ParkingArea> findNearByParkingArea(double latitude, double longitude, String range);
+	public Page<ParkingArea> findNearByParkingArea(double latitude, double longitude, String range, Pageable pagable);
 }

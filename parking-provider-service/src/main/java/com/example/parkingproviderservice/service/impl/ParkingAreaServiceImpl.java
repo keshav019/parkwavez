@@ -65,8 +65,8 @@ public class ParkingAreaServiceImpl implements ParkingAreaService {
 	}
 
 	@Override
-	public List<ParkingArea> findNearByParkingArea(double latitude, double longitude, String range) {
-		return  parkingAreaRepository.findByAddressLocationNear(latitude, longitude, range);
+	public Page<ParkingArea> findNearByParkingArea(double latitude, double longitude, String range,Pageable pagable) {
+		return  parkingAreaRepository.findByAddressLocationNear(latitude, longitude, range,pagable);
 	}
 
 }
