@@ -39,6 +39,8 @@ public class BookingController {
 	 @DeleteMapping("/{BookingId}")
 	    public String deleteBooking(@PathVariable String BookingId){
 	        return service.cancleBooking(BookingId);
+	        
+	       
 	    }
 	 
 	 @GetMapping("/{BookingId}")
