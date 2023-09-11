@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.parkingproviderservice.PageableBuilder;
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
 import com.example.parkingproviderservice.model.ParkingArea;
 import com.example.parkingproviderservice.service.ParkingAreaService;
+import com.example.parkingproviderservice.util.PageableBuilder;
 
 @RestController
 @RequestMapping("/parking-area")
