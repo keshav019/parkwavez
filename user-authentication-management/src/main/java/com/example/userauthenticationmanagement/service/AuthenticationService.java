@@ -1,6 +1,7 @@
 package com.example.userauthenticationmanagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,6 +36,9 @@ public class AuthenticationService {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
     public ApplicationUser registerUser(String username, String password, String firstName, String lastName, String emailId, Role role) {
         String encodedPassword = passwordEncoder.encode(password);
         ApplicationUser user = new ApplicationUser();
@@ -50,12 +54,16 @@ public class AuthenticationService {
         try {
             String userJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(savedUser);
             System.out.println(userJson);
+
+            
+            kafkaTemplate.send("user-registration-topic", userJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
         return savedUser;
     }
+
 
     public LoginResponseDTO loginUser(String username, String password) {
         try {
