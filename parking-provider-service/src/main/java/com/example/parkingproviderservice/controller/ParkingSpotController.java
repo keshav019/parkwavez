@@ -2,6 +2,8 @@ package com.example.parkingproviderservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.parkingproviderservice.dto.BookingTimeRangeDto;
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
 import com.example.parkingproviderservice.model.ParkingSpot;
 import com.example.parkingproviderservice.model.SpotType;
 import com.example.parkingproviderservice.service.ParkingSpotService;
+import com.example.parkingproviderservice.util.CustomFormatter;
 
 @RestController
 @RequestMapping("/parking-spot")
@@ -71,5 +75,13 @@ public class ParkingSpotController {
 	public ResponseEntity<String> delteParkingSpot(@PathVariable String spotId) throws ResourceNotFoundException {
 		parkingSpotService.delteParkingSpot(spotId);
 		return ResponseEntity.ok("Deleted");
+	}
+	
+	@GetMapping("public/get-vaccant-space")
+	ResponseEntity<List<ParkingSpot>> getVaccantSpot(@Valid @RequestBody BookingTimeRangeDto bookingTimeRangeDto) throws Exception{
+		String checkInDateTime=CustomFormatter.format(bookingTimeRangeDto.getCheckInDateTime());
+		String checkOutDateTime=CustomFormatter.format(bookingTimeRangeDto.getCheckOutDateTime());
+		List<ParkingSpot> spots=parkingSpotService.getVaccantSpot(bookingTimeRangeDto.getAreaId(),checkInDateTime,checkOutDateTime);
+		return ResponseEntity.ok(spots);
 	}
 }

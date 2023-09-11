@@ -2,13 +2,21 @@ package com.example.parkingproviderservice.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
+import com.example.parkingproviderservice.model.Booking;
 import com.example.parkingproviderservice.model.ParkingSpot;
 import com.example.parkingproviderservice.model.SpotType;
+import com.example.parkingproviderservice.repository.BookingRepository;
 import com.example.parkingproviderservice.repository.ParkingAreaRepository;
 import com.example.parkingproviderservice.repository.ParkingSpotRepository;
 import com.example.parkingproviderservice.service.ParkingSpotService;
@@ -20,6 +28,8 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
 	private ParkingSpotRepository parkingSpotRepository;
 	@Autowired
 	private ParkingAreaRepository parkingAreaRepository;
+	@Autowired
+	private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
 	@Override
 	public ParkingSpot addParkingSpot(String areaId, ParkingSpot parkingSpot) throws ResourceNotFoundException {
@@ -79,6 +89,33 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
 			throw new ResourceNotFoundException("ParkingArea not found with Id : " + spotId);
 		}
 		parkingSpotRepository.deleteById(spotId);
+
+	}
+
+	public List<ParkingSpot> getVaccantSpot(String areaId, String checkInTime, String checkOutTime) throws Exception {
+		boolean isExist = parkingAreaRepository.existsById(areaId);
+		if (!isExist) {
+			throw new ResourceNotFoundException("Parking area not present with : " + areaId);
+		}
+		List<ParkingSpot> spots = parkingSpotRepository.findByParkingAreaId(areaId);
+		List<ParkingSpot> vaccantSpot = spots.stream().filter(spot -> {
+			NativeSearchQuery searchQuery = queryForVaccantSpace(spot.getParkingSpotId(), checkInTime, checkOutTime);
+			SearchHits<Booking> bookings = elasticsearchRestTemplate.search(searchQuery, Booking.class);
+			return bookings.isEmpty();
+		}).collect(Collectors.toList());
+		return vaccantSpot;
+	}
+
+	public NativeSearchQuery queryForVaccantSpace(String parkingSpotId, String startDate, String endDate) {
+		NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
+				.withQuery(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("parkingSpotId", parkingSpotId))
+						.should(QueryBuilders.rangeQuery("checkInDateTime").gte(startDate).lte(endDate))
+						.should(QueryBuilders.rangeQuery("checkOutDateTime").gte(startDate).lte(endDate))
+						.should(QueryBuilders.boolQuery()
+								.must(QueryBuilders.rangeQuery("checkInDateTime").lte(startDate))
+								.must(QueryBuilders.rangeQuery("checkOutDateTime").gte(endDate))))
+				.build();
+		return searchQuery;
 
 	}
 

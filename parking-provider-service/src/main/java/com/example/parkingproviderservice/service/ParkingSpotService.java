@@ -21,4 +21,7 @@ public interface ParkingSpotService {
 	public ParkingSpot updateParkingSpot(ParkingSpot parkingSpot) throws ResourceNotFoundException;
 
 	public void delteParkingSpot(String spotId) throws ResourceNotFoundException;
+
+	public List<ParkingSpot> getVaccantSpot(String areaId, String checkInTime, String checkOutTime)
+			throws Exception;
 }

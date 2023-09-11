@@ -2,31 +2,43 @@ package com.example.parkingproviderservice.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
 import com.example.parkingproviderservice.model.Booking;
 import com.example.parkingproviderservice.repository.BookingRepository;
 import com.example.parkingproviderservice.service.BookingService;
+import com.example.parkingproviderservice.util.JacksonFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Service
 public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	private BookingRepository bookingRepository;
+	ObjectMapper objectMapper = JacksonFactory.getObjectMapper();
 
 	@Override
-	@KafkaListener(topics = "bookingservice/post", groupId = "mygroup")
-	public void bookingTopicPost(Booking booking) {
-		bookingRepository.save(booking);
+	@KafkaListener(topics = "bookingservicepost", groupId = "bookinggroup")
+	public void bookingTopicPost(String message) throws JsonMappingException, JsonProcessingException {
+		Booking booking = objectMapper.readValue(message, Booking.class);
+		booking = bookingRepository.save(booking);
+		System.out.println("Message recieved " + booking.toString());
 	}
 
 	@Override
-	@KafkaListener(topics = "booking-service/delete", groupId = "mygroup")
-	public void bookingTopicDeletet(Booking booking) {
+	@KafkaListener(topics = "bookingservicedelete", groupId = "bookinggroup")
+	public void bookingTopicDeletet(String message) throws JsonMappingException, JsonProcessingException {
+		Booking booking = objectMapper.readValue(message, Booking.class);
 		bookingRepository.deleteById(booking.getBookingId());
 	}
 
 	@Override
-	@KafkaListener(topics = "booking-service/update", groupId = "mygroup")
-	public void bookingTopicUpdate(Booking booking) {
+	@KafkaListener(topics = "bookingserviceupdate", groupId = "bookinggroup")
+	public void bookingTopicUpdate(String message) throws JsonMappingException, JsonProcessingException {
+		Booking booking = objectMapper.readValue(message, Booking.class);
 		bookingRepository.save(booking);
 	}
+
 }

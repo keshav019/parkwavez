@@ -17,6 +17,8 @@ import com.example.userauthenticationmanagement.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.kafkaProducer.UserDTO;
+
 @Service
 @Transactional
 public class AuthenticationService {
@@ -37,10 +39,26 @@ public class AuthenticationService {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    //private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, UserDTO> kafkaTemplate2;
 
+    
+
+    
+    
     public ApplicationUser registerUser(String username, String password, String firstName, String lastName, String emailId, Role role) {
         String encodedPassword = passwordEncoder.encode(password);
+        
+        
+        UserDTO user2 = new UserDTO();
+        user2.setUserId(username);
+        user2.setEmail(emailId);
+        user2.setUserName(username);
+        
+        
+        
+        
+        
         ApplicationUser user = new ApplicationUser();
         user.setUsername(username);
         user.setPassword(encodedPassword);
@@ -56,13 +74,17 @@ public class AuthenticationService {
             System.out.println(userJson);
 
             
-            kafkaTemplate.send("user-registration-topic", userJson);
+            //kafkaTemplate.send("user-registration-topic", userJson);
+            kafkaTemplate2.send("user-registration-topic", user2);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
         return savedUser;
     }
+    
+    
+    
 
 
     public LoginResponseDTO loginUser(String username, String password) {

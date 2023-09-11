@@ -1,4 +1,4 @@
-package com.example.parkingproviderservice;
+package com.example.parkingproviderservice.util;
 
 import java.util.ArrayList;
 import java.util.List;
