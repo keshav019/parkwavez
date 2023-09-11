@@ -7,7 +7,7 @@ public class UserSpotIdDTO {
 
 	private String userName;
 	private String userEmail;
-	private String spotId;
+	private long spotId;
 	
 	public String getUserName() {
 		return userName;
@@ -21,10 +21,10 @@ public class UserSpotIdDTO {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getSpotId() {
+	public long getSpotId() {
 		return spotId;
 	}
-	public void setSpotId(String spotId) {
+	public void setSpotId(long spotId) {
 		this.spotId = spotId;
 	}
 	
