@@ -8,15 +8,16 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
+import com.example.parkingproviderservice.dto.BookingTimeRangeDto;
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
 import com.example.parkingproviderservice.model.Booking;
 import com.example.parkingproviderservice.model.ParkingSpot;
 import com.example.parkingproviderservice.model.SpotType;
-import com.example.parkingproviderservice.repository.BookingRepository;
 import com.example.parkingproviderservice.repository.ParkingAreaRepository;
 import com.example.parkingproviderservice.repository.ParkingSpotRepository;
 import com.example.parkingproviderservice.service.ParkingSpotService;
@@ -92,31 +93,40 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
 
 	}
 
-	public List<ParkingSpot> getVaccantSpot(String areaId, String checkInTime, String checkOutTime) throws Exception {
-		boolean isExist = parkingAreaRepository.existsById(areaId);
-		if (!isExist) {
-			throw new ResourceNotFoundException("Parking area not present with : " + areaId);
+	@Override
+	public List<ParkingSpot> getVaccantSpot(String parkingAreaId, BookingTimeRangeDto bookingTimeRangeDto,SpotType spotType)
+			throws Exception {
+		List<ParkingSpot> spots;
+		if(spotType==null) {
+			spots = parkingSpotRepository.findByParkingAreaIdAndSpotType(parkingAreaId,spotType);
+		}else {
+			spots = parkingSpotRepository.findByParkingAreaId(parkingAreaId);
 		}
-		List<ParkingSpot> spots = parkingSpotRepository.findByParkingAreaId(areaId);
-		List<ParkingSpot> vaccantSpot = spots.stream().filter(spot -> {
-			NativeSearchQuery searchQuery = queryForVaccantSpace(spot.getParkingSpotId(), checkInTime, checkOutTime);
-			SearchHits<Booking> bookings = elasticsearchRestTemplate.search(searchQuery, Booking.class);
-			return bookings.isEmpty();
+		if (spots.isEmpty()) {
+			throw new ResourceNotFoundException("Parking area not present with : " + parkingAreaId);
+		}
+		List<ParkingSpot> vacantSpot = spots.stream().filter(spot -> {
+			String spotId = spot.getParkingSpotId();
+			return isOccupied(spotId, bookingTimeRangeDto);
 		}).collect(Collectors.toList());
-		return vaccantSpot;
+		return vacantSpot;
 	}
 
-	public NativeSearchQuery queryForVaccantSpace(String parkingSpotId, String startDate, String endDate) {
-		NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
-				.withQuery(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("parkingSpotId", parkingSpotId))
-						.should(QueryBuilders.rangeQuery("checkInDateTime").gte(startDate).lte(endDate))
-						.should(QueryBuilders.rangeQuery("checkOutDateTime").gte(startDate).lte(endDate))
+	@Override
+	public boolean isOccupied(String parkingSpotId, BookingTimeRangeDto bookingTimeRangeDto) {
+		String startDateTime = bookingTimeRangeDto.getCheckInDateTime();
+		String endDateTime = bookingTimeRangeDto.getCheckOutDateTime();
+		NativeSearchQuery query = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
+				.must(QueryBuilders.termQuery("spotId.keyword", parkingSpotId))
+				.must(QueryBuilders.boolQuery()
+						.should(QueryBuilders.rangeQuery("checkInDateTime").gte(startDateTime).lte(endDateTime))
+						.should(QueryBuilders.rangeQuery("checkOutDateTime").gte(startDateTime).lte(endDateTime))
 						.should(QueryBuilders.boolQuery()
-								.must(QueryBuilders.rangeQuery("checkInDateTime").lte(startDate))
-								.must(QueryBuilders.rangeQuery("checkOutDateTime").gte(endDate))))
+								.must(QueryBuilders.rangeQuery("checkInDateTime").lte(startDateTime))
+								.must(QueryBuilders.rangeQuery("checkOutDateTime").gte(endDateTime)))))
 				.build();
-		return searchQuery;
-
+		SearchHits<Booking> searchHits = elasticsearchRestTemplate.search(query, Booking.class,
+				IndexCoordinates.of("booking"));
+		return searchHits.isEmpty();
 	}
-
 }

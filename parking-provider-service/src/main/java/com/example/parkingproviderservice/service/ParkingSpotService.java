@@ -1,10 +1,12 @@
 package com.example.parkingproviderservice.service;
 
+
 import java.util.List;
 
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
 import com.example.parkingproviderservice.model.ParkingSpot;
 import com.example.parkingproviderservice.model.SpotType;
+import com.example.parkingproviderservice.dto.BookingTimeRangeDto;
 
 public interface ParkingSpotService {
 	public ParkingSpot addParkingSpot(String areaId, ParkingSpot parkingSpot) throws ResourceNotFoundException;
@@ -22,6 +24,7 @@ public interface ParkingSpotService {
 
 	public void delteParkingSpot(String spotId) throws ResourceNotFoundException;
 
-	public List<ParkingSpot> getVaccantSpot(String areaId, String checkInTime, String checkOutTime)
-			throws Exception;
+	public List<ParkingSpot> getVaccantSpot(String parkingSpotId,BookingTimeRangeDto bookingTimeRangeDto,SpotType spotType)throws Exception;
+	
+	public boolean isOccupied(String parkingSpotId, BookingTimeRangeDto bookingTimeRangeDto);
 }

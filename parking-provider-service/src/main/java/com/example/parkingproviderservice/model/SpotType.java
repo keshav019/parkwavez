@@ -4,5 +4,6 @@ public enum SpotType {
     TwoWheeler,
     FourWheeler,
     BigVehicle,
-    Handicap
+    Handicap,
+    Null
 }

@@ -27,14 +27,14 @@ public class ParkingAreaController {
 	@Autowired
 	private ParkingAreaService parkingAreaService;
 
-	@PostMapping("/{providerId}/add")
+	@PostMapping("/provider/{providerId}/add")
 	public ResponseEntity<ParkingArea> addParkingArea(@PathVariable long providerId,
 			@RequestBody ParkingArea parkingArea) throws ResourceNotFoundException {
 		parkingArea = parkingAreaService.addParkingArea(providerId, parkingArea);
 		return ResponseEntity.ok(parkingArea);
 	}
 
-	@GetMapping("/{providerId}/get")
+	@GetMapping("/public/{providerId}/get")
 	public ResponseEntity<Page<ParkingArea>> getParkingArea(@PathVariable long providerId,
 			@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int size,
 			@RequestParam(defaultValue = "areaId_asc") String sortBy) throws ResourceNotFoundException {
@@ -43,14 +43,14 @@ public class ParkingAreaController {
 		return ResponseEntity.ok(parkingAreas);
 	}
 
-	@GetMapping("/{providerId}/get/{areaId}")
+	@GetMapping("/public/{providerId}/get/{areaId}")
 	public ResponseEntity<ParkingArea> getById(@PathVariable long providerId, @PathVariable String areaId)
 			throws ResourceNotFoundException {
 		ParkingArea parkingArea = parkingAreaService.getById(providerId, areaId);
 		return ResponseEntity.ok(parkingArea);
 	}
 
-	@PutMapping("/{providerId}/update/{areaId}")
+	@PutMapping("/provider/{providerId}/update/{areaId}")
 	public ResponseEntity<ParkingArea> update(@PathVariable long providerId, @PathVariable String areaId,
 			@RequestBody ParkingArea parkingArea) throws ResourceNotFoundException {
 		parkingArea.setAreaId(areaId);
@@ -59,21 +59,21 @@ public class ParkingAreaController {
 		return ResponseEntity.ok(parkingArea);
 	}
 
-	@DeleteMapping("/{providerId}/delete/{areaId}")
+	@DeleteMapping("/provider/{providerId}/delete/{areaId}")
 	public ResponseEntity<String> delete(@PathVariable long providerId, @PathVariable String areaId)
 			throws ResourceNotFoundException {
 		parkingAreaService.delete(providerId, areaId);
 		return ResponseEntity.ok("Deleted");
 	}
 
-	@GetMapping("/getall")
+	@GetMapping("/public/getall")
 	public ResponseEntity<Page<ParkingArea>> getAll(@RequestParam(defaultValue = "0") int pageNo,
 			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "areaId_asc") String sortBy) {
 		Pageable pageable = PageableBuilder.build(pageNo, size, sortBy);
 		return ResponseEntity.ok(parkingAreaService.getAll(pageable));
 	}
 
-	@GetMapping("/get-by-city")
+	@GetMapping("/public/get-by-city")
 	public ResponseEntity<Page<ParkingArea>> findByCity(@RequestParam String city,
 			@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int size,
 			@RequestParam(defaultValue = "areaId_asc") String sortBy) {
@@ -82,7 +82,7 @@ public class ParkingAreaController {
 		return ResponseEntity.ok(parkingAreas);
 	}
 
-	@GetMapping("/get-near-by")
+	@GetMapping("/public/get-near-by")
 	public ResponseEntity<Page<ParkingArea>> getNearyBy(@RequestParam double latitude, @RequestParam double longitude,
 			@RequestParam(defaultValue = "1") String range,
 			@RequestParam(defaultValue = "KILOMETERS") DistanceUnit unit, @RequestParam(defaultValue = "0") int pageNo,

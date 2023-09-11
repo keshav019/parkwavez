@@ -1,9 +1,5 @@
 package com.example.parkingproviderservice.dto;
 
-import java.time.LocalDateTime;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingTimeRangeDto {
-	private String areaId;
-	@DateTimeFormat
-	private LocalDateTime checkInDateTime;
-	@DateTimeFormat
-	private LocalDateTime checkOutDateTime;
+	private String checkInDateTime;
+	private String checkOutDateTime;
 }
