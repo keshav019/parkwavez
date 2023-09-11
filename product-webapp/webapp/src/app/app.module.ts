@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { SupportComponent } from './support/support.component';
 import { SearchComponent } from './search/search.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { SearchComponent } from './search/search.component';
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    MatMenuModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

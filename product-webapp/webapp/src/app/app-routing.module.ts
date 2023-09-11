@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SupportComponent } from './support/support.component';
 import { ContactComponent } from './contact/contact.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'support',component:SupportComponent},
   {path:'contact',component:ContactComponent},
+  {path:'search',component:SearchComponent},
 ];
 
 @NgModule({
