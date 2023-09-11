@@ -21,6 +21,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		
+		<dependency>
+			<groupId>com.stackroute</groupId>
+	<artifactId>park-wavez</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		
+		
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -33,6 +43,12 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
+
+
+
+
 
 	<build>
 		<plugins>
