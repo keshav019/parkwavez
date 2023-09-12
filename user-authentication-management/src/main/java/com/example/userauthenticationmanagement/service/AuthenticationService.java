@@ -39,13 +39,7 @@ public class AuthenticationService {
     private ObjectMapper objectMapper;
 
     @Autowired
-    //private KafkaTemplate<String, String> kafkaTemplate;
     private KafkaTemplate<String, UserDTO> kafkaTemplate2;
-
-    
-
-    
-    
     public ApplicationUser registerUser(String username, String password, String firstName, String lastName, String emailId, Role role) {
         String encodedPassword = passwordEncoder.encode(password);
         

@@ -1,13 +1,12 @@
 package com.example.notificationservice.consumer;
 
-import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.example.notificationservice.service.NotificationService;
 import com.example.notificationservice.exception.MessageProcessingException;
+import com.example.notificationservice.service.NotificationService;
 import com.kafkaProducer.UserDTO;
 import com.kafkaProducer.UserSpotIdDTO;
 
@@ -19,7 +18,7 @@ public class KafkaMessageListener {
     @Autowired
 	private NotificationService notificationService;
     
-    @KafkaListener(topics = "topicNew62", groupId = "group14")
+    @KafkaListener(topics = "user-registration-topic", groupId = "group14")
     public void consume(UserDTO user) {
     	try {
         log.info("consumer consume {}", user);
