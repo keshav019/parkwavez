@@ -94,12 +94,13 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
 	}
 
 	@Override
-	public List<ParkingSpot> getVaccantSpot(String parkingAreaId, BookingTimeRangeDto bookingTimeRangeDto,SpotType spotType)
+	public List<ParkingSpot> getVaccantSpot(String parkingAreaId, BookingTimeRangeDto bookingTimeRangeDto,
+			SpotType spotType)
 			throws Exception {
 		List<ParkingSpot> spots;
-		if(spotType==null) {
-			spots = parkingSpotRepository.findByParkingAreaIdAndSpotType(parkingAreaId,spotType);
-		}else {
+		if (spotType == null) {
+			spots = parkingSpotRepository.findByParkingAreaIdAndSpotType(parkingAreaId, spotType);
+		} else {
 			spots = parkingSpotRepository.findByParkingAreaId(parkingAreaId);
 		}
 		if (spots.isEmpty()) {

@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <a [routerLink]="parkingArea.areaId" class="areaName">{{parkingArea.parkingName}}</a>
+  </mat-card-header>
+  <mat-card-content> 
+    <h3><i class="fa-solid fa-location-dot"></i> {{parkingArea.address.street}} {{parkingArea.address.city}}</h3>
+    <h5></h5>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button >Edit</button>
+    <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+  </mat-card-actions>
+</mat-card>

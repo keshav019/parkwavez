@@ -18,6 +18,9 @@ import { SearchComponent } from './search/search.component';
 
 import {MatMenuModule} from "@angular/material/menu";
 import {MatCardModule} from '@angular/material/card';
+import { AreaCardComponent } from './components/area-card/area-card.component';
+import { SuggestionComponent } from './components/suggestion/suggestion.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import {MatCardModule} from '@angular/material/card';
     HomeComponent,
     ContactComponent,
     SupportComponent,
-    SearchComponent
+    SearchComponent,
+    AreaCardComponent,
+    SuggestionComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import {MatCardModule} from '@angular/material/card';
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,12 @@
+<div class="container">
+  <div>
+    <h1>Parking Areas</h1>
+    <button mat-raised-button routerLink="add">Add Parking Area</button>
+  </div>
+  <div class="parkingAreaList">
+    <app-parking-area
+      *ngFor="let parkingArea of parkingAreas"
+      [parkingArea]="parkingArea"
+    ></app-parking-area>
+  </div>
+</div>

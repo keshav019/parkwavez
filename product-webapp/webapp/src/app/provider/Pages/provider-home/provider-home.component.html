@@ -1,0 +1,32 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer
+    mode="side"
+    opened
+    class="drawer"
+    [style]="'backgroundColor:primary'"
+  >
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <mat-icon>notifications</mat-icon>
+        <span>Notifications</span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <mat-icon>report_problem</mat-icon>
+        <span>Complain</span>
+        <mat-icon></mat-icon>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+        <mat-icon></mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </mat-drawer>
+  <mat-drawer-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
