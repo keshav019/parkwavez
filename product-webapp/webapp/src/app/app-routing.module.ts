@@ -16,10 +16,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./provider/provider.module').then((m) => m.ProviderModule),
   },
-  {path:'',component:HomeComponent},
-  {path:'support',component:SupportComponent},
-  {path:'contact',component:ContactComponent},
-  {path:'search',component:SearchComponent},
+  { path: '', component: HomeComponent },
+  { path: 'support', component: SupportComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'search', component: SearchComponent },
 ];
 
 @NgModule({

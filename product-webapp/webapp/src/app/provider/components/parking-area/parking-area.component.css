@@ -1,0 +1,16 @@
+mat-card-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+mat-card{
+    width: 300px;
+}
+.areaName{
+    color: black;
+    font-weight: lighter;
+    font-size: 1.25rem;
+    text-decoration: none;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,6 @@
+.parkingAreaList{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

@@ -19,23 +19,29 @@ public class ProviderDetailsServiceImpl implements ProviderDetailsService {
 	ObjectMapper objectMapper = JacksonFactory.getObjectMapper();
 
 	@Override
-	@KafkaListener(topics = "authservicepost", groupId = "authgroup")
+	@KafkaListener(topics = "user-registration-topic", groupId = "14")
 	public void authTopicPost(String message) throws JsonMappingException, JsonProcessingException {
 		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
-		providerRepository.save(providerDetails);
+		if(providerDetails.getRole().toString()=="PROVIDER") {
+			providerRepository.save(providerDetails);
+		}
 	}
 
 	@Override
-	@KafkaListener(topics = "authserviceupdate", groupId = "authgroup")
+	@KafkaListener(topics = "user-update-topic", groupId = "14")
 	public void authTopicUpdate(String message) throws JsonMappingException, JsonProcessingException {
 		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
-		providerRepository.deleteById(providerDetails.getUserId());
+		if(providerDetails.getRole().toString()=="PROVIDER") {
+			providerRepository.deleteById(providerDetails.getUserId());
+		}
 	}
 
 	@Override
-	@KafkaListener(topics = "authservicedelete", groupId = "authgroup")
+	@KafkaListener(topics = "user-delete-topic", groupId = "14")
 	public void authTopicDelete(String message) throws JsonMappingException, JsonProcessingException {
 		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
-		providerRepository.save(providerDetails);
+		if(providerDetails.getRole().toString()=="PROVIDER") {
+			providerRepository.save(providerDetails);
+		}
 	}
 }
