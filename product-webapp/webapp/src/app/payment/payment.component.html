@@ -1,1 +1,7 @@
-<p>Payment done!</p>
+<h1>Razorpay Payment</h1>
+<div class="form-group">
+  <label for="payment_field">Enter Amount:</label>
+  <input type="text" id="payment_field" [(ngModel)]="amount" required>
+  
+</div>
+<button (click)="paymentStart()">Pay Now</button>
