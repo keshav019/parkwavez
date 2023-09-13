@@ -23,6 +23,8 @@ import { SuggestionComponent } from './components/suggestion/suggestion.componen
 import { HttpClientModule } from '@angular/common/http';
 
 
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
