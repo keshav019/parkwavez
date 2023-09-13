@@ -21,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import { AreaCardComponent } from './components/area-card/area-card.component';
 import { SuggestionComponent } from './components/suggestion/suggestion.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     SupportComponent,
     SearchComponent,
     AreaCardComponent,
-    SuggestionComponent
+    SuggestionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
