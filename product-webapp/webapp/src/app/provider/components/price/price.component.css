@@ -1,0 +1,7 @@
+.price-list{
+    margin-top: 20px;
+}
+.price-list-heading{
+    display: flex;
+    justify-content: space-between;
+}

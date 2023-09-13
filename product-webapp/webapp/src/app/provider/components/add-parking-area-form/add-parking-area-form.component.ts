@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ParkingArea } from '../../Pages/model/ParkingArea';
+import { ParkingArea } from '../../model/ParkingArea';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ParkingAreaService } from '../../service/parking-area.service';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class AddParkingAreaFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _parkingAreaService: ParkingAreaService,
-    private _router:Router
+    private _router: Router
   ) {}
   ngOnInit() {
     this.parkingAreaForm = this.fb.group({
@@ -58,7 +58,7 @@ export class AddParkingAreaFormComponent implements OnInit {
       .addParkingSpace(this.providerId, this.parkingAreaForm.value)
       .subscribe(
         (parkingAreas: ParkingArea) => {
-          this._router.navigate(["/","provider"])
+          this._router.navigate(['/', 'provider']);
         },
         () => {},
         () => {}

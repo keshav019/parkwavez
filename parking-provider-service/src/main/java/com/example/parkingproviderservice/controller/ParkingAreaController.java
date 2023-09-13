@@ -1,6 +1,5 @@
 package com.example.parkingproviderservice.controller;
 
-
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -52,20 +51,17 @@ public class ParkingAreaController {
 		return ResponseEntity.ok(parkingArea);
 	}
 
-	@PutMapping("/provider/{providerId}/update/{areaId}")
-	public ResponseEntity<ParkingArea> update(@PathVariable long providerId, @PathVariable String areaId,
-			@RequestBody ParkingArea parkingArea) throws ResourceNotFoundException {
-		parkingArea.setAreaId(areaId);
-		parkingArea.setProviderId(providerId);
+	@PutMapping("/provider/update")
+	public ResponseEntity<ParkingArea> update(@RequestBody ParkingArea parkingArea)
+			throws ResourceNotFoundException {
 		parkingArea = parkingAreaService.update(parkingArea);
 		return ResponseEntity.ok(parkingArea);
 	}
 
-	@DeleteMapping("/provider/{providerId}/delete/{areaId}")
-	public ResponseEntity<String> delete(@PathVariable long providerId, @PathVariable String areaId)
-			throws ResourceNotFoundException {
-		parkingAreaService.delete(providerId, areaId);
-		return ResponseEntity.ok("Deleted");
+	@DeleteMapping("/provider/{areaId}/delete")
+	public ResponseEntity<String> delete(@PathVariable String areaId) throws ResourceNotFoundException {
+		parkingAreaService.delete(areaId);
+		return ResponseEntity.ok("{\"message\": \"Delete successful\"}");
 	}
 
 	@GetMapping("/public/getall")
