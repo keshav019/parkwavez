@@ -21,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import { AreaCardComponent } from './components/area-card/area-card.component';
 import { SuggestionComponent } from './components/suggestion/suggestion.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 
 
 import { FormsModule } from '@angular/forms';
@@ -35,7 +36,8 @@ import { MatInputModule } from '@angular/material/input';
     SupportComponent,
     SearchComponent,
     AreaCardComponent,
-    SuggestionComponent
+    SuggestionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
