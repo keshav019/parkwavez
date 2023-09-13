@@ -17,7 +17,17 @@ import { MatInputModule } from '@angular/material/input';
 import { LocationComponent } from './components/location/location.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-
+import { ParkingAreaDetailsComponent } from './Pages/parking-area-details/parking-area-details.component';
+import { PriceComponent } from './components/price/price.component';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { AddPriceFornComponent } from './components/add-price-forn/add-price-forn.component';
+import { MatSelectModule } from '@angular/material/select';
+import { EditPriceFormComponent } from './components/edit-price-form/edit-price-form.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ParkitSpotListComponent } from './components/parkit-spot-list/parkit-spot-list.component';
+import { EditSpotComponent } from './components/edit-spot/edit-spot.component';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [
     ProviderHomeComponent,
@@ -26,6 +36,12 @@ import { MatCardModule } from '@angular/material/card';
     ParkingAreaComponent,
     AddParkingAreaFormComponent,
     LocationComponent,
+    ParkingAreaDetailsComponent,
+    PriceComponent,
+    AddPriceFornComponent,
+    EditPriceFormComponent,
+    ParkitSpotListComponent,
+    EditSpotComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +55,12 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    FormsModule,
+    MatExpansionModule,
+    MatSelectModule,
+    MatChipsModule
   ],
 })
 export class ProviderModule {}

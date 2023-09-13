@@ -16,7 +16,7 @@ public interface ParkingAreaService {
 
 	public ParkingArea update(ParkingArea parkingArea) throws ResourceNotFoundException;
 
-	public void delete(long providerId, String areaId) throws ResourceNotFoundException;
+	public void delete(String areaId) throws ResourceNotFoundException;
 
 	public Page<ParkingArea> getAll(Pageable pagable);
 
