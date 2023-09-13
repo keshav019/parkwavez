@@ -9,7 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent {
-<<<<<<< HEAD
   // amount!: number;
   // rzp :any;
   // // Razorpay=require('razorpay');
@@ -82,11 +81,10 @@ export class PaymentComponent {
   //     alert('Something went wrong !!');
   //   });
   // }
-=======
 //   amount!: number;
 //   rzp :any;
   // Razorpay=require('razorpay');
-  
+
   // paymentStart() {
   //   console.log('Payment started..');
   //   if (!this.amount || this.amount <= 0) {
@@ -155,5 +153,4 @@ export class PaymentComponent {
 //       alert('Something went wrong !!');
 //     });
 //   }
->>>>>>> 640b8f2896473ce4e93a1864e094c5fc93e6bbef
 }
