@@ -29,7 +29,6 @@ export class DashboardComponent implements OnInit {
   deleteParkingArea(areaId: string) {
     this._parkingAreaService.deleteParkingSpace(areaId).subscribe(
       (message: any) => {
-        console.log('sucess', message);
         this.message = message;
         this.parkingAreas = this.parkingAreas.filter(
           (parkingarea: ParkingArea) => {

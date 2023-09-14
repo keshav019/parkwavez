@@ -21,28 +21,20 @@ public class ProviderDetailsServiceImpl implements ProviderDetailsService {
 	@Override
 	@KafkaListener(topics = "user-registration-topic", groupId = "14")
 	public void authTopicPost(String message) throws JsonMappingException, JsonProcessingException {
-		System.out.println(message);
 		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
-		if (providerDetails.getRole().toString() == "PROVIDER") {
+		System.out.println(providerDetails.toString());
+		if (providerDetails.getRole().toString().equals("PROVIDER")) {
 			providerRepository.save(providerDetails);
 		}
 	}
 
 	@Override
-	@KafkaListener(topics = "user-update-topic", groupId = "14")
 	public void authTopicUpdate(String message) throws JsonMappingException, JsonProcessingException {
-		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
-		if (providerDetails.getRole().toString() == "PROVIDER") {
-			providerRepository.deleteById(providerDetails.getUserId());
-		}
+
 	}
 
 	@Override
-	@KafkaListener(topics = "user-delete-topic", groupId = "14")
 	public void authTopicDelete(String message) throws JsonMappingException, JsonProcessingException {
-		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
-		if (providerDetails.getRole().toString() == "PROVIDER") {
-			providerRepository.save(providerDetails);
-		}
+
 	}
 }

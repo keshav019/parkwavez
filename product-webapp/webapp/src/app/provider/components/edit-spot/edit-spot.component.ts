@@ -19,12 +19,11 @@ export class EditSpotComponent {
     public dialogRef: MatDialogRef<EditSpotComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { parkingSpot: ParkingSpot }
   ) {
-    console.log(data.parkingSpot);
     this.spotForm = this.fb.group({
       parkingSpotId: [this.data.parkingSpot.parkingSpotId],
       parkingSpotNumber: [this.data.parkingSpot.parkingSpotNumber],
       spotType: [this.data.parkingSpot.spotType],
-      isOccupied: [this.data.parkingSpot.isOccupied],
+      occupied: [this.data.parkingSpot.occupied],
       parkingAreaId: [this.data.parkingSpot.parkingAreaId],
     });
   }
@@ -34,8 +33,8 @@ export class EditSpotComponent {
   }
   onUpdate() {
     this.priceService.updateParkingSpot(this.spotForm.value).subscribe(
-      (parkingSpot: ParkingSpot) => {
-        this.dialogRef.close(parkingSpot);
+      (updatedSpot: ParkingSpot) => {
+        this.dialogRef.close(updatedSpot);
       },
       (error) => {
         this.error = error.message;

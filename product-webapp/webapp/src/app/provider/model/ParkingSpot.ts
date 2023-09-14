@@ -1,7 +1,7 @@
 export interface ParkingSpot {
   parkingSpotId: string;
   parkingSpotNumber: number;
-  isOccupied: boolean;
+  occupied: boolean;
   spotType: string;
   parkingAreaId: string;
 }

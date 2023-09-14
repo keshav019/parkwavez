@@ -47,7 +47,7 @@ export class ParkitSpotListComponent implements OnInit {
     let newParkingSpot: ParkingSpot = {
       parkingSpotId: '',
       parkingSpotNumber: 0,
-      isOccupied: false,
+      occupied: false,
       spotType: this.spotType,
       parkingAreaId: this.areaId,
     };
@@ -65,13 +65,14 @@ export class ParkitSpotListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((updatedParkingSpot: ParkingSpot) => {
       if (updatedParkingSpot) {
-        this.parkingSpots.filter((parkingSpot) => {
-          if (parkingSpot.parkingSpotId == updatedParkingSpot.parkingSpotId) {
+        this.parkingSpots = this.parkingSpots.map((parkingSpot) => {
+          if (parkingSpot.parkingSpotId === updatedParkingSpot.parkingSpotId) {
             return updatedParkingSpot;
           } else {
             return parkingSpot;
           }
         });
+        this.parkingSpots = [...this.parkingSpots];
       } else {
         console.log('Dialog closed without data.');
       }

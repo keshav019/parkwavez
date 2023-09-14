@@ -39,6 +39,7 @@ public class ParkingSpotController {
 	public ResponseEntity<List<ParkingSpot>> getParkingSpotByParkingArea(@PathVariable String areaId)
 			throws ResourceNotFoundException {
 		List<ParkingSpot> spots = parkingSpotService.getParkingSpotByParkingArea(areaId);
+		System.out.println(spots.get(0).toString());
 		return ResponseEntity.ok(spots);
 	}
 
@@ -66,8 +67,10 @@ public class ParkingSpotController {
 	@PutMapping("/provider/update/{spotId}")
 	public ResponseEntity<ParkingSpot> updateParkingSpot(@PathVariable String spotId,
 			@RequestBody ParkingSpot parkingSpot) throws ResourceNotFoundException {
+		System.out.println(parkingSpot);
 		parkingSpot.setParkingSpotId(spotId);
 		parkingSpot = parkingSpotService.updateParkingSpot(parkingSpot);
+		System.out.println(parkingSpot);
 		return ResponseEntity.ok(parkingSpot);
 	}
 

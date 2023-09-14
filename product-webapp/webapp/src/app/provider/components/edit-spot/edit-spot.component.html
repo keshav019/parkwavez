@@ -21,15 +21,9 @@
         >Spot Type is required</mat-error
       >
     </mat-form-field>
-    <mat-chip-listbox aria-label="Fish selection">
-      <mat-chip-option
-        [selected]="data.parkingSpot.isOccupied === true"
-        >Occupied</mat-chip-option
-      >
-      <mat-chip-option
-        [selected]="data.parkingSpot.isOccupied === false"
-        >Not Occupied</mat-chip-option
-      >
+    <mat-chip-listbox aria-label="Fish selection" formControlName="occupied">
+      <mat-chip-option [value]="true">Occupied</mat-chip-option>
+      <mat-chip-option [value]="false">Not Occupied</mat-chip-option>
     </mat-chip-listbox>
 
     <button

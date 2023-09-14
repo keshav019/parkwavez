@@ -11,32 +11,28 @@ import com.example.parkingspacebooking.Model.JacksonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 @Service
 public class KafkaProducer {
-	
-	ObjectMapper objectMapper=JacksonFactory.getObjectMapper();
+
+    ObjectMapper objectMapper = JacksonFactory.getObjectMapper();
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaProducer.class);
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-    
+    private KafkaTemplate<String, Booking> kafkaTemplate;
+
     public void bookingTopicPost(Booking booking) throws JsonProcessingException {
         LOGGER.info(String.format("\nMessage sent -> %s", booking.toString()));
-        String message=objectMapper.writeValueAsString(booking);
-        kafkaTemplate.send("bookingservicepost",message);
+        kafkaTemplate.send("bookingservicepost", booking);
     }
 
     public void bookingTopicDelete(Booking booking) throws JsonProcessingException {
         LOGGER.info(String.format("\nMessage sent -> %s", booking.toString()));
-        String message=objectMapper.writeValueAsString(booking);
-        kafkaTemplate.send("bookingservicepost",message);
+        kafkaTemplate.send("bookingservicedelete", booking);
     }
 
     public void bookingTopicUpdate(Booking booking) throws JsonProcessingException {
         LOGGER.info(String.format("\nMessage sent -> %s", booking.toString()));
-        String message=objectMapper.writeValueAsString(booking);
-        kafkaTemplate.send("bookingservicepost",message);
+        kafkaTemplate.send("bookingserviceupdate", booking);
     }
 
 }
