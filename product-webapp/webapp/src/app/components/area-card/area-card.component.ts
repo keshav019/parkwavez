@@ -120,7 +120,7 @@ export class AreaCardComponent implements OnInit {
     this.selectedProduct = product;
 
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
-      width: '800px',
+      width: '1000px',
       height: '500px',
       data: this.selectedProduct,
     });

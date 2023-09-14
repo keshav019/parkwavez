@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ParkingArea } from './models/parking-area';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-product-details',
@@ -11,6 +13,17 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit{
+
+  fromDate: Date | null;
+  toDate: Date | null;
+
+  submitDateRange(): void {
+    // Handle the selected date range here
+    console.log('From Date:', this.fromDate);
+    console.log('To Date:', this.toDate);
+
+    // You can perform filtering or any other action with the selected date range.
+  }
 
 
   parkingAreas: ParkingArea[] = [
@@ -110,7 +123,7 @@ export class ProductDetailsComponent implements OnInit{
   originalParkingAreas: ParkingArea[] = [...this.parkingAreas];
   
 
-  displayedColumns: string[] = ['id', 'name', 'vehicleType', 'pricePerHour', 'numParkingSpots', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'vehicleType', 'pricePerHour', 'actions'];
   selectedVehicleType: string = 'All'; 
   selectedPrice: number | 'All' =  'All'; 
 
@@ -119,8 +132,12 @@ export class ProductDetailsComponent implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<ProductDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any
+    @Inject(MAT_DIALOG_DATA) public data:any,
+      private _adapter: DateAdapter<any>
     ) {
+        this.fromDate = null;
+        this.toDate = null;
+
       // this.parkingAreas = data.parkingAreas;
       if (data && data.parkingAreas) {
         this.parkingAreas = data.parkingAreas;
