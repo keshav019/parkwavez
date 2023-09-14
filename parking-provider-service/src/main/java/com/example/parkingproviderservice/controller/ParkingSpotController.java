@@ -77,7 +77,7 @@ public class ParkingSpotController {
 	@DeleteMapping("/provider/delete/{spotId}")
 	public ResponseEntity<String> delteParkingSpot(@PathVariable String spotId) throws ResourceNotFoundException {
 		parkingSpotService.delteParkingSpot(spotId);
-		return ResponseEntity.ok("Deleted");
+		return ResponseEntity.ok("{\"message\": \"Deleted\"}");
 	}
 
 	@GetMapping("public/{parkingAreaId}/get-vaccant-space")

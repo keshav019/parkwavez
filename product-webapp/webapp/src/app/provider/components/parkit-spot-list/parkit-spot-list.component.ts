@@ -77,5 +77,15 @@ export class ParkitSpotListComponent implements OnInit {
         console.log('Dialog closed without data.');
       }
     });
+    dialogRef.afterClosed().subscribe((parkingSpotId: String) => {
+      if (parkingSpotId) {
+        this.parkingSpots = this.parkingSpots.filter((parkingSpot) => {
+          return parkingSpot.parkingSpotId != parkingSpotId;
+        });
+        this.parkingSpots = [...this.parkingSpots];
+      } else {
+        console.log('Dialog closed without data.');
+      }
+    });
   }
 }
