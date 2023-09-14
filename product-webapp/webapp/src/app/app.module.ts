@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { SupportComponent } from './support/support.component';
 import { SearchComponent } from './search/search.component';
-
-import {MatMenuModule} from "@angular/material/menu";
-import {MatCardModule} from '@angular/material/card';
+import { MatMenuModule } from "@angular/material/menu";
+import { MatCardModule } from '@angular/material/card';
 import { AreaCardComponent } from './components/area-card/area-card.component';
 import { SuggestionComponent } from './components/suggestion/suggestion.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,16 +22,22 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+<<<<<<< HEAD
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
 import { FormsModule } from '@angular/forms';
+=======
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+>>>>>>> 2f2bfc592a31931baf8ebd7b00693fe7f76bbc53
 import { MatInputModule } from '@angular/material/input';
-
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { RegistrationComponent } from './registration/registration.component'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     AreaCardComponent,
     SuggestionComponent,
     FooterComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    BookingComponent,
+    RegistrationComponent, 
   ],
   imports: [
     BrowserModule,
@@ -61,14 +65,18 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     MatCardModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule, 
     MatInputModule,
     CarouselModule,
     MatDialogModule,
     MatSelectModule,
     MatFormFieldModule,
     MatTableModule,
+<<<<<<< HEAD
     MatDatepickerModule,
     MatNativeDateModule
+=======
+>>>>>>> 2f2bfc592a31931baf8ebd7b00693fe7f76bbc53
   ],
   providers: [],
   bootstrap: [AppComponent]
