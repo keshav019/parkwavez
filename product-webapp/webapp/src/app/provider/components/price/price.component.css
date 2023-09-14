@@ -5,3 +5,9 @@
     display: flex;
     justify-content: space-between;
 }
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+.table-container {
+  max-width: 100%; /* Adjust the value as needed */
+}

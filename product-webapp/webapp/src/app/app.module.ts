@@ -32,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { UserTemplateComponent } from './user-template/user-template.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     AreaCardComponent,
     SuggestionComponent,
     FooterComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    UserTemplateComponent
   ],
   imports: [
     BrowserModule,

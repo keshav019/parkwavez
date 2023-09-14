@@ -22,4 +22,6 @@
 .example-spacer {
   flex: 1 1 auto;
 }
-
+.main-content{
+  /* background-image: url(../../../../assets/images.jpeg); */
+}

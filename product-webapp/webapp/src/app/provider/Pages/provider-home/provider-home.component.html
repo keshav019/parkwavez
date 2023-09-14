@@ -1,7 +1,7 @@
 <mat-drawer-container class="example-container">
   <mat-drawer
     mode="side"
-    opened
+    [opened]="!isSmallScreen"
     class="drawer"
     [style]="'backgroundColor:primary'"
   >
@@ -9,10 +9,6 @@
       <mat-toolbar-row>
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
-      </mat-toolbar-row>
-      <mat-toolbar-row>
-        <mat-icon>notifications</mat-icon>
-        <span>Notifications</span>
       </mat-toolbar-row>
       <mat-toolbar-row>
         <mat-icon>report_problem</mat-icon>
