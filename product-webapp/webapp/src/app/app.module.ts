@@ -22,12 +22,16 @@ import { AreaCardComponent } from './components/area-card/area-card.component';
 import { SuggestionComponent } from './components/suggestion/suggestion.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
 
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
 import { CarouselModule } from './carousel/carousel.module';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,8 @@ import { CarouselModule } from './carousel/carousel.module';
     SearchComponent,
     AreaCardComponent,
     SuggestionComponent,
-    FooterComponent
+    FooterComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,11 @@ import { CarouselModule } from './carousel/carousel.module';
     HttpClientModule,
     FormsModule,
     MatInputModule,
-    CarouselModule
+    CarouselModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
