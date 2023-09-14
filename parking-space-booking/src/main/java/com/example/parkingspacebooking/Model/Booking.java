@@ -31,5 +31,7 @@ public class Booking {
 	 private LocalDateTime Check_Out;
 	 private String status;
 	 private String emailId;
+	 private double amount;
+	 
 
 }
