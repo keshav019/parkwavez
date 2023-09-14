@@ -26,6 +26,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -62,7 +66,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     MatDialogModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
