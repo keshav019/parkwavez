@@ -39,7 +39,7 @@ public class BookingServiceImpl implements BookingService {
 	
 	
 	
-    public boolean isSpotAlreadyBooked(long spotId) {
+    public boolean isSpotAlreadyBooked(String spotId) {
         // Check if a booking with the same spotId exists
         return repository.existsBySpotId(spotId);
     }

@@ -26,7 +26,7 @@ public class Booking {
 	private String bookingId;
 	
 	private String userId;
-	private long spotId;
+	private String spotId;
 	 private Date Booking_date;
 	 private LocalDateTime Check_In;
 	 private LocalDateTime Check_Out;
