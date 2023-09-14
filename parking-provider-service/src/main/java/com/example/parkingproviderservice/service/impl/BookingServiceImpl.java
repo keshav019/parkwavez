@@ -1,5 +1,6 @@
 package com.example.parkingproviderservice.service.impl;
 
+import com.example.parkingproviderservice.dto.BookingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,13 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	private BookingRepository bookingRepository;
 	ObjectMapper objectMapper = JacksonFactory.getObjectMapper();
-
+//ObjectMapper objectMapper=new ObjectMapper();
 	@Override
 	@KafkaListener(topics = "bookingservicepost", groupId = "bookinggroup")
 	public void bookingTopicPost(String message) throws JsonMappingException, JsonProcessingException {
-		Booking booking = objectMapper.readValue(message, Booking.class);
+		BookingDto bookingDto = objectMapper.readValue(message, BookingDto.class);
+		Booking booking=new Booking(bookingDto);
 		booking = bookingRepository.save(booking);
-		System.out.println("Message recieved " + booking.toString());
 	}
 
 	@Override

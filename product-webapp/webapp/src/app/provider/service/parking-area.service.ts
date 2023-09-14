@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ParkingArea } from '../Pages/model/ParkingArea';
+import { ParkingArea } from '../model/ParkingArea';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParkingAreaService {
-  API_URL = 'http://localhost:8084/parking-area';
+  API_URL = 'http://localhost:8085/parking-area';
   constructor(private _httpClient: HttpClient) {}
   addParkingSpace(
     providerId: string,
@@ -21,6 +21,15 @@ export class ParkingAreaService {
   getParkingSpace(providerId: string): Observable<any[]> {
     return this._httpClient.get<any[]>(
       `${this.API_URL}/provider/${providerId}/get`
+    );
+  }
+  deleteParkingSpace(areaId: string) {
+    return this._httpClient.delete(`${this.API_URL}/provider/${areaId}/delete`);
+  }
+  updateParkingSpace(parkingArea: ParkingArea): Observable<ParkingArea> {
+    return this._httpClient.put<ParkingArea>(
+      `${this.API_URL}/provider/update`,
+      parkingArea
     );
   }
 }

@@ -1,3 +1,11 @@
+.home{
+  padding: 200px;
+  text-align: center;
+  background-image: url('https://i.ibb.co/qgWD33P/background-For-Contact.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
 .card{
   text-align: center;
   border-bottom: 2px solid blue;
@@ -5,6 +13,12 @@
 .appname{
   text-align: center;
   margin-top: 55px;
+}
+.mat-class{
+  color: black;
+}
+.corousel{
+  margin-top: 40px;
 }
 
 

@@ -40,7 +40,7 @@ public class ParkingAreaServiceImpl implements ParkingAreaService {
 	}
 
 	@Override
-	public void delete(long providerId, String areaId) throws ResourceNotFoundException {
+	public void delete(String areaId) throws ResourceNotFoundException {
 		boolean isexist = parkingAreaRepository.existsById(areaId);
 		if (!isexist) {
 			throw new ResourceNotFoundException("ParkingArea not found with Id : " + areaId);

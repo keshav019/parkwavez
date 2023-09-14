@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ParkingAreaService } from '../../service/parking-area.service';
-import { ParkingArea } from '../../Pages/model/ParkingArea';
+import { ParkingArea } from '../../model/ParkingArea';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,21 +9,37 @@ import { ParkingArea } from '../../Pages/model/ParkingArea';
 })
 export class DashboardComponent implements OnInit {
   parkingAreas: ParkingArea[] = [];
-  providerId = "1";
-  message = '';
+  providerId = '1';
+  message!: string;
+  error!: string;
   constructor(private _parkingAreaService: ParkingAreaService) {}
   ngOnInit(): void {
     this.getParkingAreas(this.providerId);
-    console.log('dashboard....');
   }
   getParkingAreas(providerId: string) {
     this._parkingAreaService.getParkingSpace(providerId).subscribe(
       (parkingAreas: any) => {
-        console.log(parkingAreas);
         this.parkingAreas = parkingAreas.content;
       },
-      () => {},
-      () => {}
+      (error) => {
+        this.error = error.message;
+      }
+    );
+  }
+  deleteParkingArea(areaId: string) {
+    this._parkingAreaService.deleteParkingSpace(areaId).subscribe(
+      (message: any) => {
+        this.message = message;
+        this.parkingAreas = this.parkingAreas.filter(
+          (parkingarea: ParkingArea) => {
+            return parkingarea.areaId != areaId;
+          }
+        );
+      },
+      (err) => {
+        console.log('error', err);
+        this.error = err;
+      }
     );
   }
 }

@@ -1,5 +1,7 @@
-import { Component, Input,OnInit } from '@angular/core';
-import { ParkingArea } from '../../Pages/model/ParkingArea';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { ParkingArea } from '../../model/ParkingArea';
+import { Router } from '@angular/router';
+import { DataService } from '../../service/data-service.service';
 
 @Component({
   selector: 'app-parking-area',
@@ -7,11 +9,15 @@ import { ParkingArea } from '../../Pages/model/ParkingArea';
   styleUrls: ['./parking-area.component.css'],
 })
 export class ParkingAreaComponent implements OnInit {
+  constructor(private _router: Router, private dataService: DataService) {}
   @Input() parkingArea!: ParkingArea;
-  ngOnInit(): void {
-    console.log(this.parkingArea);
+  @Output() deleteParkingArea = new EventEmitter();
+  ngOnInit(): void {}
+  onDelete(areaId: any) {
+    this.deleteParkingArea.emit(areaId);
   }
-  onDelete() {
-    
+  onNavigate(parkingArea: ParkingArea) {
+    this.dataService.parkingArea = parkingArea;
+    this._router.navigate(['provider', 'parking-area']);
   }
 }

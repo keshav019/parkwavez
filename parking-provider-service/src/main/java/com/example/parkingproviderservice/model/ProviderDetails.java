@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Document(indexName = "provider_details")
 public class ProviderDetails {
 	@Id
-	private int userId;
-	private String username;
-	private String password;
+	private String userId;
+	private String userName;
+	private String email;
 	private Role role;
 }

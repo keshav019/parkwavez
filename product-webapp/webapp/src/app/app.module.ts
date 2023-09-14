@@ -24,6 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 
 
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+
+import { CarouselModule } from './carousel/carousel.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,10 @@ import { FooterComponent } from './footer/footer.component';
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatInputModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

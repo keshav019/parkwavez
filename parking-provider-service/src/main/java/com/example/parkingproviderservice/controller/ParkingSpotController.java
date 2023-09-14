@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.example.parkingproviderservice.service.ParkingSpotService;
 
 @RestController
 @RequestMapping("/parking-spot")
+@CrossOrigin(maxAge = 3600)
 public class ParkingSpotController {
 	@Autowired
 	private ParkingSpotService parkingSpotService;
@@ -37,6 +39,7 @@ public class ParkingSpotController {
 	public ResponseEntity<List<ParkingSpot>> getParkingSpotByParkingArea(@PathVariable String areaId)
 			throws ResourceNotFoundException {
 		List<ParkingSpot> spots = parkingSpotService.getParkingSpotByParkingArea(areaId);
+		System.out.println(spots.get(0).toString());
 		return ResponseEntity.ok(spots);
 	}
 
@@ -64,8 +67,10 @@ public class ParkingSpotController {
 	@PutMapping("/provider/update/{spotId}")
 	public ResponseEntity<ParkingSpot> updateParkingSpot(@PathVariable String spotId,
 			@RequestBody ParkingSpot parkingSpot) throws ResourceNotFoundException {
+		System.out.println(parkingSpot);
 		parkingSpot.setParkingSpotId(spotId);
 		parkingSpot = parkingSpotService.updateParkingSpot(parkingSpot);
+		System.out.println(parkingSpot);
 		return ResponseEntity.ok(parkingSpot);
 	}
 
