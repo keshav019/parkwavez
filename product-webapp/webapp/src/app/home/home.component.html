@@ -1,22 +1,40 @@
 <div class="home">
+
+  <div class="appname">
+    <h1 class="h1El">
+      Parkwavez.com
+    </h1>
+  </div>
+  
   <h1 class="h1El">This is home page of Parkwavez application</h1>
+
   <app-area-card></app-area-card>
-<div class="appname">
-  <h1 class="h1El">
-    Parkwavez.com
-  </h1>
+
+
+
+<!-- parking.com -->
+<div class="contentDiv">
+  <span id="imageDiv">
+      <img src="https://i.ibb.co/sRWk2s1/img-app-ad.png" alt="img-app-ad"/>
+  </span>
+  <span id="textDiv">
+    <h1>FIND PARKING NEAR YOU</h1>
+    <p>The free Parking.com mobile app makes your on-the-go parking experience that much simpler.
+      Find the best parking spot near your destination in convenient and safe parking garages and lots across the India.
+    </p>
+  </span>
 </div>
-<div class="card">
-  <mat-card class="mat-class">
-    <mat-card-content>Finding parking shouldn't be a hassle.</mat-card-content>
-    <mat-card-content>Let's get you parked and on to the bigger things.</mat-card-content>
-    <mat-card-content>We are building the better world.</mat-card-content>
-  </mat-card>
-</div>
+
+
+
+
+<!-- added corousel to home page -->
 <div class="corousel">
   <app-carousel [images]="images"
     [autoSlide]="true"
   ></app-carousel>
 </div>
+
+
 </div>
 

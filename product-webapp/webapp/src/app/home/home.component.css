@@ -1,28 +1,69 @@
 .h1El{
   color: pink;
+  text-align: center;
 }
 
 .home{
-  padding: 200px;
-  text-align: center;
   background-image: url('https://i.ibb.co/qgWD33P/background-For-Contact.jpg');
   background-size: cover;
   background-position: center;
   color: white;
+  padding-bottom: 200px;
+  padding-top: 100px;
 }
 .card{
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   border-bottom: 2px solid blue;
+  text-align: center;
 }
 .appname{
   text-align: center;
   margin-top: 55px;
+  text-align: center;
 }
 .mat-class{
   color: black;
 }
 .corousel{
   margin-top: 40px;
+  text-align: center;
 }
 
+
+.contentDiv {
+  display: flex;
+  align-items: center;
+  margin-left: 12.5%;
+  margin-right: 14.5%;
+}
+
+#imageDiv{
+  flex: 1; /* Make the image div take up available horizontal space */
+  padding: 10px; /* Add some spacing around the image */
+}
+
+#textDiv {
+  flex: 2; /* Make the text div take up twice the horizontal space as the image div */
+  padding: 10px; /* Add some spacing around the text */
+}
+
+#textDiv {
+  flex: 2; /* Make the text div take up twice the horizontal space as the image div */
+  padding: 10px; /* Add some spacing around the text */
+}
+
+/* Adjustments for better styling */
+#textDiv h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#textDiv p {
+  color: white;
+  font-size: 16px;
+  margin: 0;
+}
 
