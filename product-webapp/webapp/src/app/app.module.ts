@@ -26,6 +26,8 @@ import { FooterComponent } from './footer/footer.component';
 
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+
+import { CarouselModule } from './carousel/carousel.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,8 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     HttpClientModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

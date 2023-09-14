@@ -20,7 +20,6 @@ export class PaymentComponent {
       alert('Please enter a valid amount');
       return;
     }
-
     // Send a request to your server to create an order
     fetch('http://localhost:8087/user/Create_Order', {
       method: 'POST',
