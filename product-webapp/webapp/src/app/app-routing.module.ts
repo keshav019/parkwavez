@@ -8,6 +8,7 @@ import { SupportComponent } from './support/support.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchComponent } from './search/search.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'support', component: SupportComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'register', component: RegistrationComponent }
 ];
 
 @NgModule({
