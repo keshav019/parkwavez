@@ -20,10 +20,11 @@ export class ParkitSpotListComponent implements OnInit {
   sortOptions = [
     { key: 'Occupied', value: 'occupied' },
     { key: 'Spot Number', value: 'parkingSpotNumber' },
-    { key: 'Spot Type', value:'spotType' },
+    { key: 'Spot Type', value: 'spotType' },
   ];
   filterField!: string;
   filterOptions = ['TwoWheeler', 'FourWheeler', 'BigVehicle', 'Handicap', null];
+  isMenuOpen = true;
 
   constructor(
     private parkingSpotService: ParkingSpotService,

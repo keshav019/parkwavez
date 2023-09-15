@@ -1,0 +1,11 @@
+
+
+<div class = "search-bar-container">
+<mat-form-field class="example-full-width">
+    <mat-label>Search Parking Areas</mat-label>
+    <input matInput [(ngModel)]="searchText" (input)="onInputChange()" placeholder="Enter a location or area">
+    <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>

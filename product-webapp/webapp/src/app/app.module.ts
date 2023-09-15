@@ -35,9 +35,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { UserTemplateComponent } from './user-template/user-template.component';
 import { BookingComponent } from './components/booking/booking.component';
-import { RegistrationComponent } from './registration/registration.component'; 
+import { RegistrationComponent } from './registration/registration.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component'; 
 
 @NgModule({
   declarations: [
@@ -52,9 +52,9 @@ import { RegistrationComponent } from './registration/registration.component';
     SuggestionComponent,
     FooterComponent,
     ProductDetailsComponent,
-    UserTemplateComponent,
     BookingComponent,
-    RegistrationComponent, 
+    RegistrationComponent,
+    SearchBarComponent, 
   ],
   imports: [
     BrowserModule,

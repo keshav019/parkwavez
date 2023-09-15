@@ -80,7 +80,6 @@ export class PriceComponent implements OnInit {
   getPrice() {
     this.priceService.getPrice(this.areaId).subscribe((res: Price[]) => {
       this.prices = res;
-      console.log(this.prices);
       this.dataSource = new MatTableDataSource<Price>(this.prices);
     });
   }

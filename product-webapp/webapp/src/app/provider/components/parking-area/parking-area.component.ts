@@ -18,6 +18,6 @@ export class ParkingAreaComponent implements OnInit {
   }
   onNavigate(parkingArea: ParkingArea) {
     this.dataService.parkingArea = parkingArea;
-    this._router.navigate(['provider', 'parking-area']);
+    this._router.navigate(['provider', 'area', parkingArea.areaId]);
   }
 }
