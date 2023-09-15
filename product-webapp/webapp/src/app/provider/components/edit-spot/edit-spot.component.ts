@@ -14,7 +14,7 @@ export class EditSpotComponent {
   error!: string;
   spotTypes = ['TwoWheeler', 'FourWheeler', 'BigVehicle', 'Handicap'];
   constructor(
-    private priceService: ParkingSpotService,
+    private parkingSpotService: ParkingSpotService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditSpotComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { parkingSpot: ParkingSpot }
@@ -32,7 +32,7 @@ export class EditSpotComponent {
     this.dialogRef.close();
   }
   onUpdate() {
-    this.priceService.updateParkingSpot(this.spotForm.value).subscribe(
+    this.parkingSpotService.updateParkingSpot(this.spotForm.value).subscribe(
       (updatedSpot: ParkingSpot) => {
         this.dialogRef.close(updatedSpot);
       },
@@ -40,5 +40,17 @@ export class EditSpotComponent {
         this.error = error.message;
       }
     );
+  }
+  onDelete() {
+    this.parkingSpotService
+      .deleteParkingSpot(this.data.parkingSpot.parkingSpotId)
+      .subscribe(
+        (result: any) => {
+          this.dialogRef.close(this.data.parkingSpot.parkingSpotId);
+        },
+        (error) => {
+          this.error = error.message;
+        }
+      );
   }
 }

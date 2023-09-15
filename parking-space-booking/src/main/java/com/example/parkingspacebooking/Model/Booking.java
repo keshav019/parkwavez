@@ -25,11 +25,13 @@ public class Booking {
 	@Id
 	private String bookingId;
 	private String userId;
-	private long spotId;
+	private String spotId;
 	 private Date Booking_date;
 	 private LocalDateTime Check_In;
 	 private LocalDateTime Check_Out;
 	 private String status;
 	 private String emailId;
+	 private double amount;
+	 
 
 }

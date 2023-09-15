@@ -19,7 +19,6 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	private BookingRepository bookingRepository;
 	ObjectMapper objectMapper = JacksonFactory.getObjectMapper();
-//ObjectMapper objectMapper=new ObjectMapper();
 	@Override
 	@KafkaListener(topics = "bookingservicepost", groupId = "bookinggroup")
 	public void bookingTopicPost(String message) throws JsonMappingException, JsonProcessingException {

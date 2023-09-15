@@ -10,6 +10,8 @@ import com.example.parkingspacebooking.Exception.BookingNotFoundException;
 import com.example.parkingspacebooking.Exception.SpotAlreadyBookedException;
 import com.example.parkingspacebooking.Model.Booking;
 import com.example.parkingspacebooking.Repository.BookingRepository;
+import com.example.parkingspacebooking.producerService.KafkaProducer;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 
 
@@ -19,6 +21,8 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
     private BookingRepository repository;
 
+	@Autowired
+	private KafkaProducer kafkaProducer;
 	
 	@Override
 	public Booking addBooking(Booking booking) {
@@ -32,6 +36,14 @@ public class BookingServiceImpl implements BookingService {
 		 booking.setBookingId(UUID.randomUUID().toString().split("-")[0]);
 		 Booking savedBooking=repository.save(booking);
 	       // return repository.save(booking);
+		 
+			try {
+				kafkaProducer.bookingTopicPost(savedBooking);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		
 	       // kafkaProducerService.sendMessage(savedBooking.getSpotId().toString(), savedBooking.getEmailId());
 	     return savedBooking;   
@@ -39,7 +51,7 @@ public class BookingServiceImpl implements BookingService {
 	
 	
 	
-    public boolean isSpotAlreadyBooked(long spotId) {
+    public boolean isSpotAlreadyBooked(String spotId) {
         // Check if a booking with the same spotId exists
         return repository.existsBySpotId(spotId);
     }
@@ -65,7 +77,12 @@ public class BookingServiceImpl implements BookingService {
         
         Booking updatedBooking = repository.save(existingBooking);
 
-        
+        try {
+			kafkaProducer.bookingTopicUpdate(updatedBooking);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return repository.save(existingBooking);
 	
 	}
@@ -91,6 +108,12 @@ public class BookingServiceImpl implements BookingService {
 		// TODO Auto-generated method stub
 		
 		repository.deleteById(BookingId);
+		try {
+			kafkaProducer.bookingTopicDelete(null);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return BookingId+" Booking has been canceled ";
 	}
 

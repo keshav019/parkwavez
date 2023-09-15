@@ -25,4 +25,9 @@ export class ParkingSpotService {
       parkingSpot
     );
   }
+  deleteParkingSpot(parkingSpotId: string): Observable<String> {
+    return this._httpClient.delete<String>(
+      `${this.API_URL}/provider/delete/${parkingSpotId}`
+    );
+  }
 }

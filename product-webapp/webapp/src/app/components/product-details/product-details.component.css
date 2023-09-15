@@ -1,0 +1,42 @@
+/* #filters {
+    position: sticky;
+    top: 0;
+    background-color: #fff; 
+    z-index: 1; 
+    padding: 10px; 
+  } */
+
+
+  .sticky {
+
+  display: flex;
+  align-items: center;
+    position: sticky;
+    top: 0;
+     background-color: white; /* Add a background color if needed */
+    z-index: 1; /* Ensure it's above the table */
+  }
+  
+  /* Adjust the spacing if needed */
+  #filters {
+    padding: 0px;
+  }
+  
+  #date-selection {
+    padding: 0px;
+  }
+
+  .parkingSpotList {
+    display: flex;
+  }
+  
+  /* Media query for screens with a maximum width of 600px */
+@media screen and (max-width: 600px) {
+  #filters {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  #date-selection {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+}

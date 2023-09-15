@@ -4,6 +4,7 @@ import { ProviderHomeComponent } from './Pages/provider-home/provider-home.compo
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddParkingAreaFormComponent } from './components/add-parking-area-form/add-parking-area-form.component';
 import { ParkingAreaDetailsComponent } from './Pages/parking-area-details/parking-area-details.component';
+import { ProfileComponent } from './Pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'add', component: AddParkingAreaFormComponent },
       { path: 'parking-area', component: ParkingAreaDetailsComponent },
+      {path:'profile',component: ProfileComponent}
     ],
   },
 ];
