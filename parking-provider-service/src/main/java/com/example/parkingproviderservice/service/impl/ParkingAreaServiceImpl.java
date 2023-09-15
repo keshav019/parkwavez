@@ -53,7 +53,7 @@ public class ParkingAreaServiceImpl implements ParkingAreaService {
 	}
 
 	@Override
-	public ParkingArea getById(long providerId, String areaId) throws ResourceNotFoundException {
+	public ParkingArea getById(String areaId) throws ResourceNotFoundException {
 		return parkingAreaRepository.findById(areaId)
 				.orElseThrow(() -> new ResourceNotFoundException("ParkingArea not found with Id : " + areaId));
 

@@ -29,6 +29,11 @@ import { ParkitSpotListComponent } from './components/parkit-spot-list/parkit-sp
 import { EditSpotComponent } from './components/edit-spot/edit-spot.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
+import { VaccantSpaceComponent } from './Pages/vaccant-space/vaccant-space.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [
     ProviderHomeComponent,
@@ -43,6 +48,7 @@ import { MatMenuModule } from '@angular/material/menu';
     EditPriceFormComponent,
     ParkitSpotListComponent,
     EditSpotComponent,
+    VaccantSpaceComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +69,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatListModule,
   ],
 })
 export class ProviderModule {}
