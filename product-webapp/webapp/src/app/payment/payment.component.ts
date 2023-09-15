@@ -12,8 +12,7 @@ const Razorpay: any = {}; //Added this line and commented line 3 and 15
 export class PaymentComponent {
   amount!: number;
   rzp: any;
-  // Razorpay = require('razorpay');
-
+  
   paymentStart() {
     console.log('Payment started..');
     if (!this.amount || this.amount <= 0) {
@@ -26,7 +25,7 @@ export class PaymentComponent {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ amount: this.amount }),
+      body: JSON.stringify({ "amount": `${this.amount}` }),
     })
       .then((response) => response.json())
 
