@@ -36,7 +36,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BookingComponent } from './components/booking/booking.component';
-import { RegistrationComponent } from './registration/registration.component'; 
+import { RegistrationComponent } from './registration/registration.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component'; 
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { RegistrationComponent } from './registration/registration.component';
     FooterComponent,
     ProductDetailsComponent,
     BookingComponent,
-    RegistrationComponent, 
+    RegistrationComponent,
+    SearchBarComponent, 
   ],
   imports: [
     BrowserModule,

@@ -25,9 +25,12 @@
   <!-- Date Range Selection -->
 <mat-form-field>
   <mat-label>From Date</mat-label>
-  <input matInput [matDatepicker]="fromDatepicker" [(ngModel)]="fromDate">
+  <input matInput [matDatepicker]="fromDatepicker" [(ngModel)]="fromDate" formControlName="fromDate1">
   <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
   <mat-datepicker #fromDatepicker></mat-datepicker>
+  <!-- <mat-error *ngIf="dateForm.get('fromDate').hasError('required')">From Date is required</mat-error>
+<mat-error *ngIf="dateForm.get('fromDate').hasError('pastDate')">From Date cannot be in the past</mat-error> -->
+
 </mat-form-field>
 
 <mat-form-field>

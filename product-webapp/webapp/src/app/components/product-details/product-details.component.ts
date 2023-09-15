@@ -6,6 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +14,8 @@ import { MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit{
+
+  //dateForm: FormGroup;
 
   fromDate: Date | null;
   toDate: Date | null;
@@ -135,6 +138,11 @@ export class ProductDetailsComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data:any,
       private _adapter: DateAdapter<any>
     ) {
+        // this.dateForm = new FormGroup({
+        //   fromDate: new FormControl(null, [Validators.required, this.futureDateValidator()]),
+        //   toDate: new FormControl(null, [Validators.required, this.futureDateValidator(), this.toDateValidator()]),
+        // });
+
         this.fromDate = null;
         this.toDate = null;
 
@@ -142,9 +150,25 @@ export class ProductDetailsComponent implements OnInit{
       if (data && data.parkingAreas) {
         this.parkingAreas = data.parkingAreas;
         this.originalParkingAreas = [...data.parkingAreas]; 
-    }
+        }
       }
     
+
+      // futureDateValidator() {
+      //   return (control: FormControl): { [key: string]: any } | null => {
+      //     const currentDate = new Date();
+      //     const inputDate = new Date(control.value);
+      //     return inputDate < currentDate ? { 'pastDate': true } : null;
+      //   };
+      // }
+    
+      // toDateValidator() {
+      //   return (control: FormControl): { [key: string]: any } | null => {
+      //     const fromDate = this.dateForm.get('fromDate')?.value;
+      //     const toDate = new Date(control.value);
+      //     return fromDate && toDate < fromDate ? { 'invalidToDate': true } : null;
+      //   };
+      // }
 
 
     ngOnInit(): void {}
