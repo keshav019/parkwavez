@@ -1,49 +1,43 @@
 <div class="price-list">
-  <div class="price-list-heading">
-    <h2>Price Model</h2>
-    <button mat-raised-button (click)="openAddDialog()">Add Price</button>
-  </div>
+  <h1 class="header">Price Table</h1>
 </div>
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> See Price Table </mat-panel-title>
-      <mat-panel-description> </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="table-container">
-      <table mat-table [dataSource]="prices">
-        <ng-container matColumnDef="spotType">
-          <th mat-header-cell *matHeaderCellDef>Spot Type</th>
-          <td mat-cell *matCellDef="let price">{{ price.spotType }}</td>
-        </ng-container>
+<mat-card>
+  <mat-card-header>
+    <button mat-raised-button (click)="openAddDialog()">Add Price</button>
+  </mat-card-header>
+  <mat-card-content class="table-container">
+    <table mat-table [dataSource]="prices">
+      <ng-container matColumnDef="spotType">
+        <th mat-header-cell *matHeaderCellDef>Spot Type</th>
+        <td mat-cell *matCellDef="let price">{{ price.spotType }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="chargeType">
-          <th mat-header-cell *matHeaderCellDef>Charge Type</th>
-          <td mat-cell *matCellDef="let price">{{ price.chargeType }}</td>
-        </ng-container>
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef>Price</th>
-          <td mat-cell *matCellDef="let price">
-            {{ price.price | currency : "INR" }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="discount">
-          <th mat-header-cell *matHeaderCellDef>Discount</th>
-          <td mat-cell *matCellDef="let price">
-            {{ price.discount / 100 | percent }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Action</th>
-          <td mat-cell *matCellDef="let price">
-            <button mat-raised-button (click)="openEditDialog(price)">
-              Edit
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+      <ng-container matColumnDef="chargeType">
+        <th mat-header-cell *matHeaderCellDef>Charge Type</th>
+        <td mat-cell *matCellDef="let price">{{ price.chargeType }}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let price">
+          {{ price.price | currency : "INR" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef>Discount</th>
+        <td mat-cell *matCellDef="let price">
+          {{ price.discount / 100 | percent }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let price">
+          <button mat-raised-button (click)="openEditDialog(price)">
+            Edit
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

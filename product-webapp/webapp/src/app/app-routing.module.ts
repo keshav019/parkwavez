@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { SupportComponent } from './support/support.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchComponent } from './search/search.component';
-import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {

@@ -35,3 +35,18 @@ margin: 10px;
 .not-occupied {
   background-color: gray;
 }
+.header {
+  margin: 20px auto;
+  font-family: "Arial", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: pink;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+}
+
+.header:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
