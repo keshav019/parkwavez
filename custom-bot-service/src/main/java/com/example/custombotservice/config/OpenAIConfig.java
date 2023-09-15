@@ -10,14 +10,15 @@ public class OpenAIConfig {
 	
 	@Value("${openai.api.key}")
 	String openaiApiKey;
-	
+
 	@Bean
-	public RestTemplate template() {
+	public RestTemplate template(){
 		RestTemplate restTemplate=new RestTemplate();
-        restTemplate.getInterceptors().add((request, body, execution) -> {
-            request.getHeaders().add("Authorization", "Bearer " + openaiApiKey);
-            return execution.execute(request, body);
-        });
-        return restTemplate;
+		restTemplate.getInterceptors().add((request, body, execution) -> {
+			request.getHeaders().add("Authorization", "Bearer " + openaiApiKey);
+			return execution.execute(request, body);
+		});
+		return restTemplate;
 	}
+
 }
