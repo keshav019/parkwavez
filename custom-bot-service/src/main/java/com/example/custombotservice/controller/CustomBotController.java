@@ -22,9 +22,6 @@ public class CustomBotController {
 	@Value("${openai.api.url}")
 	private String apiURL;
 
-	@Value("${openai.api.key}")
-	private String apiKey; // This property should contain your OpenAI API key
-
 	@Autowired
 	private RestTemplate template;
 
