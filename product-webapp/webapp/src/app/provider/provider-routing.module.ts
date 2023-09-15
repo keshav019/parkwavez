@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'add', component: AddParkingAreaFormComponent },
-      { path: 'parking-area', component: ParkingAreaDetailsComponent },
+      { path: 'area/:areaId', component: ParkingAreaDetailsComponent },
       {path:'profile',component: ProfileComponent}
     ],
   },

@@ -1,4 +1,9 @@
-<div class="parking-area">
+<div class="price-list">
+  <h1 class="header">Parking Area</h1>
+</div>
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div class="parking-area" *ngIf="!loading">
   <mat-card *ngIf="!editingEnabled">
     <mat-card-header>
       <mat-card-title>{{ parkingArea.parkingName }}</mat-card-title>
