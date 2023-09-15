@@ -120,9 +120,11 @@ export class AreaCardComponent implements OnInit {
     this.selectedProduct = product;
 
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
+      disableClose: false,
       width: '1000px',
       height: '500px',
       data: this.selectedProduct,
+      hasBackdrop: true,
     });
   }
 
