@@ -23,21 +23,22 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
 
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component'; 
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ReviewFormComponent } from './review-form/review-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ProductDetailsComponent,
     BookingComponent,
     RegistrationComponent,
-    SearchBarComponent, 
+    SearchBarComponent,
+    ReviewFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatCardModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatInputModule,
     CarouselModule,
     MatDialogModule,
@@ -76,7 +78,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatDialogModule,
 
   ],
   providers: [],

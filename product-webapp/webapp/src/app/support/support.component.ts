@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ReviewService } from '../service/review.service';
 
 @Component({
   selector: 'app-support',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class SupportComponent {
 
+  constructor(private reviewService: ReviewService) { }
+
+  openReviewForm() {
+    this.reviewService.openReviewForm();
+  }
 }
