@@ -41,11 +41,11 @@ export class HomeComponent {
   ];
 
 
-   searchResults: string[] = [];
+  searchResults: string[] = [];
 
-   onSearch(searchText: String) {
+  onSearch(searchText: String) {
     // Perform search logic here and update searchResults
     // you can make an HTTP request to fetch parking areas based on the searchText
     // Update this.searchResults with the search results
-   }
+  }
 }
