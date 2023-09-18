@@ -38,7 +38,10 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+
 import { ReviewFormComponent } from './review-form/review-form.component';
+
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { ReviewFormComponent } from './review-form/review-form.component';
     RegistrationComponent,
     SearchBarComponent,
     ReviewFormComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,6 @@ import { ReviewFormComponent } from './review-form/review-form.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
