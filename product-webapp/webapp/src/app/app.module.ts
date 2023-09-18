@@ -37,7 +37,8 @@ import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { UserTemplateComponent } from './user-template/user-template.component';
 import { BookingComponent } from './components/booking/booking.component';
-import { RegistrationComponent } from './registration/registration.component'; 
+import { RegistrationComponent } from './registration/registration.component';
+import { BookingListComponent } from './booking-list/booking-list.component'; 
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RegistrationComponent } from './registration/registration.component';
     ProductDetailsComponent,
     UserTemplateComponent,
     BookingComponent,
-    RegistrationComponent, 
+    RegistrationComponent,
+    BookingListComponent, 
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { RegistrationComponent } from './registration/registration.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    
 
 
   ],

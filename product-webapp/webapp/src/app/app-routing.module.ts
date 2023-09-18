@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { SearchComponent } from './search/search.component';
 import { PaymentComponent } from './payment/payment.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,9 @@ const routes: Routes = [
   { path: 'support', component: SupportComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'register', component: RegistrationComponent }
+  { path: 'register', component: RegistrationComponent },
+  { path: 'booking',component:BookingComponent},
+  {path:'payment',component:PaymentComponent}
 ];
 
 @NgModule({
