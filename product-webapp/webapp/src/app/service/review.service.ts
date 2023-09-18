@@ -21,7 +21,6 @@ export class ReviewService {
   submitReview(reviewData: any) {
     // Implement your logic to submit the review here (e.g., send to a backend API).
     return this.http.post(`${this.apiUrl}/reviewAndRating`, reviewData);
-    alert("Submitted successfully");
   }
 
 }

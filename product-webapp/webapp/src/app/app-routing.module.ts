@@ -11,6 +11,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { LoginComponent } from './login/login.component';
+import { ReviewComponent } from './review/review.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'review', component: ReviewComponent },
 
 ];
 

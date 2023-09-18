@@ -42,6 +42,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ReviewFormComponent } from './review-form/review-form.component';
 
 import { LoginComponent } from './login/login.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { LoginComponent } from './login/login.component';
     SearchBarComponent,
     ReviewFormComponent,
     LoginComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,7 @@ import { LoginComponent } from './login/login.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
