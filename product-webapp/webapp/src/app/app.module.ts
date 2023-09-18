@@ -37,7 +37,8 @@ import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component'; 
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { LoginComponent } from './login/login.component'; 
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ProductDetailsComponent,
     BookingComponent,
     RegistrationComponent,
-    SearchBarComponent, 
+    SearchBarComponent,
+    LoginComponent, 
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+   
 
   ],
   providers: [],
