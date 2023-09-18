@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProviderNavbarComponent } from './provider-navbar.component';
+import { VaccantSpaceComponent } from './vaccant-space.component';
 
-describe('ProviderNavbarComponent', () => {
-  let component: ProviderNavbarComponent;
-  let fixture: ComponentFixture<ProviderNavbarComponent>;
+describe('VaccantSpaceComponent', () => {
+  let component: VaccantSpaceComponent;
+  let fixture: ComponentFixture<VaccantSpaceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProviderNavbarComponent ]
+      declarations: [ VaccantSpaceComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProviderNavbarComponent);
+    fixture = TestBed.createComponent(VaccantSpaceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

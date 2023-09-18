@@ -50,7 +50,7 @@ public class PaymentServiceApplication {
 		JSONObject orderRequest = new JSONObject();
 		orderRequest.put("amount", amt*100); // amount in the smallest currency unit
 		orderRequest.put("currency", "INR");
-		orderRequest.put("receipt", "order_rcptid_11");
+		orderRequest.put("receipt", "Payment receipt");
 
 		Order order = client.orders.create(orderRequest);
 		System.out.println(order);
@@ -63,6 +63,7 @@ public class PaymentServiceApplication {
 		myOrder.setOrderId(order.get("id"));
 		myOrder.setPaymentId(null);
 		myOrder.setStatus("created");
+		myOrder.setReceipt("Payment receipt");
 		myOrder.setCreated_at(dateformat.format(order.get("created_at")));
 		
 		this.myOrderRepository.save(myOrder);

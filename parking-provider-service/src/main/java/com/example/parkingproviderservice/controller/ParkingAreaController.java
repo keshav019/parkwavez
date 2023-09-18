@@ -44,10 +44,10 @@ public class ParkingAreaController {
 		return ResponseEntity.ok(parkingAreas);
 	}
 
-	@GetMapping("/public/{providerId}/get/{areaId}")
-	public ResponseEntity<ParkingArea> getById(@PathVariable long providerId, @PathVariable String areaId)
+	@GetMapping("/public/get/{areaId}")
+	public ResponseEntity<ParkingArea> getById(@PathVariable String areaId)
 			throws ResourceNotFoundException {
-		ParkingArea parkingArea = parkingAreaService.getById(providerId, areaId);
+		ParkingArea parkingArea = parkingAreaService.getById(areaId);
 		return ResponseEntity.ok(parkingArea);
 	}
 

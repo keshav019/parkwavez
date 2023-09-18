@@ -1,4 +1,9 @@
-<div class="parking-area">
+<div class="price-list">
+  <h1 class="header">Parking Area</h1>
+</div>
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div class="parking-area" *ngIf="!loading">
   <mat-card *ngIf="!editingEnabled">
     <mat-card-header>
       <mat-card-title>{{ parkingArea.parkingName }}</mat-card-title>
@@ -131,19 +136,19 @@
       </button>
     </mat-card-actions>
   </mat-card>
-  <app-price
-    *ngIf="parkingArea.areaId"
-    [areaId]="parkingArea.areaId"
-  ></app-price>
   <app-parkit-spot-list
-    *ngIf="parkingArea.areaId"
+    *ngIf="parkingArea && parkingArea.areaId"
     [areaId]="parkingArea.areaId"
   >
   </app-parkit-spot-list>
+  <app-price
+    *ngIf="parkingArea && parkingArea.areaId"
+    [areaId]="parkingArea.areaId"
+  ></app-price>
   <div>
     <h3>Revenue Section</h3>
   </div>
-    <div>
+  <div>
     <h3>Review Section</h3>
   </div>
 </div>

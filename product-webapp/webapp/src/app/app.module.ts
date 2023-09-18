@@ -35,10 +35,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { UserTemplateComponent } from './user-template/user-template.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
+<<<<<<< HEAD
 import { BookingListComponent } from './booking-list/booking-list.component'; 
+=======
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { LoginComponent } from './login/login.component'; 
+>>>>>>> 635e2113bfff573290fc5abe162871c104548687
 
 @NgModule({
   declarations: [
@@ -53,10 +57,14 @@ import { BookingListComponent } from './booking-list/booking-list.component';
     SuggestionComponent,
     FooterComponent,
     ProductDetailsComponent,
-    UserTemplateComponent,
     BookingComponent,
     RegistrationComponent,
+<<<<<<< HEAD
     BookingListComponent, 
+=======
+    SearchBarComponent,
+    LoginComponent, 
+>>>>>>> 635e2113bfff573290fc5abe162871c104548687
   ],
   imports: [
     BrowserModule,
@@ -78,8 +86,12 @@ import { BookingListComponent } from './booking-list/booking-list.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+<<<<<<< HEAD
     
 
+=======
+   
+>>>>>>> 635e2113bfff573290fc5abe162871c104548687
 
   ],
   providers: [],

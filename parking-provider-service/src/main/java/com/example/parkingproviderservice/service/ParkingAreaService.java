@@ -12,7 +12,7 @@ public interface ParkingAreaService {
 
 	Page<ParkingArea> getParkingAreaByProviderId(long providerId, Pageable pagable) throws ResourceNotFoundException;
 
-	public ParkingArea getById(long providerId, String areaId) throws ResourceNotFoundException;
+	public ParkingArea getById(String areaId) throws ResourceNotFoundException;
 
 	public ParkingArea update(ParkingArea parkingArea) throws ResourceNotFoundException;
 

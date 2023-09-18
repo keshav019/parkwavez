@@ -32,4 +32,9 @@ export class ParkingAreaService {
       parkingArea
     );
   }
+  getParkingAreaById(areaId: string): Observable<ParkingArea> {
+    return this._httpClient.get<ParkingArea>(
+      `${this.API_URL}/public/get/${areaId}`
+    );
+  }
 }

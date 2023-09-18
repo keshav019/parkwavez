@@ -28,7 +28,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ParkitSpotListComponent } from './components/parkit-spot-list/parkit-spot-list.component';
 import { EditSpotComponent } from './components/edit-spot/edit-spot.component';
 import { MatChipsModule } from '@angular/material/chips';
-import { ProviderNavbarComponent } from './components/provider-navbar/provider-navbar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { VaccantSpaceComponent } from './Pages/vaccant-space/vaccant-space.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [
     ProviderHomeComponent,
@@ -43,7 +48,7 @@ import { ProviderNavbarComponent } from './components/provider-navbar/provider-n
     EditPriceFormComponent,
     ParkitSpotListComponent,
     EditSpotComponent,
-    ProviderNavbarComponent,
+    VaccantSpaceComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +67,11 @@ import { ProviderNavbarComponent } from './components/provider-navbar/provider-n
     FormsModule,
     MatExpansionModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatListModule,
   ],
 })
 export class ProviderModule {}

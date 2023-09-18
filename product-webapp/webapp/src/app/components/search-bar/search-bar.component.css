@@ -1,0 +1,22 @@
+
+
+.search-bar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+
+    padding: 20px;
+    
+}
+ 
+
+.example-full-width {
+    width: 60%;
+    max-width: 60%;
+    margin-top: 20px;
+
+    border-radius: 50px;
+}
+

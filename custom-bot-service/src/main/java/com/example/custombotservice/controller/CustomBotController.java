@@ -11,19 +11,20 @@ import org.springframework.web.client.RestTemplate;
 import com.example.custombotservice.dto.ChatGPTRequest;
 import com.example.custombotservice.dto.ChatGPTResponse;
 
+
 @RestController
 @RequestMapping("/bot")
 public class CustomBotController {
-	
+
 	@Value("${openai.model}")
 	private String model;
-	
+
 	@Value("${openai.api.url}")
 	private String apiURL;
-	
+
 	@Autowired
 	private RestTemplate template;
-	
+
 	@GetMapping("/chat")
 	public String chat(@RequestParam("prompt") String prompt) {
 		ChatGPTRequest request = new ChatGPTRequest(model, prompt);
@@ -31,3 +32,4 @@ public class CustomBotController {
 		return chatGPTResponse.getChoices().get(0).getMessage().getContent();
 	}
 }
+
