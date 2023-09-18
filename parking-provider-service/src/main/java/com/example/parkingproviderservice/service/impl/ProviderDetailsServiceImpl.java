@@ -1,5 +1,6 @@
 package com.example.parkingproviderservice.service.impl;
 
+import com.example.parkingproviderservice.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class ProviderDetailsServiceImpl implements ProviderDetailsService {
 
 	@Override
 	@KafkaListener(topics = "user-registration-topic", groupId = "14")
-	public void authTopicPost(String message) throws JsonMappingException, JsonProcessingException {
+	public void saveProviderDetails(String message) throws JsonMappingException, JsonProcessingException {
 		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
 		System.out.println(providerDetails.toString());
 		if (providerDetails.getRole().toString().equals("PROVIDER")) {
@@ -29,12 +30,25 @@ public class ProviderDetailsServiceImpl implements ProviderDetailsService {
 	}
 
 	@Override
-	public void authTopicUpdate(String message) throws JsonMappingException, JsonProcessingException {
-
+	public ProviderDetails getProviderById(String providerId) throws ResourceNotFoundException {
+		return providerRepository.findById(providerId).orElseThrow(()->new ResourceNotFoundException("Provider Not found with Id : "+providerId));
 	}
 
 	@Override
-	public void authTopicDelete(String message) throws JsonMappingException, JsonProcessingException {
+	public ProviderDetails updateProviderDetails(ProviderDetails providerDetails) throws ResourceNotFoundException {
 
+		if(!providerRepository.existsById(providerDetails.getUserId())){
+			throw new ResourceNotFoundException("Provider Not found with Id : "+providerDetails.getUserId());
+		}
+		providerRepository.save(providerDetails);
+		return providerDetails;
+	}
+
+	@Override
+	public void deleteProviderDetails(String providerId) throws ResourceNotFoundException{
+		if(!providerRepository.existsById(providerId)){
+			throw new ResourceNotFoundException("Provider Not found with Id : "+providerId);
+		}
+		providerRepository.deleteById(providerId);
 	}
 }

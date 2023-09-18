@@ -16,7 +16,7 @@
       <p>{{ provider.email }}</p>
     </div>
     <mat-tab-group *ngIf="!editing">
-      <mat-tab label="Personal Info">
+      <mat-tab label="Personal Info" *ngIf="provider">
         <mat-list role="list">
           <mat-list-item role="listitem"
             >Email : {{ provider.userName }}</mat-list-item
@@ -27,7 +27,7 @@
           >
         </mat-list>
       </mat-tab>
-      <mat-tab label="Address">
+      <mat-tab label="Address" *ngIf="provider.address">
         <mat-list role="list">
           <mat-list-item role="listitem"
             >Street : {{ provider.address.street }}</mat-list-item

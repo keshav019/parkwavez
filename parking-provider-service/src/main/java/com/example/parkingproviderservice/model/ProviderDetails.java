@@ -17,4 +17,5 @@ public class ProviderDetails {
 	private String userName;
 	private String email;
 	private Role role;
+	private Address address;
 }
