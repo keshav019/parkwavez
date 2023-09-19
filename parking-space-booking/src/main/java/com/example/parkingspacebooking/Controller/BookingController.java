@@ -20,7 +20,7 @@ import com.example.parkingspacebooking.Service.BookingServiceImpl;
 
 @RestController
 @RequestMapping("/Booking")
-@CrossOrigin(origins="http://localhost:4200/booking")
+@CrossOrigin(origins="http://localhost:4200/Booking")
 public class BookingController {
 	
 	 @Autowired

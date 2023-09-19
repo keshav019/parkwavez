@@ -23,26 +23,33 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
 
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
-<<<<<<< HEAD
+
 import { BookingListComponent } from './booking-list/booking-list.component'; 
-=======
+
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { LoginComponent } from './login/login.component'; 
->>>>>>> 635e2113bfff573290fc5abe162871c104548687
+
+
+
+import { ReviewFormComponent } from './review-form/review-form.component';
+
+import { LoginComponent } from './login/login.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReviewComponent } from './review/review.component';
+
 
 @NgModule({
   declarations: [
@@ -59,12 +66,16 @@ import { LoginComponent } from './login/login.component';
     ProductDetailsComponent,
     BookingComponent,
     RegistrationComponent,
-<<<<<<< HEAD
+
     BookingListComponent, 
-=======
+
     SearchBarComponent,
+
     LoginComponent, 
->>>>>>> 635e2113bfff573290fc5abe162871c104548687
+    ReviewFormComponent,
+    LoginComponent,
+    ReviewComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -77,7 +88,7 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MatInputModule,
     CarouselModule,
     MatDialogModule,
@@ -86,12 +97,10 @@ import { LoginComponent } from './login/login.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-<<<<<<< HEAD
-    
 
-=======
-   
->>>>>>> 635e2113bfff573290fc5abe162871c104548687
+
+    MatDialogModule,
+    MatSnackBarModule,
 
   ],
   providers: [],

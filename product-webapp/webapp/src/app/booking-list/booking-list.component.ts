@@ -19,5 +19,10 @@ private getBooking(){
   this.bookingDataService.getBookingList().subscribe(data =>{
     this.bookings=data;
   });
+
+  
+}
+submitBooking() {
+
 }
 }

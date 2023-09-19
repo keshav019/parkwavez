@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+
+import { BookingDataService } from 'src/app/booking-data.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -10,35 +12,47 @@ export class BookingComponent implements OnInit{
 
    bookingForm:any;
    
-  constructor (private formBuilder:FormBuilder,private http: HttpClient){}
+  constructor (private formBuilder:FormBuilder,private http: HttpClient,private bookingDataService:BookingDataService){}
 
   ngOnInit():void{
     this.bookingForm=this.formBuilder.group({
       bookingId:[''],
       UserId:[''],
-      SpotId:[String],
+      SpotId:[''],
       emailId:[''],
-      BookingDate:[new Date()],
-      CheckIn:[new Date()],
-      CheckOut:[new Date()],
-
-      Amount:[Number]
+      Booking_Date:[new Date()],
+      Check_In:[new Date()],
+      Check_Out:[new Date()],
+      Amount:['']
     })
   }
 
     moveToPayment(){
       if(this.bookingForm.valid)
       {
-        const bookingData=this.bookingForm.value;
+        const bookingData={//this.bookingForm.value;
+          
+      userId: this.bookingForm.get('UserId').value,
+      spotId: this.bookingForm.get('SpotId').value,
+      emailId: this.bookingForm.get('emailId').value,
+      Booking_date: new Date(this.bookingForm.get('Booking_Date').value), // Convert to Date
+      Check_In: new Date(this.bookingForm.get('Check_In').value), // Convert to Date
+      Check_Out: new Date(this.bookingForm.get('Check_Out').value), // Convert to Date
+    
+      amount: parseFloat(this.bookingForm.get('Amount').value)
+        };
         console.log(this.bookingForm.value)
-        this.http.post<any>(`http://localhost:8086/Booking/save`,bookingData).subscribe(
+        this.bookingDataService.submitBooking(bookingData).subscribe(
           (response) =>{
-            console.log('booking saved Successfully',response);
+            console.log('submitted Sucessfully',response);
           },
           (error) =>{
-            console.error('error saving booking',error);
+            console.error('error submitting booking',error);
           }
+          
+          
         );
+       
 
 
       }
