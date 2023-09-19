@@ -33,6 +33,7 @@ import { VaccantSpaceComponent } from './Pages/vaccant-space/vaccant-space.compo
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
+import { ProfileImageComponent } from './components/profile-image/profile-image.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatListModule } from '@angular/material/list';
     ParkitSpotListComponent,
     EditSpotComponent,
     VaccantSpaceComponent,
+    ProfileImageComponent,
   ],
   imports: [
     CommonModule,

@@ -8,10 +8,10 @@
     <h1 class="header">My Profile</h1>
   </mat-card>
   <mat-card class="profile-card-content">
-    <div class="prifile-image">
-      <img src="" alt="Profile image" />
+    <div class="prifile-image" (click)="openAddDialog()" *ngIf="provider">
+      <img [src]="provider.image" alt="Profile image" />
     </div>
-    <div class="profile-desc">
+    <div class="profile-desc" *ngIf="provider">
       <p>{{ provider.userId }}</p>
       <p>{{ provider.email }}</p>
     </div>
@@ -27,7 +27,7 @@
           >
         </mat-list>
       </mat-tab>
-      <mat-tab label="Address" *ngIf="provider.address">
+      <mat-tab label="Address" *ngIf="provider?.address">
         <mat-list role="list">
           <mat-list-item role="listitem"
             >Street : {{ provider.address.street }}</mat-list-item
