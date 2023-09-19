@@ -27,10 +27,10 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public Booking addBooking(Booking booking) {
 		// TODO Auto-generated method stub
-		
-        if (isSpotAlreadyBooked(booking.getSpotId())) {
-            throw new SpotAlreadyBookedException("This spot is already booked.");
-        }
+//
+//        if (isSpotAlreadyBooked(booking.getSpotId())) {
+//            throw new SpotAlreadyBookedException("This spot is already booked.");
+//        }
 
 		
 		 booking.setBookingId(UUID.randomUUID().toString().split("-")[0]);

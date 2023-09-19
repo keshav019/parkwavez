@@ -16,33 +16,23 @@ export class BookingComponent implements OnInit{
 
   ngOnInit():void{
     this.bookingForm=this.formBuilder.group({
-      bookingId:[''],
-      UserId:[''],
-      SpotId:[''],
-      emailId:[''],
+      bookingId:['1'],
+      UserId:['11'],
+      SpotId:['1'],
+      emailId:['abc@gmail.com'],
       Booking_Date:[new Date()],
       Check_In:[new Date()],
       Check_Out:[new Date()],
-      Amount:['']
+      Amount:['100']
     })
   }
 
     moveToPayment(){
       if(this.bookingForm.valid)
       {
-        const bookingData={//this.bookingForm.value;
-          
-      userId: this.bookingForm.get('UserId').value,
-      spotId: this.bookingForm.get('SpotId').value,
-      emailId: this.bookingForm.get('emailId').value,
-      Booking_date: new Date(this.bookingForm.get('Booking_Date').value), // Convert to Date
-      Check_In: new Date(this.bookingForm.get('Check_In').value), // Convert to Date
-      Check_Out: new Date(this.bookingForm.get('Check_Out').value), // Convert to Date
-    
-      amount: parseFloat(this.bookingForm.get('Amount').value)
-        };
+        
         console.log(this.bookingForm.value)
-        this.bookingDataService.submitBooking(bookingData).subscribe(
+        this.bookingDataService.submitBooking(this.bookingForm.value).subscribe(
           (response) =>{
             console.log('submitted Sucessfully',response);
           },

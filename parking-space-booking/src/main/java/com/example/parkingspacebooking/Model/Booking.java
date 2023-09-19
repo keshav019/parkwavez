@@ -15,8 +15,7 @@ import lombok.Setter;
 
 
 @Document(collection = "Booking")
-@Getter
-@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -32,6 +31,76 @@ public class Booking {
 	 private String status;
 	 private String emailId;
 	 private double amount;
-	 
 
+	public String getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(String bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getSpotId() {
+		return spotId;
+	}
+
+	public void setSpotId(String spotId) {
+		this.spotId = spotId;
+	}
+
+	public Date getBooking_date() {
+		return Booking_date;
+	}
+
+	public void setBooking_date(Date booking_date) {
+		Booking_date = booking_date;
+	}
+
+	public LocalDateTime getCheck_In() {
+		return Check_In;
+	}
+
+	public void setCheck_In(LocalDateTime check_In) {
+		Check_In = check_In;
+	}
+
+	public LocalDateTime getCheck_Out() {
+		return Check_Out;
+	}
+
+	public void setCheck_Out(LocalDateTime check_Out) {
+		Check_Out = check_Out;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
 }

@@ -1,60 +1,26 @@
 <div mat-dialog.title>
-    <h1>Booking Info</h1>
-    <app-booking-list></app-booking-list>
-    </div>
-    
-    <div mat-dialog.content  class="content" [formGroup]="bookingForm">
-        <div class="row">
-            
-            
-              <mat-form-field appearance="outline">
-                <mat-label>UserId</mat-label>
-                <input matInput formControlName="UserId">
-              </mat-form-field>
+  <h1>Booking Info</h1>
+  <!-- <app-booking-list></app-booking-list> -->
+</div>
+<form [formGroup]="bookingForm">
+<div mat-dialog.content class="content" >
+  <mat-form-field appearance="outline">
+    <mat-label>Check_In</mat-label>
+    <input matInput type="datetime-local" formControlName="Check_In">
+  </mat-form-field>
+</div>
+<div class="row">
+  <mat-form-field appearance="outline">
+    <mat-label>Check_Out</mat-label>
+    <input matInput type="datetime-local" formControlName="Check_Out">
+  </mat-form-field>
 
-              <mat-form-field appearance="outline">
-                <mat-label>SpotId</mat-label>
-                <input matInput type="number" formControlName="SpotId">
-              </mat-form-field>
-        </div>
+</div>
 
-        <div class="row">
-           
-            
-              <mat-form-field appearance="outline">
-                <mat-label>emailId</mat-label>
-                <input matInput type="email" formControlName="emailId">
-              </mat-form-field>
 
-              <mat-form-field appearance="outline">
-                <mat-label >Booking_Date</mat-label>
-                <input matInput type="date" formControlName="BookingDate">
-              </mat-form-field>
+<div mat-dialog.action>
+  <button id="canclebtn" mat-raised-button>Cancle</button>
+  <button id="submitbtn" color="primary" (click)="moveToPayment()" mat-raised-button> Submit </button>
+</div>
 
-              <mat-form-field appearance="outline">
-                <mat-label>Check_In</mat-label>
-                <input matInput type="datetime-local" formControlName="CheckIn">
-              </mat-form-field>
-        </div>
-        
-        <div class="row">
-            
-            
-              <mat-form-field appearance="outline">
-                <mat-label >Check_Out</mat-label>
-                <input matInput type="datetime-local" formControlName="CheckOut">
-              </mat-form-field>
-
-            
-            
-              <mat-form-field appearance="outline">
-                <mat-label >Amount</mat-label>
-                <input matInput type="number" formControlName="Amount">
-              </mat-form-field>
-        </div>
-    </div>
-    
-    <div mat-dialog.action >
-    <button id="canclebtn"  mat-raised-button >Cancle</button>
-    <button  id="submitbtn" color="primary" (click)="moveToPayment()" mat-raised-button> Submit </button>
-    </div>
+</form>
