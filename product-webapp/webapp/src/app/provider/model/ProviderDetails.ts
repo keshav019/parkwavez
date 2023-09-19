@@ -17,4 +17,5 @@ export interface ProviderDetails {
   email: string;
   role: Role;
   address: Address;
+  image: any;
 }

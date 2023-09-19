@@ -6,6 +6,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
 @AllArgsConstructor
@@ -18,4 +20,6 @@ public class ProviderDetails {
 	private String email;
 	private Role role;
 	private Address address;
+	@Field(type = FieldType.Binary, name = "image")
+	private byte[] image;
 }

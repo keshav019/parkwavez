@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { ProviderDetails, Role } from '../../model/ProviderDetails';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDetailsService } from '../../service/user-details.service';
+import { ProfileImageComponent } from '../../components/profile-image/profile-image.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -17,28 +19,29 @@ export class ProfileComponent implements OnInit {
   constructor(
     private location: Location,
     private fb: FormBuilder,
-    private providerService: UserDetailsService
+    private providerService: UserDetailsService,
+    private dialog: MatDialog
   ) {
     this.createForm();
   }
   createForm() {
     this.providerForm = this.fb.group({
-      userId: [this.provider?.userId || '', Validators.required], // Provide a default value or an empty string if the property is undefined.
+      userId: [this.provider?.userId || '', Validators.required],
       phone: ['', Validators.required],
-      userName: [this.provider?.userName || '', Validators.required], // Provide a default value or an empty string if the property is undefined.
+      userName: [this.provider?.userName || '', Validators.required],
       email: [
         this.provider?.email || '',
         [Validators.required, Validators.email],
-      ], // Provide a default value or an empty string if the property is undefined.
-      role: [this.provider?.role || '', Validators.required], // Provide a default value or an appropriate default for 'role' if the property is undefined.
+      ],
+      role: [this.provider?.role || '', Validators.required],
       address: this.fb.group({
-        street: [this.provider?.address?.street || '', Validators.required], // Provide a default value or an empty string if the property is undefined.
-        city: [this.provider?.address?.city || '', Validators.required], // Provide a default value or an empty string if the property is undefined.
+        street: [this.provider?.address?.street || '', Validators.required],
+        city: [this.provider?.address?.city || '', Validators.required],
         zip: [
           this.provider?.address?.zip || '',
           [Validators.required, Validators.pattern(/^\d+$/)],
-        ], // Provide a default value or an empty string if the property is undefined.
-        state: [this.provider?.address?.state || '', Validators.required], // Provide a default value or an empty string if the property is undefined.
+        ],
+        state: [this.provider?.address?.state || '', Validators.required],
       }),
     });
   }
@@ -60,6 +63,7 @@ export class ProfileComponent implements OnInit {
   getProvider() {
     this.providerService.getUserDetails(this.providerId).subscribe(
       (user: ProviderDetails) => {
+        user.image = 'data:image/png;base64,' + user.image;
         this.provider = user;
       },
       (err: any) => {
@@ -70,6 +74,7 @@ export class ProfileComponent implements OnInit {
   save() {
     this.providerService.updateUserDetails(this.providerForm.value).subscribe(
       (user: ProviderDetails) => {
+        user.image = 'data:image/png;base64,' + user.image;
         this.provider = user;
         this.editToggle();
       },
@@ -77,5 +82,22 @@ export class ProfileComponent implements OnInit {
         console.log(err.message);
       }
     );
+  }
+
+  openAddDialog(): void {
+    const dialogRef = this.dialog.open(ProfileImageComponent, {
+      data: { provider: this.provider },
+      enterAnimationDuration: '200ms',
+      exitAnimationDuration: '200ms',
+    });
+
+    dialogRef.afterClosed().subscribe((profile: any) => {
+      if (profile) {
+        profile.image = 'data:image/png;base64,' + profile.image;
+        this.provider = profile;
+      } else {
+        console.log('Dialog closed without data.');
+      }
+    });
   }
 }
