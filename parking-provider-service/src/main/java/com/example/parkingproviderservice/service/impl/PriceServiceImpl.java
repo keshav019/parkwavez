@@ -2,6 +2,7 @@ package com.example.parkingproviderservice.service.impl;
 
 import java.util.List;
 
+import com.example.parkingproviderservice.dto.FareCalculatorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,16 +72,17 @@ public class PriceServiceImpl implements PriceService {
 	}
 
 	@Override
-	public double calculateAmount(String areaId, SpotType spotype, ChargeType chargeType, int count)
+	public double calculateAmount(FareCalculatorDto fareCalculatorDto)
 			throws ResourceNotFoundException {
-		boolean isValidArea = parkingAreaRepository.existsById(areaId);
+		boolean isValidArea = parkingAreaRepository.existsById(fareCalculatorDto.getAreaId());
 		if (!isValidArea) {
-			throw new ResourceNotFoundException("Invalid Parking Area Id : " + areaId);
+			throw new ResourceNotFoundException("Invalid Parking Area Id : " + fareCalculatorDto.getAreaId());
 		}
-		List<Price> price = priceRepository.findByAreaIdAndSpotTypeAndChargeType(areaId, spotype, chargeType);
-		if (price.isEmpty() || price.size()>1) {
+		List<Price> price = priceRepository.findByAreaIdAndSpotTypeAndChargeType(fareCalculatorDto.getAreaId(), fareCalculatorDto.getSpotType(), fareCalculatorDto.getChargeType());
+		if (price.size() != 1) {
 			throw new ResourceNotFoundException("Some error Occured!");
 		}
+		int count=fareCalculatorDto.getCount()==0?1:fareCalculatorDto.getCount();
 		return price.get(0).getPrice()*(1-price.get(0).getPrice()/100) * count;
 	}
 

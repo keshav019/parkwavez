@@ -2,6 +2,7 @@ package com.example.parkingproviderservice.controller;
 
 import java.util.List;
 
+import com.example.parkingproviderservice.dto.FareCalculatorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -54,10 +55,9 @@ public class PriceController {
 		return ResponseEntity.ok(price);
 	}
 
-	@GetMapping("/public/calculate-total/{areaId}")
-	public ResponseEntity<Double> calculateAmount(@PathVariable String areaId, @RequestParam SpotType spotType,
-			@RequestParam ChargeType chargeType, @RequestParam int count) throws ResourceNotFoundException {
-		double totalamount = priceService.calculateAmount(areaId, spotType, chargeType, count);
+	@GetMapping("/public/calculate-total")
+	public ResponseEntity<Double> calculateAmount(@RequestBody FareCalculatorDto fareCalculatorDto) throws ResourceNotFoundException {
+		double totalamount = priceService.calculateAmount(fareCalculatorDto);
 		return ResponseEntity.ok(totalamount);
 	}
 }
