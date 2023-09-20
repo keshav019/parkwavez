@@ -12,6 +12,9 @@ import com.example.parkingproviderservice.util.JacksonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class ProviderDetailsServiceImpl implements ProviderDetailsService {
@@ -29,19 +32,33 @@ public class ProviderDetailsServiceImpl implements ProviderDetailsService {
 		}
 	}
 
+
 	@Override
 	public ProviderDetails getProviderById(String providerId) throws ResourceNotFoundException {
 		return providerRepository.findById(providerId).orElseThrow(()->new ResourceNotFoundException("Provider Not found with Id : "+providerId));
 	}
 
 	@Override
-	public ProviderDetails updateProviderDetails(ProviderDetails providerDetails) throws ResourceNotFoundException {
-
-		if(!providerRepository.existsById(providerDetails.getUserId())){
-			throw new ResourceNotFoundException("Provider Not found with Id : "+providerDetails.getUserId());
+	public ProviderDetails updateProviderDetails(ProviderDetails updatedProviderDetails) throws ResourceNotFoundException {
+		ProviderDetails provider=providerRepository.findById(updatedProviderDetails.getUserId()).orElse(null);
+		if(provider==null){
+			throw new ResourceNotFoundException("Provider Not found with Id : "+updatedProviderDetails.getUserId());
 		}
-		providerRepository.save(providerDetails);
-		return providerDetails;
+		provider.setUserName(updatedProviderDetails.getUserName());
+		provider.setEmail(updatedProviderDetails.getEmail());
+		provider.setRole(updatedProviderDetails.getRole());
+		provider.setAddress(updatedProviderDetails.getAddress());
+		return providerRepository.save(provider);
+	}
+	@Override
+	public ProviderDetails updateProfilePicture(String userId, MultipartFile file) throws ResourceNotFoundException, IOException {
+		ProviderDetails provider = providerRepository.findById(userId).orElse(null);
+		if (provider == null) {
+			throw new ResourceNotFoundException("Provider Not found with Id : " + userId);
+		}
+		provider.setImage(file.getBytes());
+		return providerRepository.save(provider);
+
 	}
 
 	@Override

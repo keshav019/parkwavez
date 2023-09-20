@@ -2,6 +2,7 @@ package com.example.parkingproviderservice.service;
 
 import java.util.List;
 
+import com.example.parkingproviderservice.dto.FareCalculatorDto;
 import com.example.parkingproviderservice.exception.ResourceNotFoundException;
 import com.example.parkingproviderservice.model.ChargeType;
 import com.example.parkingproviderservice.model.Price;
@@ -17,6 +18,6 @@ public interface PriceService {
 
 	public Price updatePrice(Price price) throws ResourceNotFoundException;
 
-	public double calculateAmount(String areaId, SpotType spotype, ChargeType chargeType, int count)
+	public double calculateAmount(FareCalculatorDto fareCalculatorDto)
 			throws ResourceNotFoundException;
 }

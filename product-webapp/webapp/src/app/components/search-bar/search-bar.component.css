@@ -5,12 +5,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 5vh;
 
     padding: 20px;
-    
+    padding-bottom: 30px;
 }
  
+.searchButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .example-full-width {
     width: 60%;
@@ -20,3 +26,98 @@
     border-radius: 50px;
 }
 
+
+.wrapper {
+    max-width: 1100px;
+    width: 100%;
+    margin: 20px auto;
+    position: relative;
+  }
+  .wrapper i{
+      width: 50px;
+      height: 50px;
+      background-color: #f4f4f4;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      position: absolute;
+      font-size: 1.25rem;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.23);
+      top: 50%;
+      transform: translateY(-50%);
+  }
+  .wrapper i:first-child{
+  left:-22px
+  }
+  .wrapper i:last-child{
+  right:-22px
+  }
+  .carousel{
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 32%;
+      gap: 16px;
+      overflow: hidden;
+      scroll-behavior: smooth;
+  }
+  /* .card {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  
+  .card img {
+   width: 90%;
+   object-fit: cover;
+  } */
+  
+  @media screen and (max-width:900px) {
+      .carousel{
+      grid-auto-columns: 50%;
+  }
+  }
+  @media screen and (max-width:600px) {
+      .carousel{
+      grid-auto-columns: 100%;
+  }
+  }
+
+
+  .card {
+    flex: 0 0 300px; /* Set a fixed width for each card */
+    padding: 20px;
+    margin-right: 20px; /* Add spacing between cards */
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+    cursor: pointer;
+    transition: transform 0.3s; /* Add a smooth hover effect */
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Scale up the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  }
+  
+  /* Style the card headings */
+  .card h3 {
+    margin: 0;
+    font-size: 18px; /* Larger font size for headings */
+    /* font-weight: bold; */
+    color: #333; /* Dark gray color for headings */
+  }
+  
+  /* Style the card details */
+  .card p {
+    margin: 0;
+    font-size: 14px;
+    color: #666; /* Medium gray color for details */
+  }
+  
+  

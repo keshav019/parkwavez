@@ -37,7 +37,12 @@ import { CarouselModule } from './carousel/carousel.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
+
+import { BookingListComponent } from './booking-list/booking-list.component';
+
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+
+
 
 import { ReviewFormComponent } from './review-form/review-form.component';
 
@@ -46,8 +51,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReviewComponent } from './review/review.component';
 
 
+
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ReviewListComponent } from './review-list/review-list.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +71,12 @@ import { ReviewListComponent } from './review-list/review-list.component';
     ProductDetailsComponent,
     BookingComponent,
     RegistrationComponent,
+
+    BookingListComponent,
+
     SearchBarComponent,
+
+    LoginComponent,
     ReviewFormComponent,
     LoginComponent,
     ReviewComponent,

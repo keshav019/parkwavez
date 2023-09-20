@@ -1,17 +1,3 @@
-<div class="wrapper">
-  <i (click)="scrollLeft($event)" class="fa-solid fa-angle-left"></i>
-  <div class="carousel" #carousel>
 
-    <!--<div *ngFor="let product of products"> -->
-
-    <div class="card" *ngFor="let product of products" (click)="showProductDetails(product)">
-      <img [src]="product.imageUrl" alt="{{ product.name }}" />
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-    </div>
-  <!--</div>-->
-</div>
-  <i (click)="scrollRight($event)" class="fa-solid fa-angle-right"></i>
-</div>
 
 

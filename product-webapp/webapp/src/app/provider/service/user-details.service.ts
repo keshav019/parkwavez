@@ -18,8 +18,17 @@ export class UserDetailsService {
     providerDetails: ProviderDetails
   ): Observable<ProviderDetails> {
     return this.httpCient.put<ProviderDetails>(
-      this.API_URL +'/update',
+      this.API_URL + '/update',
       providerDetails
+    );
+  }
+  updateUserProfile(
+    providerId: string,
+    file: any
+  ): Observable<ProviderDetails> {
+    return this.httpCient.put<ProviderDetails>(
+      this.API_URL + '/' + providerId + '/profile-picture',
+      file
     );
   }
 }

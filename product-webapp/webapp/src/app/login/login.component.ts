@@ -5,7 +5,7 @@ import { AuthenticationService } from '../authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   username = '';
@@ -17,9 +17,9 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-     console.log('Form submitted');
+    console.log('Form submitted');
     this.authService.login(this.username, this.password).subscribe(
-      response => {
+      (response) => {
         if (response.user.authorities[0].authority === 'CUSTOMER') {
           // User authority, navigate to user page
           this.authService.setToken(response.jwt);
@@ -30,7 +30,7 @@ export class LoginComponent {
           this.router.navigate(['/provider']);
         }
       },
-      error => {
+      (error) => {
         // Handle login error (e.g., display an error message)
         console.error('Login error:', error);
       }
