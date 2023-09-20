@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewFormComponent } from '../review-form/review-form.component';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,14 @@ export class ReviewService {
     // Implement your logic to submit the review here (e.g., send to a backend API).
     return this.http.post(`${this.apiUrl}/reviewAndRating`, reviewData);
   }
+
+
+    public getReviews(){
+      return this.http.get(this.apiUrl + '/reviewAndRating');
+    }
+
+    // public deleteReview(userId){
+    //   return this.http.delete(this.apiUrl + '/delete/userId');
+    // }
 
 }

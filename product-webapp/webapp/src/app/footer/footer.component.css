@@ -1,15 +1,7 @@
-/* .footer{
-  position: fixed;
-  bottom: 0%;
-  background-color: #888888;
-  width:100%;
-  color: white;
-  text-align: center;
-  padding: 20px;
-} */
+
 
 .footer {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0%;
   background-color: #888888;
   width: 100%;

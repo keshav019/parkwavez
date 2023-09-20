@@ -45,6 +45,10 @@ import { LoginComponent } from './login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReviewComponent } from './review/review.component';
 
+
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ReviewListComponent } from './review-list/review-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +68,7 @@ import { ReviewComponent } from './review/review.component';
     ReviewFormComponent,
     LoginComponent,
     ReviewComponent,
+    ReviewListComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +92,7 @@ import { ReviewComponent } from './review/review.component';
     MatNativeDateModule,
     MatDialogModule,
     MatSnackBarModule,
+    NgxStarRatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

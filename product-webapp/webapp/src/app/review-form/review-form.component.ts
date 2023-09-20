@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReviewService } from '../service/review.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthenticationService } from '../authentication.service';
+
 
 @Component({
   selector: 'app-review-form',
@@ -14,18 +16,23 @@ export class ReviewFormComponent {
   rating: number | null = null;
   reviewDesc: string='';
   userId: string='';
+  providerId: string='';
 
   constructor(private reviewService: ReviewService,
     private router: Router,
-    private snackBar: MatSnackBar,) {}
+    private snackBar: MatSnackBar, private authenticationService: AuthenticationService) {
+
+    }
+
 
 
   submitReview() {
     const reviewData = {
       bookingId: this.bookingId,
       rating: this.rating,
-      reviewDescription: this.reviewDesc,
+      reviewDesc: this.reviewDesc,
       userId: this.userId,
+      providerId: this.providerId
     };
 
     // Call the service method to submit the review data
@@ -55,6 +62,8 @@ export class ReviewFormComponent {
   cancelReview() {
     alert("cancel button clicked");
   }
+
+
 
 
 }

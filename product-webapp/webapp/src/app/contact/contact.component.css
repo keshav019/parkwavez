@@ -21,7 +21,7 @@ h2 {
 .info-item {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 12px 0;
 }
 
 .info-item i {
