@@ -74,8 +74,14 @@ export class SearchBarComponent {
       });
   }
 
-  selectedProduct: any;
-  city: string = '';
+
+
+  selectedProduct !: ParkingAreaN;
+  city:string = '';
+
+  
+
+
 
   scrollLeft(event: Event) {
     event.stopPropagation();
@@ -88,7 +94,7 @@ export class SearchBarComponent {
       this.carousel.nativeElement.offsetWidth;
   }
 
-  showProductDetails(product: any) {
+  showProductDetails(product: ParkingAreaN) {
     this.selectedProduct = product;
 
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
@@ -101,11 +107,17 @@ export class SearchBarComponent {
   }
 
   closeProductDetails() {
-    this.selectedProduct = null;
+    // this.selectedProduct = null;
   }
+
+
+    appear: boolean = false;
+  
 
   search() {
     console.log('city in search function', this.city);
+
     this.getParkingAreas(this.city);
+    this.appear=true;
   }
 }
