@@ -21,7 +21,7 @@ public class ReviewAndRating{
     @Id
     private String reviewId;
     private String bookingId;
-    private String providerId;
+    private long providerId;
     private String userId;
     @Min(value = 1, message = "Rating must be at least 1")
     @Max(value = 5, message = "Rating cannot be greater than 5")

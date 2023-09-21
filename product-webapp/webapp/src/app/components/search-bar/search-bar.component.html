@@ -34,7 +34,8 @@
         <h3>{{ parkingArea.address.street }}</h3>
         <h3>{{ parkingArea.address.city }}</h3>
         <h3>{{ parkingArea.address.state }}</h3>
-        <button (click)="navigate(parkingArea.areaId)">See Review</button>
+        <h3>{{parkingArea.providerId}}</h3>
+        <button (click)="navigate(parkingArea.providerId)" class="button-see-review">See Review</button>
       </div>
     <!--</div>-->
   </div>

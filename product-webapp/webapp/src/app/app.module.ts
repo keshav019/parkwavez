@@ -54,6 +54,7 @@ import { ReviewComponent } from './review/review.component';
 
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { ReviewListFormComponent } from './review-list-form/review-list-form.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { ReviewListComponent } from './review-list/review-list.component';
     LoginComponent,
     ReviewComponent,
     ReviewListComponent,
+    ReviewListFormComponent,
   ],
   imports: [
     BrowserModule,

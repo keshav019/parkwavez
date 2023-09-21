@@ -10,7 +10,7 @@ public interface ReviewAndRatingRepository extends MongoRepository<ReviewAndRati
     //custom finder methods
     List<ReviewAndRating> findByUserId(String userId);
     List<ReviewAndRating> findByBookingId(String bookingId);
-    List<ReviewAndRating> findByProviderId(String providerId);
+    List<ReviewAndRating> findByProviderId(long providerId);
     Long deleteByUserId(String userId);
 
 }

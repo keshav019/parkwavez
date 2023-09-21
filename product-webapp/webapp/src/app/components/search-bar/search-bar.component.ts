@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ParkingAreaN } from '../models/ParkingAreaN';
 import { ParkingAreaServiceN } from '../service/parking-area-n.service';
 import { Route, Router } from '@angular/router';
+import { ReviewService } from 'src/app/service/review.service';
+import { ReviewListFormComponent } from 'src/app/review-list-form/review-list-form.component';
 
 @Component({
   selector: 'app-search-bar',
@@ -25,6 +27,7 @@ export class SearchBarComponent {
   constructor(
     public dialog: MatDialog,
     private _parkingAreaService: ParkingAreaServiceN,
+    private reviewService: ReviewService,
     private router: Router
   ) {
     this.searchText = '';
@@ -124,8 +127,16 @@ export class SearchBarComponent {
   }
 
 
-  navigate(areaId: any){
-    this.router.navigate(["parking-area",areaId,"review"]);
+
+  navigate(providerId: number) {
+    // Fetch reviews from the service
+    // const reviews = this.reviewService.getReviewsByProviderId(providerId);
+
+    // Open the dialog and pass the reviews data
+    this.dialog.open(ReviewListFormComponent, {
+      data:  providerId ,
+      width: '500px' // Adjust the width as needed
+    });
   }
 
 }

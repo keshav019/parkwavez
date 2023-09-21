@@ -35,8 +35,8 @@ const routes: Routes = [
 
 
   { path: 'login', component: LoginComponent },
-  { path: 'parking-area/:areaId/review', component: ReviewComponent },
-
+  // { path: 'parking-area/:areaId/review', component: ReviewComponent },
+  { path: 'review', component: ReviewComponent },
 
 
 ];

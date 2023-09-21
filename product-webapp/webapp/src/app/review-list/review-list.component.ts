@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from '../service/review.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-review-list',
@@ -8,16 +9,21 @@ import { ReviewService } from '../service/review.service';
 })
 export class ReviewListComponent implements OnInit {
   reviews: any[] = [];
-  userIdFilter: string = '';
-  providerIdFilter: string = '';
-  bookingIdFilter: string = '';
 
-  constructor(private reviewService: ReviewService) {}
 
   reviewDetails: any;
 
+
+
+  constructor(private reviewService: ReviewService) {
+
+  }
+
+
+
   ngOnInit() {
     this.getAllReviews();
+
   }
 
 
@@ -34,5 +40,15 @@ export class ReviewListComponent implements OnInit {
     );
   }
 
+  deleteReview(review: any) {
+    this.reviewService.deleteReview(review.userId).subscribe(
+      (resp) => {
+        console.log(resp);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
 }
