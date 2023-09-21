@@ -54,7 +54,7 @@ import { ReviewComponent } from './review/review.component';
 
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ReviewListComponent } from './review-list/review-list.component';
-
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -106,7 +106,7 @@ import { ReviewListComponent } from './review-list/review-list.component';
     MatSnackBarModule,
     NgxStarRatingModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

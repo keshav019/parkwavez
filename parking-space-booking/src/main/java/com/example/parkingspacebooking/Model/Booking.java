@@ -15,10 +15,6 @@ import lombok.Setter;
 
 
 @Document(collection = "Booking")
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class Booking {
 	
 	@Id
@@ -31,6 +27,21 @@ public class Booking {
 	 private String status;
 	 private String emailId;
 	 private double amount;
+
+	public Booking() {
+	}
+
+	public Booking(String bookingId, String userId, String spotId, Date booking_date, LocalDateTime check_In, LocalDateTime check_Out, String status, String emailId, double amount) {
+		this.bookingId = bookingId;
+		this.userId = userId;
+		this.spotId = spotId;
+		Booking_date = booking_date;
+		Check_In = check_In;
+		Check_Out = check_Out;
+		this.status = status;
+		this.emailId = emailId;
+		this.amount = amount;
+	}
 
 	public String getBookingId() {
 		return bookingId;
