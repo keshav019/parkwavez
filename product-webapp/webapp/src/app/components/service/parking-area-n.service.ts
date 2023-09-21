@@ -45,4 +45,10 @@ export class ParkingAreaServiceN {
       `http://localhost:8085/parking-area/public/get-by-city?city=${city}`
     );
   }
+
+  getParkingAreaByNearByLocation(lat: number,lon: number) : Observable<ParkingAreaN> {
+    return this._httpClient.get<ParkingAreaN>(
+      `http://localhost:8085/parking-area/public/get-near-by?latitude=${lat}&longitude=${lon}&range=200000&unit=MILES&sortBy=areaId_desc&page=1`
+    );
+  }
 }

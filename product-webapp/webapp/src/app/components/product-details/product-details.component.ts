@@ -42,6 +42,7 @@ export class ProductDetailsComponent implements OnInit{
  
   parkingSpotDetails !: ParkingSpotDetails;
   parkingSpots: any[] = [];
+  originalParkingAreas : any[] = [];
   areaId:string = '';
 
 
@@ -49,10 +50,14 @@ export class ProductDetailsComponent implements OnInit{
     this._parkingSpotService.getSpotByAreaId(areaId).subscribe(
       (data: any) => {
         this.parkingSpots = data;
+        console.log("data", data);
+        this.originalParkingAreas = data;
       }
     );
+    console.log("this.originalParkingAreas", this.originalParkingAreas);
+    console.log("this.parkingSpots", this.parkingSpots);
   }
-  originalParkingAreas !: any;
+
 
   constructor(
     public dialogRef: MatDialogRef<ProductDetailsComponent>,
@@ -65,7 +70,7 @@ export class ProductDetailsComponent implements OnInit{
         
       this.getParkingAreas(data.areaId);
 
-      this.originalParkingAreas = [...this.parkingSpots];
+      
       console.log(this.originalParkingAreas);
         this.fromDate = null;
         this.toDate = null;
@@ -76,6 +81,7 @@ export class ProductDetailsComponent implements OnInit{
     ngOnInit(): void {}
     
     filterParkingAreas(): void {
+      console.log("originalparking in filterparking method",this.originalParkingAreas);
       this.parkingSpots = this.originalParkingAreas.filter((parkingArea: any) => {
         if (
           (this.selectedVehicleType === 'All' || parkingArea.spotType === this.selectedVehicleType)

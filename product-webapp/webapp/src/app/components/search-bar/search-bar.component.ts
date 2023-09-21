@@ -79,14 +79,65 @@ export class SearchBarComponent {
       });
   }
 
-
+  getNearByParkingArea(lat:number, lon:number) {
+    this._parkingAreaService
+      .getParkingAreaByNearByLocation(lat, lon)
+      .subscribe((parkingAreas: any) => {
+        this.parkingAreas = parkingAreas.content;
+      });
+  }
 
   selectedProduct !: ParkingAreaN;
   city:string = '';
 
+  filterByNearbyArea: boolean = false;
+  userLocation !: { latitude: number, longitude: number };
+  lati:number=0;
+  longi:number=0;
+  locationAllow:boolean=false;
 
+  getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Set user's location based on obtained coordinates
+          this.lati = position.coords.latitude;
+          this.longi = position.coords.longitude;
+          // Emit the search criteria to the parent component
+          console.log("user Location", this.lati);
+          this.locationAllow= true;
+          this.onInputChange();
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+        }
+      );
+    }
+  }
 
+  clicked() {
+    this.filterByNearbyArea=true;
+    if(this.lati===0){
+    this.getUserLocation();
+    this.toggleNearbyArea();
+    }else{
+      this.toggleNearbyArea();
+    }
+    
+  }
 
+  toggleNearbyArea() {
+    
+    console.log("Toggle PRessed");
+  
+   
+    console.log("user Location", this.lati);
+    if(this.lati !== 0&& this.longi !== 0) {
+    this.getNearByParkingArea(this.lati, this.longi);
+    this.appear=true;
+    
+  }
+}
 
   scrollLeft(event: Event) {
     event.stopPropagation();
@@ -121,9 +172,10 @@ export class SearchBarComponent {
 
   search() {
     console.log('city in search function', this.city);
-
+    if(this.city!== ''){
     this.getParkingAreas(this.city);
     this.appear=true;
+    }
   }
 
 

@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -109,6 +110,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatDialogModule,
     MatSnackBarModule,
     NgxStarRatingModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
