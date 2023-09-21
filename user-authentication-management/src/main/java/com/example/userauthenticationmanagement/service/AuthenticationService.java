@@ -1,5 +1,7 @@
 package com.example.userauthenticationmanagement.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -95,4 +97,23 @@ public class AuthenticationService {
             return new LoginResponseDTO(null, "");
         }
     }
+    public boolean resetPassword(String username, String newPassword) {
+        Optional<ApplicationUser> optionalUser = userRepository.findByUsername(username);
+
+        if (optionalUser.isPresent()) {
+            ApplicationUser user = optionalUser.get();
+            String encodedPassword = passwordEncoder.encode(newPassword);
+            user.setPassword(encodedPassword);
+            userRepository.save(user);
+            return true;
+        }
+
+        return false;
+        
+    }
+    
+
+    
+
+
 }

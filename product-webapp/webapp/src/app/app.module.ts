@@ -55,6 +55,7 @@ import { ReviewComponent } from './review/review.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ReviewListComponent } from './review-list/review-list.component';
 import { ReviewListFormComponent } from './review-list-form/review-list-form.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { ReviewListFormComponent } from './review-list-form/review-list-form.com
     ReviewComponent,
     ReviewListComponent,
     ReviewListFormComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

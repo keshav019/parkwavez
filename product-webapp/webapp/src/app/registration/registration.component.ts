@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from './registration.service';
+import { Router } from '@angular/router'; // Import the Router
 
 @Component({
   selector: 'app-registration',
@@ -12,44 +13,47 @@ export class RegistrationComponent implements OnInit {
   registrationSuccess = false; // Add a flag to track registration success
 
   constructor(
-    private formBuilder: FormBuilder,
-    private registrationService: RegistrationService
+    private fb: FormBuilder,
+    private registrationService: RegistrationService,
+    private router: Router // Inject the Router
   ) {}
 
+
   ngOnInit() {
-    this.registrationForm = this.formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      username: [''],
-      emailId: [''],
-      password: [''],
-      role: ['CUSTOMER']
+    this.registrationForm = this.fb.group({
+      username: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      emailId: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role: ['', Validators.required],
+      agreeTerms: [false, Validators.requiredTrue],
     });
   }
-
   onSubmit() {
-    if (this.registrationForm.invalid) {
-      return;
-    }
-
-    const registrationData = this.registrationForm.value;
-
-    this.registrationService.registerUser(registrationData)
-      .subscribe(
+    if (this.registrationForm.valid) {
+      // Get the form values and send them to the service
+      const registrationData = this.registrationForm.value;
+      this.registrationService.registerUser(registrationData).subscribe(
         (response) => {
-          if (response.status === 200) {
-            // Registration successful
-            this.registrationSuccess = true;
-            // Optionally, you can reset the form or perform any other actions here
-          } else {
-            // Handle registration error
-            this.registrationSuccess = false;
-          }
+          console.log('Registration successful', response);
+          this.registrationSuccess = true;
+        
+          setTimeout(() => {
+            this.navigateToLogin();
+          }, 2000);
         },
+        
         (error) => {
-          // Handle registration error
-          this.registrationSuccess = false;
+          console.error('Registration failed', error);
+         
         }
       );
+    }
+  }
+
+ 
+  navigateToLogin() {
+    this.router.navigate(['/login']);
   }
 }
