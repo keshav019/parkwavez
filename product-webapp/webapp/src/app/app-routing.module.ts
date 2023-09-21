@@ -10,7 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { PaymentComponent } from './payment/payment.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BookingComponent } from './components/booking/booking.component';
-
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewComponent } from './review/review.component';
 
@@ -30,12 +30,15 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
 
 
+
   { path: 'booking',component:BookingComponent},
   {path:'payment',component:PaymentComponent},
 
-  
+
   { path: 'login', component: LoginComponent },
-  { path: 'review', component: ReviewComponent },
+  { path: 'parking-area/:areaId/review', component: ReviewComponent },
+
+  { path: 'reset-password', component: ResetPasswordComponent }
 
 
 

@@ -10,7 +10,7 @@
     </mat-form-field>
  </div>
 
-  
+
     <div class = "search-bar-container">
   <mat-form-field class="example-full-width">
     <mat-label>Filter by City</mat-label>
@@ -20,24 +20,23 @@
 
 <div class="searchButton">
 <button mat-raised-button (click)="search()">Search</button>
-</div> 
-  
+</div>
+
   <div class="wrapper" *ngIf="appear">
     <i (click)="scrollLeft($event)" class="fa-solid fa-angle-left"></i>
     <div class="carousel" #carousel>
-  
+
       <!--<div *ngFor="let product of products"> -->
-  
+
       <div class="card" *ngFor="let parkingArea of parkingAreas" (click)="showProductDetails(parkingArea)">
         <h3>{{ parkingArea.areaId }}</h3>
         <h3>{{ parkingArea.parkingName }}</h3>
         <h3>{{ parkingArea.address.street }}</h3>
         <h3>{{ parkingArea.address.city }}</h3>
         <h3>{{ parkingArea.address.state }}</h3>
+        <button (click)="navigate(parkingArea.areaId)">See Review</button>
       </div>
     <!--</div>-->
   </div>
     <i (click)="scrollRight($event)" class="fa-solid fa-angle-right"></i>
   </div>
-  
-  

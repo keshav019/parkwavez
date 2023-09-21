@@ -38,7 +38,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { BookingComponent } from './components/booking/booking.component';
 import { RegistrationComponent } from './registration/registration.component';
 
-import { BookingListComponent } from './booking-list/booking-list.component'; 
+import { BookingListComponent } from './booking-list/booking-list.component';
 
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
@@ -49,6 +49,12 @@ import { ReviewFormComponent } from './review-form/review-form.component';
 import { LoginComponent } from './login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReviewComponent } from './review/review.component';
+
+
+
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ReviewListComponent } from './review-list/review-list.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -67,15 +73,16 @@ import { ReviewComponent } from './review/review.component';
     BookingComponent,
     RegistrationComponent,
 
-    BookingListComponent, 
+    BookingListComponent,
 
     SearchBarComponent,
 
-    LoginComponent, 
+    LoginComponent,
     ReviewFormComponent,
     LoginComponent,
     ReviewComponent,
-
+    ReviewListComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,11 +104,9 @@ import { ReviewComponent } from './review/review.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
-
     MatDialogModule,
     MatSnackBarModule,
-
+    NgxStarRatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

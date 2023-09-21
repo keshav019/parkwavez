@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { MatDialog } from '@angular/material/dialog';
 import { ParkingAreaN } from '../models/ParkingAreaN';
 import { ParkingAreaServiceN } from '../service/parking-area-n.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -23,7 +24,8 @@ export class SearchBarComponent {
 
   constructor(
     public dialog: MatDialog,
-    private _parkingAreaService: ParkingAreaServiceN
+    private _parkingAreaService: ParkingAreaServiceN,
+    private router: Router
   ) {
     this.searchText = '';
   }
@@ -79,7 +81,7 @@ export class SearchBarComponent {
   selectedProduct !: ParkingAreaN;
   city:string = '';
 
-  
+
 
 
 
@@ -112,7 +114,7 @@ export class SearchBarComponent {
 
 
     appear: boolean = false;
-  
+
 
   search() {
     console.log('city in search function', this.city);
@@ -120,4 +122,10 @@ export class SearchBarComponent {
     this.getParkingAreas(this.city);
     this.appear=true;
   }
+
+
+  navigate(areaId: any){
+    this.router.navigate(["parking-area",areaId,"review"]);
+  }
+
 }
