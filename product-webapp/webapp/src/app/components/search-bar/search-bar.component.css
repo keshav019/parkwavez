@@ -87,7 +87,7 @@
     background-color: #fff; /* White background */
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: transform 0.3s; /* Add a smooth hover effect */
   }
 
@@ -101,10 +101,10 @@
   }
  
 
-  .card:hover {
-    transform: scale(1.05); /* Scale up the card on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
-  }
+   .card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  } 
 
   
   .card h3 {
@@ -177,3 +177,12 @@ transition: background-color 0.3s ease; /* Smooth transition for background colo
 .nearby button:hover {
 background-color: lightgray; 
 }
+
+.area-card-buttons{
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  gap: 10px;
+}
+

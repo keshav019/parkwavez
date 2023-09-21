@@ -33,7 +33,7 @@
 
     
 
-      <div class="card" *ngFor="let parkingArea of parkingAreas |filter:searchText" (click)="showProductDetails(parkingArea)">
+      <div class="card" *ngFor="let parkingArea of parkingAreas |filter:searchText">
         <h3>{{ parkingArea.parkingName }}</h3>
         <p>
           <mat-icon>location_on</mat-icon> Address:
@@ -46,7 +46,10 @@
           <mat-icon>dns</mat-icon> Total Number of Spots:
       {{ parkingArea.totalNoSpot }} 
         </p>
+      <div class="area-card-buttons">
+        <button (click)="showProductDetails(parkingArea)" class="button-see-review">Book Spot</button>
         <button (click)="navigate(parkingArea.providerId)" class="button-see-review">See Review</button>
+      </div>
       </div>
     <!--</div>-->
   </div>
