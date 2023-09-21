@@ -5,7 +5,7 @@ import { AuthenticationService } from '../authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   username = '';
@@ -17,23 +17,31 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-    console.log('Form submitted');
+     console.log('Form submitted');
     this.authService.login(this.username, this.password).subscribe(
-      (response) => {
+      response => {
         if (response.user.authorities[0].authority === 'CUSTOMER') {
           // User authority, navigate to user page
           this.authService.setToken(response.jwt);
           this.router.navigate(['/customer']);
         } else if (response.user.authorities[0].authority === 'PROVIDER') {
-          // Admin authority, navigate to admin page
+         
           this.authService.setToken(response.jwt);
           this.router.navigate(['/provider']);
         }
       },
-      (error) => {
-        // Handle login error (e.g., display an error message)
+      error => {
+        
         console.error('Login error:', error);
       }
     );
+    
+  }
+
+  navigateToRegistration() {
+  this.router.navigate(['/register']); 
+  }
+  navigateToResetPassword() {
+    this.router.navigate(['/reset-password']);
   }
 }

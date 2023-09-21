@@ -17,7 +17,7 @@
         <td>{{review.rating}}</td>
         <td>{{review.reviewDesc}}</td>
         <td>{{review.bookingId}}</td>
-        <td><button type="button" class="btn btn-danger">Delete</button> </td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteReview(review)">Delete</button> </td>
       </tr>
     </tbody>
   </table>

@@ -87,7 +87,7 @@ public class ReviewAndRatingController {
 
     //get all by providerId
     @GetMapping("/providers/{providerId}")
-    public ResponseEntity<?> getReviewAndRatingsByProviderId(@PathVariable String providerId) {
+    public ResponseEntity<?> getReviewAndRatingsByProviderId(@PathVariable long providerId) {
         try {
             List<ReviewAndRating> reviewAndRatings = reviewAndRatingService.getReviewAndRatingByProviderId(providerId);
 

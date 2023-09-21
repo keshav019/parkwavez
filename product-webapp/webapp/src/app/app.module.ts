@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -54,7 +55,13 @@ import { ReviewComponent } from './review/review.component';
 
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ReviewListComponent } from './review-list/review-list.component';
+
 import { DatePipe } from '@angular/common';
+
+import { ReviewListFormComponent } from './review-list-form/review-list-form.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
+
 
 @NgModule({
   declarations: [
@@ -81,6 +88,8 @@ import { DatePipe } from '@angular/common';
     LoginComponent,
     ReviewComponent,
     ReviewListComponent,
+    ReviewListFormComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +114,7 @@ import { DatePipe } from '@angular/common';
     MatDialogModule,
     MatSnackBarModule,
     NgxStarRatingModule,
+    Ng2SearchPipeModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

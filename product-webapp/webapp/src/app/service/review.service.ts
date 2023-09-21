@@ -29,8 +29,12 @@ export class ReviewService {
       return this.http.get(this.apiUrl + '/reviewAndRating');
     }
 
-    // public deleteReview(userId){
-    //   return this.http.delete(this.apiUrl + '/delete/userId');
-    // }
+    public getReviewsByProviderId(providerId: number){
+      return this.http.get(this.apiUrl + '/reviewAndRating/providers/' + providerId);
+    }
+
+    public deleteReview(userId: any){
+      return this.http.delete(this.apiUrl + '/reviewAndRating/delete/' + userId);
+    }
 
 }
