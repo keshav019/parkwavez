@@ -31,14 +31,14 @@ export class BookingComponent implements OnInit{
   ngOnInit():void{
     this.bookingForm=this.formBuilder.group({
       bookingId:[''],
-      UserId:[''],
-      SpotId:[''],
+      userId:[''],
+      spotId:[this.spotId],
       emailId:[''],
       booking_date:[new Date()],
       check_In:[''],
       check_Out:[''],
 
-      Amount:['']
+      amount:['']
 
     })
   }
@@ -47,17 +47,19 @@ export class BookingComponent implements OnInit{
       if(this.bookingForm.valid)
       {
 
-        console.log(this.bookingForm.value)
-        // this.bookingDataService.submitBooking(this.bookingForm.value).subscribe(
-        //   (response) =>{
-        //     console.log('submitted Sucessfully',response);
-        //   },
-        //   (error) =>{
-        //     console.error('error submitting booking',error);
-        //   }
+
+        this.bookingForm.get('amount').setValue(this.price);
+        console.log(this.bookingForm.value);
+        this.bookingDataService.submitBooking(this.bookingForm.value).subscribe(
+          (response) =>{
+            console.log('submitted Sucessfully',response);
+          },
+          (error) =>{
+            console.error('error submitting booking',error);
+          }
 
 
-        // );
+        );
         this.openAddDialog();
 
 
@@ -93,5 +95,9 @@ export class BookingComponent implements OnInit{
 
 
 
- }
+  bookingList() {
+    this.router.navigate(['/bookingList']);
+  }
+
+}
 

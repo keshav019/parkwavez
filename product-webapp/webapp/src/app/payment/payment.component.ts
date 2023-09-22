@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 declare var Razorpay: any;
 
@@ -20,9 +21,9 @@ export class PaymentComponent {
 
 
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<PaymentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { price: number }) {}
+    @Inject(MAT_DIALOG_DATA) public data: { price: number }, private router: Router) {}
 
-    
+
 
    paymentStart() {
 
@@ -83,6 +84,7 @@ export class PaymentComponent {
       (response) => {
       console.log(response);
       alert("PAID SUCCESSFULLY");
+      this.router.navigate(['/bookingList']);
     },
     error => {
       alert("Your payment is succesful but not updated to our server")
