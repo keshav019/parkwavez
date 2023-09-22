@@ -67,3 +67,10 @@
       padding: 10px; /* Reduce padding for smaller screens */
     }
   }
+
+  .sticky h1 {
+    text-align: center;
+    /* text-transform: uppercase; */
+    /* font-weight: bold; */
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
+  }

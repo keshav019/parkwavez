@@ -155,7 +155,7 @@ export class SearchBarComponent {
 
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
       disableClose: false,
-      width: '1000px',
+      width: '700px',
       height: '500px',
       data: this.selectedProduct,
       hasBackdrop: true,
