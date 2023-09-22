@@ -1,21 +1,26 @@
 <div mat-dialog.title>
   <h1>Booking Info</h1>
-  <!-- <app-booking-list></app-booking-list> -->
+  <app-booking-list></app-booking-list> 
 </div>
 <form [formGroup]="bookingForm">
-<div mat-dialog.content class="content" >
+<!-- <div mat-dialog.content class="content" > -->
+  <div>
   <mat-form-field appearance="outline">
     <mat-label>Check_In</mat-label>
-    <input matInput type="datetime-local" formControlName="Check_In">
+    <input matInput type="" formControlName="check_In">
   </mat-form-field>
 </div>
 <div class="row">
   <mat-form-field appearance="outline">
     <mat-label>Check_Out</mat-label>
-    <input matInput type="datetime-local" formControlName="Check_Out">
+    <input matInput type="datetime-local" formControlName="check_Out">
   </mat-form-field>
 
 </div>
+<mat-form-field appearance="outline">
+  <mat-label>Email</mat-label>
+  <input matInput type="email" formControlName="emailId">
+</mat-form-field>
 
 
 <div mat-dialog.action>

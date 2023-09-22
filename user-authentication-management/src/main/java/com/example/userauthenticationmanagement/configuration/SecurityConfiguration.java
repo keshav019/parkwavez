@@ -35,6 +35,7 @@ public class SecurityConfiguration {
         this.keys = keys;
     }
 
+    
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -53,9 +54,9 @@ public class SecurityConfiguration {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/auth/**").permitAll();
-                auth.requestMatchers("/provider/**").hasRole("PROVIDER");
-                auth.requestMatchers("/customer/**").hasAnyRole("CUSTOMER");
+                auth.antMatchers("/auth/**").permitAll();
+                auth.antMatchers("/provider/**").hasRole("PROVIDER");
+                auth.antMatchers("/customer/**").hasAnyRole("CUSTOMER");
                 auth.anyRequest().authenticated();
             });
             

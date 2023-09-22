@@ -1,6 +1,9 @@
 package com.example.userauthenticationmanagement.service;
 
+
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,21 +13,26 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.userauthenticationmanagement.models.ApplicationUser;
 import com.example.userauthenticationmanagement.models.LoginResponseDTO;
 import com.example.userauthenticationmanagement.models.Role;
-import com.example.userauthenticationmanagement.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+
+
 import com.kafkaProducer.UserDTO;
+import com.example.userauthenticationmanagement.repository.UserRepository;
+
 
 @Service
 @Transactional
 public class AuthenticationService {
 
+	
+	
     @Autowired
     private UserRepository userRepository;
 
@@ -117,3 +125,4 @@ public class AuthenticationService {
 
 
 }
+

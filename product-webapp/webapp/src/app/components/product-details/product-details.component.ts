@@ -11,7 +11,7 @@ import { ParkingAreaN } from '../models/ParkingAreaN';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ParkingSpotDetails } from './models/parking-spot-details';
 import { ParkingSpotService } from '../service/parking-spot.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -63,7 +63,8 @@ export class ProductDetailsComponent implements OnInit{
     public dialogRef: MatDialogRef<ProductDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data:ParkingAreaN,
       private _adapter: DateAdapter<any>,
-      private _parkingSpotService: ParkingSpotService
+      private _parkingSpotService: ParkingSpotService,
+      private router:Router
     ) {
 
       console.log("areaId in product-details.component.ts", data.areaId);
@@ -111,6 +112,10 @@ resetFilters(): void {
 applyFilters(): void {
   this.filterParkingAreas();
   this.submitDateRange();
+}
+
+moveToBooking(){
+  this.router.navigate(['/booking']);
 }
 
 onClose(): void {

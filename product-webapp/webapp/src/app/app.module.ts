@@ -55,8 +55,12 @@ import { ReviewComponent } from './review/review.component';
 
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ReviewListComponent } from './review-list/review-list.component';
+
+import { DatePipe } from '@angular/common';
+
 import { ReviewListFormComponent } from './review-list-form/review-list-form.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
 
 
 @NgModule({
@@ -112,7 +116,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     NgxStarRatingModule,
     Ng2SearchPipeModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
