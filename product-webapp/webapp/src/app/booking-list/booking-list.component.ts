@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import{ Booking} from '../booking';
 import { BookingDataService } from '../booking-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-list',
@@ -11,7 +12,8 @@ export class BookingListComponent implements OnInit{
 
  bookings: Booking[]=[];
 
-  constructor(private bookingDataService: BookingDataService){}
+  constructor(private bookingDataService: BookingDataService,
+    private router:Router){}
   ngOnInit(): void {
     this.getBooking();
 }
@@ -25,4 +27,10 @@ private getBooking(){
 submitBooking() {
 
 }
+
+navigateToReview(){
+  this.router.navigate(['/review']);
+}
+
+
 }

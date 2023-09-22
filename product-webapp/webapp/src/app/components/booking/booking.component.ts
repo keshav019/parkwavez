@@ -24,7 +24,7 @@ export class BookingComponent implements OnInit{
       UserId:[''],
       SpotId:[''],
       emailId:[''],
-      Booking_Date:[new Date()],
+      booking_date:[new Date()],
       check_In:[''],
       check_Out:[''],
       

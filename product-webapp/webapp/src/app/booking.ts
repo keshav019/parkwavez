@@ -3,7 +3,7 @@ bookingId!:String;
 userId!:String;
 spotId!:String;
 emailId!:String;
-Booking_Date!:Date;
+booking_date!:Date;
 check_In!:Date;
 check_Out!:Date;
 status!:String;
