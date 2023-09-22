@@ -17,10 +17,22 @@
 
 </div>
 
+<mat-form-field class="full-width">
+  <mat-label>Charge Type</mat-label>
+  <mat-select (valueChange)="getPrice()" required formControlName="chargeType">
+    <mat-option *ngFor="let chargeType of chargeTypes" [value]="chargeType">
+      {{ chargeType }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<h2 *ngIf="price!=0">Price: {{price}}</h2>
+<h2 *ngIf="price===0">Please select the charge type</h2>
 
 <div mat-dialog.action>
-  <button id="canclebtn" mat-raised-button>Cancle</button>
-  <button id="submitbtn" color="primary" (click)="moveToPayment()" mat-raised-button> Submit </button>
+  <button id="canclebtn" mat-raised-button>Cancel</button>
+  <button id="submitbtn" color="primary" (click)="moveToPayment(); move()" mat-raised-button> Submit </button>
 </div>
 
 </form>
+
+

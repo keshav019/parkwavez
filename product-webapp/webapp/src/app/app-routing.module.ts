@@ -31,7 +31,7 @@ const routes: Routes = [
 
 
 
-  { path: 'booking',component:BookingComponent},
+  { path: 'booking/:spotId',component:BookingComponent},
   {path:'payment',component:PaymentComponent},
 
 

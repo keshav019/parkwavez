@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 declare var Razorpay: any;
 
@@ -12,13 +13,20 @@ declare var Razorpay: any;
 
 export class PaymentComponent {
 
-  amount!: number;
+  // amount!: number;
+
   backendUrl = 'http://localhost:8087/user/Create_Order';
-  constructor(private http: HttpClient) {}
+
+
+
+  constructor(private http: HttpClient, public dialogRef: MatDialogRef<PaymentComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { price: number }) {}
+
+    
 
    paymentStart() {
 
-    this.http.post(this.backendUrl,{"amount":this.amount}).subscribe(
+    this.http.post(this.backendUrl,{"amount":this.data.price}).subscribe(
       (response) => {
           console.log(response);
           this.openPaymentForm(response);

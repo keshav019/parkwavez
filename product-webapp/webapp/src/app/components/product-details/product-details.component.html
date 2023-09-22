@@ -12,7 +12,7 @@
         <mat-option value="Handicap">Handicap</mat-option>
       </mat-select>
     </mat-form-field>
-    
+
     <mat-form-field>
       <mat-label>Price Per Hour</mat-label>
       <mat-select [(ngModel)]="selectedPrice">
@@ -22,7 +22,7 @@
         <mat-option value="20">20</mat-option>
       </mat-select>
     </mat-form-field>
-    
+
     <!-- Date Range Selection -->
   <mat-form-field>
     <mat-label>From Date</mat-label>
@@ -31,38 +31,38 @@
     <mat-datepicker #fromDatepicker></mat-datepicker>
     <!-- <mat-error *ngIf="dateForm.get('fromDate').hasError('required')">From Date is required</mat-error>
   <mat-error *ngIf="dateForm.get('fromDate').hasError('pastDate')">From Date cannot be in the past</mat-error> -->
-  
+
   </mat-form-field>
-  
+
   <mat-form-field>
     <mat-label>To Date</mat-label>
     <input matInput [matDatepicker]="toDatepicker" [(ngModel)]="toDate">
     <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #toDatepicker></mat-datepicker>
   </mat-form-field>
-  
+
   <button mat-raised-button (click)="applyFilters()">Apply Filters</button>
   <button mat-raised-button (click)="resetFilters()">Reset Filters</button>
-  
+
   <!-- Submit Button -->
   <!-- <button mat-raised-button (click)="submitDateRange()">Submit</button> -->
   </div>
-  
-    
-  
-  
+
+
+
+
     <div class = "parkingSpotList" >
       <table mat-table [dataSource]="parkingSpots" class="mat-elevation-z8">
-    
+
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let parkingArea">
             <!-- <button mat-icon-button (click)="bookParking(parkingArea)"> -->
-              <button mat-raised-button color="primary">Book</button>
+              <button mat-raised-button color="primary" (click)="moveToBooking(parkingArea)">Book</button>
           </td>
         </ng-container>
-    
-        
+
+
         <ng-container matColumnDef="parkingSpotNumber">
           <th mat-header-cell *matHeaderCellDef> Spot Number </th>
           <td mat-cell *matCellDef="let parkingArea"> {{ parkingArea.parkingSpotNumber }} </td>
@@ -85,16 +85,15 @@
       <tr mat-row *matRowDef="let row; columns: [ 'parkingSpotNumber', 'spotType', 'actions']"></tr>
       </table>
     </div>
-    
+
   </ng-container>
-    
-    
-    
-    
-    
-        
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
