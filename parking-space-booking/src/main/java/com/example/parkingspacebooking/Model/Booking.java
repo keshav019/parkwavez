@@ -28,6 +28,21 @@ public class Booking {
 	 private String emailId;
 	 private double amount;
 
+	@Override
+	public String toString() {
+		return "Booking{" +
+				"bookingId='" + bookingId + '\'' +
+				", userId='" + userId + '\'' +
+				", spotId='" + spotId + '\'' +
+				", Booking_date=" + Booking_date +
+				", Check_In=" + Check_In +
+				", Check_Out=" + Check_Out +
+				", status='" + status + '\'' +
+				", emailId='" + emailId + '\'' +
+				", amount=" + amount +
+				'}';
+	}
+
 	public Booking() {
 	}
 

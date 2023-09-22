@@ -11,11 +11,12 @@ private  baseURL="http://localhost:8086/Booking";
   constructor(private httpClient:HttpClient) { }
 
 getBookingList(): Observable<Booking[]>{
-  alert(this.baseURL)
+  // alert(this.baseURL)
   return this.httpClient.get<Booking[]>(`${this.baseURL}`);
 }
 submitBooking(bookingData: any) {
   // Implement your logic to submit the review here (e.g., send to a backend API).
+  
   return this.httpClient.post(`${this.baseURL}`, bookingData);
 }
 

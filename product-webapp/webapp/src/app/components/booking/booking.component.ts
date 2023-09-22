@@ -20,15 +20,15 @@ export class BookingComponent implements OnInit{
 
   ngOnInit():void{
     this.bookingForm=this.formBuilder.group({
-      bookingId:['1'],
-      UserId:['11'],
-      SpotId:['1'],
-      emailId:['abc@gmail.com'],
-      Booking_Date:[this.datePipe.transform(new Date(), 'yyyy-MM-dd')],
-      Check_In:[this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm')],
-      Check_Out:[new Date()],
+      bookingId:[''],
+      UserId:[''],
+      SpotId:[''],
+      emailId:[''],
+      Booking_Date:[new Date()],
+      check_In:[''],
+      check_Out:[''],
       
-      Amount:['100']
+      Amount:['']
     
     })
   }

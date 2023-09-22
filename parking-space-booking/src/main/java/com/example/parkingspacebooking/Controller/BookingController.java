@@ -30,6 +30,7 @@ public class BookingController {
 	 @PostMapping
 	    @ResponseStatus(HttpStatus.CREATED)
 	    public Booking createBooking(@RequestBody Booking booking){
+//		 System.out.println(booking.getCheck_In());
 		 System.out.println(booking);
 	        return service.addBooking(booking);
 	    }
