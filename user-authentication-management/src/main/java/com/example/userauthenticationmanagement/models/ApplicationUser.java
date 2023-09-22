@@ -24,7 +24,6 @@ public class ApplicationUser implements UserDetails {
 	
 	
     @Id
-    
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 

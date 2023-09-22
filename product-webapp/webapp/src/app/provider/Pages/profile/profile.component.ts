@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDetailsService } from '../../service/user-details.service';
 import { ProfileImageComponent } from '../../components/profile-image/profile-image.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from 'src/app/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +18,9 @@ export class ProfileComponent implements OnInit {
   providerId = 'ohndoe311235';
   providerForm!: FormGroup;
   provider!: ProviderDetails;
+  dataSubscription!: Subscription;
   constructor(
+    private authService: AuthenticationService,
     private location: Location,
     private fb: FormBuilder,
     private providerService: UserDetailsService,
@@ -47,7 +51,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProvider();
+    this.dataSubscription = this.authService.user.subscribe((user) => {
+      this.providerId = user.userId;
+      alert(this.providerId);
+      this.getProvider();
+    });
   }
 
   goBack(): void {

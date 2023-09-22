@@ -135,6 +135,8 @@ services:
     image: mongo:latest
     ports:
       - "27018:27017"
+    volumes:
+      - /usr/local/mongodb:/parkwavez
     networks:
       parkwavez-net:
 
@@ -259,6 +261,22 @@ services:
       - elasticsearch
       - api-gateway
       - kafka
+    networks:
+      parkwavez-net:
+
+
+  parking-space-booking:
+    container_name: parking-space-booking
+    build: parking-sapce-booking/
+    restart: always
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mongodb
+      - kafka
+      - eureka-server
+    environment:
+      - spring.profiles.active=docker
     networks:
       parkwavez-net:
 

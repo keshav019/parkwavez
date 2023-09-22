@@ -17,7 +17,7 @@ spring:
             - Path=/notifications/**
 
         - id: parking-provider-service
-          uri: http://localhost:8085
+          uri: lb://parking-provider-service
           predicates:
             - Path=/parking-area/**,/parking-spot/**,/price-service/**,/provider-details/**
 
@@ -45,7 +45,6 @@ spring:
           uri: http://localhost:8090
           predicates:
             - Path=/auth/**,/customer/**,/provider/**
-
 
 
 
