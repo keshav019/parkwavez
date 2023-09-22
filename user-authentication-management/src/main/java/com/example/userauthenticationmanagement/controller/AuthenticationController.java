@@ -22,6 +22,7 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    
     @PostMapping("/register")
     public void registerUser(@RequestBody RegistrationDTO body) {
          authenticationService.registerUser(body.getUsername(), body.getPassword(),body.getFirstName(),body.getLastName(),body.getEmailId(),body.getRole());
@@ -29,6 +30,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body) {
+    	
         return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
     @PostMapping("/reset-password")
