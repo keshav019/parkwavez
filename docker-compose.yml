@@ -135,8 +135,6 @@ services:
     image: mongo:latest
     ports:
       - "27018:27017"
-    environment:
-      - MONGO_INITDB_DATABASE=notificationVacancyCreated
     networks:
       parkwavez-net:
 
@@ -281,10 +279,9 @@ services:
       parkwavez-net:
     restart: on-failure
 
-
   product-webapp:
     container_name: product-webapp
-    build: productwebapp
+    build: product-webapp
     ports:
       - "8099:8099"
     depends_on:
@@ -295,7 +292,7 @@ services:
     networks:
       parkwavez-net:
 
-      
+
   review-service:
     container_name: review-service
     build: review-service/
@@ -314,7 +311,7 @@ services:
 
   user-authentication-service:
     container_name: user-authentication-service
-    build: user-authentication-management
+    build: user-authentication-management/
     ports:
       - "8090:8090"
     depends_on:
