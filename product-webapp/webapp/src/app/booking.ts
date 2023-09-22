@@ -4,8 +4,8 @@ userId!:String;
 spotId!:String;
 emailId!:String;
 Booking_Date!:Date;
-Check_In!:Date;
-Check_Out!:Date;
+check_In!:Date;
+check_Out!:Date;
 status!:String;
 amount!:Number;
 

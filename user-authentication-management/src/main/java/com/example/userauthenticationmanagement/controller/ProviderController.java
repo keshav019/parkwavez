@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class ProviderController {
     
+	
+	
     @GetMapping("/")
     public String helloAdmineController(){
         return "Provider level access";

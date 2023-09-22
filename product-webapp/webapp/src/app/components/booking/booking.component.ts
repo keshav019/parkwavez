@@ -1,11 +1,13 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { DatePipe } from '@angular/common'; // Import DatePipe
 import { BookingDataService } from 'src/app/booking-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentComponent } from 'src/app/payment/payment.component';
+import { MAT_DATEPICKER_SCROLL_STRATEGY, MatDateSelectionModel } from '@angular/material/datepicker';
+import { DateAdapter } from '@angular/material/core';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -28,14 +30,16 @@ export class BookingComponent implements OnInit{
 
   ngOnInit():void{
     this.bookingForm=this.formBuilder.group({
-      bookingId:['1'],
-      UserId:['11'],
-      SpotId:[this.spotId],
-      emailId:['abc@gmail.com'],
+      bookingId:[''],
+      UserId:[''],
+      SpotId:[''],
+      emailId:[''],
       Booking_Date:[new Date()],
-      Check_In:[new Date()],
-      Check_Out:[new Date()],
-      Amount:['100']
+      check_In:[''],
+      check_Out:[''],
+
+      Amount:['']
+
     })
   }
 
@@ -67,7 +71,7 @@ export class BookingComponent implements OnInit{
   }
 
 
-  public getPrice(){
+   getPrice(){
     this.price = 10;
   }
 
@@ -77,7 +81,7 @@ export class BookingComponent implements OnInit{
       enterAnimationDuration: '200ms',
       exitAnimationDuration: '200ms',
     });
-    dialogRef.afterClosed();
+    // dialogRef.afterClosed();
     // dialogRef.afterClosed().subscribe((price: number) => {
     //   if (price) {
 
@@ -89,5 +93,5 @@ export class BookingComponent implements OnInit{
 
 
 
+ }
 
-}

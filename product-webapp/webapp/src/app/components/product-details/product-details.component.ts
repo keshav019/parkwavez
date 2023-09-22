@@ -67,6 +67,7 @@ export class ProductDetailsComponent implements OnInit{
       private _adapter: DateAdapter<any>,
       private _parkingSpotService: ParkingSpotService,
       private router: Router
+
     ) {
 
       console.log("areaId in product-details.component.ts", data.areaId);
