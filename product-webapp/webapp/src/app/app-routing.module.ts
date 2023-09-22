@@ -13,6 +13,7 @@ import { BookingComponent } from './components/booking/booking.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewComponent } from './review/review.component';
+import { BookingListComponent } from './booking-list/booking-list.component';
 
 
 const routes: Routes = [
@@ -28,10 +29,9 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
   { path: 'register', component: RegistrationComponent },
+  {path: 'bookingList', component:BookingListComponent},
 
-
-
-  { path: 'booking',component:BookingComponent},
+  { path: 'booking/:spotId',component:BookingComponent},
   {path:'payment',component:PaymentComponent},
 
 

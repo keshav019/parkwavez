@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+version: '3.8'
+services:
+  #API Gateway
+  api-gateway:
+    container_name: api-gateway
+    build: api-gateway/
+    restart: always
+    ports:
+      - "8004:8004"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEuRL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+  #Eureka server
+  eureka-server:
+    container_name: eureka-server
+    build: eureka-server/
+    restart: always
+=======
 # version: "3"
 # services:
 #   api-gateway:
@@ -133,6 +154,7 @@ services:
   mongodb:
     container_name: mongodb
     image: mongo:latest
+>>>>>>> a6ac9579272b131f65976c585d710df67d431256
     ports:
       - "27018:27017"
     volumes:
@@ -141,23 +163,61 @@ services:
       parkwavez-net:
 
 
+  payment-mysql:
+    container_name: payment-mysql
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3301:3301"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql@123
+      MYSQL_DATABASE: orders
+    networks:
+      - mynetwork
+
+  payment-service:
+    container_name: payment-service
+    build: payment-service/
+    restart: always
+    ports:
+      - "8087:8087"
+    depends_on:
+      - payment-mysql
+      - eureka-server
+      - api-gateway
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://payment-mysql:3301/orders?autoReconnect=true&useSSL=false
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=mysql@123
+      - EUREKA_CLIENT_SERVICEuRL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    networks:
+      - mynetwork
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     container_name: zookeeper
-    restart: always
     ports:
       - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     networks:
+<<<<<<< HEAD
+      - mynetwork
+=======
       parkwavez-net:
+>>>>>>> a6ac9579272b131f65976c585d710df67d431256
 
 
   kafka:
     image: confluentinc/cp-kafka:7.0.1
+<<<<<<< HEAD
+    container_name: broker
+=======
     container_name: kafka
     restart: always
+>>>>>>> a6ac9579272b131f65976c585d710df67d431256
     ports:
       - "9092:9092"
     depends_on:
@@ -171,16 +231,27 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     networks:
+<<<<<<< HEAD
+      - mynetwork
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+=======
       parkwavez-net:
 
 
   elasticsearch:
+>>>>>>> a6ac9579272b131f65976c585d710df67d431256
     container_name: elasticsearch
-    image: elasticsearch:7.17.12
-    ports:
-      - "9200:9200"
     environment:
       - cluster.name=elasticsearch
+<<<<<<< HEAD
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    networks:
+      - mynetwork
+=======
       - 'CLI_JAVA_OPTS=-Xms2g -Xmx2g'
       - 'bootstrap.memory_lock=true'
       - 'discovery.type=single-node'
@@ -245,13 +316,33 @@ services:
     networks:
       parkwavez-net:
 
+>>>>>>> a6ac9579272b131f65976c585d710df67d431256
 
   parking-provider-service:
     container_name: parking-provider-service
     build: parking-provider-service/
-    restart: always
     ports:
       - "8085:8085"
+<<<<<<< HEAD
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - elasticsearch
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - ELASTICSEARCH_URL=elasticsearch:9200
+      - SPRING_DATA_ELASTICSEARCH_CLUSTERNODES=elasticsearch:9200
+      - SPRING_DATA_ELASTICSEARCH_CLUSTERNAME=elasticsearch
+      - SPRING_KAFKA_BOOTSTRAPSERVERS=broker:29092
+      - EUREKA_CLIENT_SERVICEuRL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    restart: always
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+=======
     environment:
       - spring.profiles.active=docker
     links:
@@ -344,3 +435,4 @@ services:
 
 networks:
   parkwavez-net:
+>>>>>>> a6ac9579272b131f65976c585d710df67d431256
