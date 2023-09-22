@@ -31,6 +31,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
@@ -115,6 +116,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatSnackBarModule,
     NgxStarRatingModule,
     Ng2SearchPipeModule,
+    MatDialogModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

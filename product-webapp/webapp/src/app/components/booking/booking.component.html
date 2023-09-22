@@ -1,31 +1,50 @@
 <div mat-dialog.title>
   <h1>Booking Info</h1>
-  <app-booking-list></app-booking-list> 
+  <app-booking-list></app-booking-list>
 </div>
 <form [formGroup]="bookingForm">
 <!-- <div mat-dialog.content class="content" > -->
-  <div>
-  <mat-form-field appearance="outline">
-    <mat-label>Check_In</mat-label>
-    <input matInput type="" formControlName="check_In">
-  </mat-form-field>
-</div>
-<div class="row">
-  <mat-form-field appearance="outline">
-    <mat-label>Check_Out</mat-label>
-    <input matInput type="datetime-local" formControlName="check_Out">
-  </mat-form-field>
+<div class="input">
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Check_In</mat-label>
+      <input matInput type="" formControlName="check_In" formControlName="check_In">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Check_Out</mat-label>
+      <input matInput type="datetime-local" formControlName="check_Out">
+    </mat-form-field>
+  </div>
 
-</div>
-<mat-form-field appearance="outline">
-  <mat-label>Email</mat-label>
-  <input matInput type="email" formControlName="emailId">
-</mat-form-field>
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="emailId">
+    </mat-form-field>
+  </div>
 
+  <div class="row">
+    <mat-form-field class="full-width">
+      <mat-label>Charge Type</mat-label>
+      <mat-select (valueChange)="getPrice()" required formControlName="chargeType">
+        <mat-option *ngFor="let chargeType of chargeTypes" [value]="chargeType">
+          {{ chargeType }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<h2 *ngIf="price!=0">Price: {{price}}</h2>
+<h2 *ngIf="price===0">Please select the charge type</h2>
 
 <div mat-dialog.action>
-  <button id="canclebtn" mat-raised-button>Cancle</button>
-  <button id="submitbtn" color="primary" (click)="moveToPayment()" mat-raised-button> Submit </button>
+  <button id="canclebtn" mat-raised-button>Cancel</button>
+  <button id="submitbtn" color="primary" (click)="moveToPayment(); move()" mat-raised-button> Submit </button>
 </div>
 
 </form>
+
+
