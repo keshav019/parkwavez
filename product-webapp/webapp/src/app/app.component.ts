@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Configuration, OpenAIApi} from "openai";
 
 @Component({
   selector: 'app-root',
