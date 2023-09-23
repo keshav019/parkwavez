@@ -9,6 +9,7 @@ import com.example.notificationservice.exception.MessageProcessingException;
 import com.example.notificationservice.service.NotificationService;
 import com.kafkaProducer.UserDTO;
 import com.kafkaProducer.UserSpotIdDTO;
+import com.kafkaProducer.BookingDTO;
 
 @Service
 public class KafkaMessageListener {
@@ -39,6 +40,18 @@ public class KafkaMessageListener {
     	} catch (Exception ex) {
     		log.error("Error processing Kafka message for user: {}", user2, ex);
             throw new MessageProcessingException("Error processing Kafka message for user: " + user2, ex);
+    	}
+    }
+    
+    @KafkaListener(topics = "bookingNotification", groupId = "group14")
+    public void consume3(BookingDTO user3) {
+    	try {
+    	 System.out.println("Email : " + user3.getEmailId());
+    	 String emailBody = "Dear"+ user3.getUserId() + ", Your Spot with Spot Id " + user3.getSpotId() + " is Booked.";
+    	 notificationService.sendEmail(user3.getEmailId(),"Your Spot Booked Successfully", emailBody);
+    	} catch (Exception ex) {
+    		log.error("Error processing Kafka message for user: {}", user3, ex);
+            throw new MessageProcessingException("Error processing Kafka message for user: " + user3, ex);
     	}
     }
     
