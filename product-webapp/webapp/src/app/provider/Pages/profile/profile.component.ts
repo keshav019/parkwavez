@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
         this.provider?.email || '',
         [Validators.required, Validators.email],
       ],
-      role: [this.provider?.role || '', Validators.required],
+      role: [this.provider?.role || 'PROVIDER', Validators.required],
       address: this.fb.group({
         street: [this.provider?.address?.street || '', Validators.required],
         city: [this.provider?.address?.city || '', Validators.required],
@@ -52,8 +52,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSubscription = this.authService.user.subscribe((user) => {
-      this.providerId = user.userId;
-      alert(this.providerId);
+      this.providerId = user.username;
       this.getProvider();
     });
   }

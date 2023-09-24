@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ParkingSpot } from '../model/ParkingSpot';
 import { Observable } from 'rxjs';
+import { API_GATEWAY } from 'src/app/api';
 @Injectable({
   providedIn: 'root',
 })
 export class ParkingSpotService {
-  API_URL = 'http://localhost:8085/parking-spot';
+  API_URL = `${API_GATEWAY}/parking-spot`;
   constructor(private _httpClient: HttpClient) {}
   addPArkingSpot(parkingSpot: ParkingSpot): Observable<ParkingSpot> {
     return this._httpClient.post<ParkingSpot>(

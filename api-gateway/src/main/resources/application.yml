@@ -45,7 +45,14 @@ spring:
           uri: http://localhost:8090
           predicates:
             - Path=/auth/**,/customer/**,/provider/**
-
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+           allowed-origins: "*"
+           allowedMethods: "*"
+           allowedHeaders: "*"
 
 
 

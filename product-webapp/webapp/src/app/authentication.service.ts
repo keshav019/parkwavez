@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { API_GATEWAY } from './api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private baseUrl = 'http://localhost:8090';
+  private baseUrl = API_GATEWAY;
 
   private userSubject = new BehaviorSubject<any | null>(null);
   user: Observable<any | null> = this.userSubject.asObservable();

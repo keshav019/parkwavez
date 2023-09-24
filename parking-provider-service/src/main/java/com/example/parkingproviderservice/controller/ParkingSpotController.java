@@ -39,7 +39,6 @@ public class ParkingSpotController {
 	public ResponseEntity<List<ParkingSpot>> getParkingSpotByParkingArea(@PathVariable String areaId)
 			throws ResourceNotFoundException {
 		List<ParkingSpot> spots = parkingSpotService.getParkingSpotByParkingArea(areaId);
-		System.out.println(spots.get(0).toString());
 		return ResponseEntity.ok(spots);
 	}
 
