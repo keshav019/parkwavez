@@ -50,7 +50,7 @@ public class KafkaMessageListener {
     	 String emailBody = "Dear ,"+ user3.getUserId() + ". This is Your Booking Info :\n\n" +
     	                     "Spot Id: " + user3.getSpotId() + "\nBooking Date: "+ user3.getBooking_date() + "\nCheck In Time : " + user3.getCheck_In()
     	                     + "\nCheck Out Time : " + user3.getCheck_Out() + "\nAmount:" + user3.getAmount()
-    	                     + "\nBooking Status : " + user3.getStatus();
+    	                    ;
     	 notificationService.sendEmail(user3.getEmailId(),"Booking Information", emailBody);
     	} catch (Exception ex) {
     		log.error("Error processing Kafka message for user: {}", user3, ex);
