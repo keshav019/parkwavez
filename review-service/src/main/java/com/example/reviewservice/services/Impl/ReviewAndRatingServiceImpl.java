@@ -35,7 +35,7 @@ public class ReviewAndRatingServiceImpl implements ReviewAndRatingService {
     }
 
     @Override
-    public List<ReviewAndRating> getReviewAndRatingByProviderId(long providerId) {
+    public List<ReviewAndRating> getReviewAndRatingByProviderId(String providerId) {
         return reviewAndRatingRepository.findByProviderId(providerId);
     }
 
