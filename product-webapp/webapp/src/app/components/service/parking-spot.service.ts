@@ -43,13 +43,13 @@ export class ParkingSpotService {
   }
   getParkingAreaByCity(city: string): Observable<ParkingSpotDetails> {
     return this._httpClient.get<ParkingSpotDetails>(
-      `http://localhost:8085/parking-area/public/get-by-city?city=${city}`
+      `http://localhost:8004/parking-area/public/get-by-city?city=${city}`
     );
   }
 
   getSpotByAreaId(areaId: string | undefined): Observable<any> {
     return this._httpClient.get<any>(
-      `http://localhost:8085/parking-spot/public/get-by-area/${areaId}`
+      `http://localhost:8004/parking-spot/public/get-by-area/${areaId}`
     );
   }
 }
