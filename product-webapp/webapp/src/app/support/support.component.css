@@ -1,5 +1,5 @@
 .container {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .push-right {
@@ -21,8 +21,8 @@
 
 .frame-box{
     border: dotted 2px orange; padding: 15px;
-    min-height: 250px;
-    max-height: 250px;
+    min-height: 270px;
+    max-height: 270px;
     overflow-y: scroll
 }
 

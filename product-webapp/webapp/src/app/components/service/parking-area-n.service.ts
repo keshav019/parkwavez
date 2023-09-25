@@ -42,7 +42,7 @@ export class ParkingAreaServiceN {
   }
   getParkingAreaByCity(city: string): Observable<ParkingAreaN> {
     return this._httpClient.get<ParkingAreaN>(
-      `http://localhost:8085/parking-area/public/get-by-city?city=${city}`
+      `${this.API_URL}/public/get-by-city?city=${city}`
     );
   }
 
@@ -51,7 +51,7 @@ export class ParkingAreaServiceN {
     lon: number
   ): Observable<ParkingAreaN> {
     return this._httpClient.get<ParkingAreaN>(
-      `http://localhost:8085/parking-area/public/get-near-by?latitude=${lat}&longitude=${lon}&range=200000&unit=MILES&sortBy=areaId_desc&page=1`
+      `${this.API_URL}/public/get-near-by?latitude=${lat}&longitude=${lon}&range=200000&unit=MILES&sortBy=areaId_desc&page=1`
     );
   }
 }
