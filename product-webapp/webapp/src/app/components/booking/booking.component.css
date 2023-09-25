@@ -1,3 +1,26 @@
+.marginEl{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.bookingContainer{
+  padding: 4% 30%;
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 100px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Add this CSS code to your stylesheet */
+.wide-input-field {
+  width: 100%; /* Adjust the width as needed, e.g., 100% for full width */
+}
+
+
+
+
 .mat-dialog-content {
     display: flex;
     flex-direction: column;

@@ -14,7 +14,7 @@ export class ParkitSpotListComponent implements OnInit {
   spotTypes = ['TwoWheeler', 'FourWheeler', 'BigVehicle', 'Handicap'];
   filteredParkingSpots: ParkingSpot[] = [];
   parkingSpots: ParkingSpot[] = [];
-  error!: string;
+  error!: string |null;
   spotType!: string;
   sortField: keyof ParkingSpot = 'parkingSpotNumber';
   sortOptions = [

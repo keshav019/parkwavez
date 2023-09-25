@@ -4,7 +4,6 @@ import { ProviderCanload } from './guards/provider-canload.guard';
 import { ProviderAuthGuard } from './guards/provider-auth.guard';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { SupportComponent } from './support/support.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchComponent } from './search/search.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -14,6 +13,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { LoginComponent } from './login/login.component';
 import { ReviewComponent } from './review/review.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
+import { SupportComponent } from './support/support.component';
 
 
 const routes: Routes = [
@@ -25,7 +25,6 @@ const routes: Routes = [
       import('./provider/provider.module').then((m) => m.ProviderModule),
   },
   { path: '', component: HomeComponent },
-  { path: 'support', component: SupportComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
   { path: 'register', component: RegistrationComponent },
@@ -40,11 +39,8 @@ const routes: Routes = [
   { path: 'review', component: ReviewComponent },
   { path: 'parking-area/:areaId/review', component: ReviewComponent },
 
-  { path: 'reset-password', component: ResetPasswordComponent }
-
-
-
-
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'support', component: SupportComponent}
 ];
 
 @NgModule({

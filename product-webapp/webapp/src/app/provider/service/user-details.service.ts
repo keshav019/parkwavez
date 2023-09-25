@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProviderDetails } from '../model/ProviderDetails';
 import { Observable } from 'rxjs';
+import { API_GATEWAY } from 'src/app/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserDetailsService {
-  API_URL = 'http://localhost:8085/provider-details';
+  API_URL = `${API_GATEWAY}/provider-details`;
   constructor(private httpCient: HttpClient) {}
   getUserDetails(id: string): Observable<ProviderDetails> {
     return this.httpCient.get<ProviderDetails>(

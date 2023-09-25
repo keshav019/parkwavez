@@ -7,11 +7,8 @@
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-
-
-
-
-    .ratingDiv {
+}
+  .ratingDiv {
     margin-bottom: 15px; /* Adjust margin as needed */
   }
 
@@ -36,31 +33,28 @@
     color: #ffc107; /* Star color when active */
   }
 
-
-
   .button-container {
     display: flex;
     justify-content: space-between; /* Add space between buttons */
     margin-top: 20px; /* Adjust the top margin as needed */
   }
 
-  .full-width{
+  .full-width {
     margin-top: 15px;
     width: 300px;
   }
 
+  .ratingDiv {
+    width: 300px;
+  }
 
-  .ratingDiv{
-  width: 300px;
-}
-
-.ratingDiv p {
-  margin-left: 31px;
-  font-size: 1.2rem; /* Adjust font size as needed */
-  color: #333; /* Text color for the rating label */
-  text-align: left; /* Align the text inside p tags to the left */
-  font-style: italic;
-}
+  .ratingDiv p {
+    margin-left: 31px;
+    font-size: 1.2rem; /* Adjust font size as needed */
+    color: #333; /* Text color for the rating label */
+    text-align: left; /* Align the text inside p tags to the left */
+    font-style: italic;
+  }
 
   button.mat-raised-button {
     /* Your existing button styles */
@@ -71,7 +65,6 @@
     margin-right: 10px; /* Adjust the margin as needed */
   }
 
-}
 
 .review-form h2 {
   font-size: 1.5rem;
@@ -110,7 +103,3 @@ button.mat-raised-button {
 button.mat-raised-button:hover {
   background-color: #0056b3;
 }
-
-
-
-

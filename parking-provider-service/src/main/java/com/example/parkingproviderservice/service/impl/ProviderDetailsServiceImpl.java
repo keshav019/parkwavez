@@ -27,9 +27,7 @@ public class ProviderDetailsServiceImpl implements ProviderDetailsService {
 	public void saveProviderDetails(String message) throws JsonMappingException, JsonProcessingException {
 		ProviderDetails providerDetails = objectMapper.readValue(message, ProviderDetails.class);
 		System.out.println(providerDetails.toString());
-		if (providerDetails.getRole().toString().equals("PROVIDER")) {
-			providerRepository.save(providerDetails);
-		}
+		providerRepository.save(providerDetails);
 	}
 
 

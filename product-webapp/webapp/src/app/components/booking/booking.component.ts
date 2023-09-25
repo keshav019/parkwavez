@@ -99,5 +99,12 @@ export class BookingComponent implements OnInit{
     this.router.navigate(['/bookingList']);
   }
 
+
+
+  moveToSpotBooking() {
+    this.router.navigate(['/']);
+  }
+
+
 }
 

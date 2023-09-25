@@ -3,6 +3,7 @@ import { ReviewService } from '../service/review.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from '../authentication.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ReviewFormComponent {
 
   constructor(private reviewService: ReviewService,
     private router: Router,
-    private snackBar: MatSnackBar, private authenticationService: AuthenticationService) {
+    private snackBar: MatSnackBar, private authenticationService: AuthenticationService, public dialogRef: MatDialogRef<ReviewFormComponent>,) {
 
     }
 
@@ -59,11 +60,18 @@ export class ReviewFormComponent {
     });
   }
 
-  cancelReview() {
-    alert("cancel button clicked");
+  onClose(): void {
+    this.dialogRef.close();
   }
 
+  cancelReview() {
+    this.router.navigate(['/review']);
+    this.onClose();
+  }
 
-
+  submitClose() {
+    this.router.navigate(['/review']);
+    this.onClose();
+  }
 
 }

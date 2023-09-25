@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ParkingArea } from '../model/ParkingArea';
+import { API_GATEWAY } from 'src/app/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParkingAreaService {
-  API_URL = 'http://localhost:8085/parking-area';
+  API_URL = `${API_GATEWAY}/parking-area`;
+
   constructor(private _httpClient: HttpClient) {}
   addParkingSpace(
     providerId: string,

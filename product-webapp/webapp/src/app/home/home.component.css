@@ -9,7 +9,6 @@
   background-position: center;
   color: white;
   padding-bottom: 200px;
-  padding-top: 100px;
 }
 .card{
   margin-top: 20px;
@@ -67,4 +66,42 @@
   margin: 0;
   margin-bottom: 11px;
 }
+
+.chat-icon {
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: url('https://assets-v2.lottiefiles.com/a/4bf1141e-1167-11ee-8a8b-d7fba4b8c5e1/LbKxL7PDpt.gif');
+  background-size: cover;
+  margin-left: 90%;
+  position: relative;
+}
+
+.chat-icon::before, .chat-icon::after {
+  --scale: 0;
+  position: absolute;
+  top: -.25rem;
+  left: 50px;
+  transform: translateX(-140%) translateY(30%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: right center;
+}
+
+.chat-icon::before {
+  content: attr(data-tooltip);
+  color: white;
+  padding: .5rem;
+  width: max-content;
+  max-width: 300%;
+  text-align: center;
+  background: #333;
+}
+
+.chat-icon:hover::before, .chat-icon:hover::after {
+  --scale: 1;
+}
+
 

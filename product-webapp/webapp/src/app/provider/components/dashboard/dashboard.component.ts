@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ParkingAreaService } from '../../service/parking-area.service';
 import { ParkingArea } from '../../model/ParkingArea';
+import { AuthenticationService } from 'src/app/authentication.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,15 @@ export class DashboardComponent implements OnInit {
   providerId = '1';
   message!: string;
   error!: string;
-  constructor(private _parkingAreaService: ParkingAreaService) {}
+  dataSubscription!: Subscription;
+  constructor(
+    private _parkingAreaService: ParkingAreaService,
+    private authService: AuthenticationService
+  ) {
+    this.dataSubscription = this.authService.user.subscribe((user) => {
+      this.providerId = user.userId;
+    });
+  }
   ngOnInit(): void {
     this.getParkingAreas(this.providerId);
   }

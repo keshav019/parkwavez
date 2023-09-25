@@ -1,6 +1,4 @@
-FROM node:18.16.0
-WORKDIR /app
-COPY src/main/resources/static/ /app
-RUN npm install -g http-server
-EXPOSE 8099
-CMD ["http-server", "-p", "8099", "-c-1", "."]
+FROM openjdk:11
+COPY ./target/product-webapp-0.0.1-SNAPSHOT.jar product-webapp-0.0.1-SNAPSHOT.jar
+EXPOSE 8089
+CMD ["java", "-jar", "product-webapp-0.0.1-SNAPSHOT.jar"]

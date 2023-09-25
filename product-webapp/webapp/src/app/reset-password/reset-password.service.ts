@@ -1,23 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_GATEWAY } from '../api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ResetPasswordService {
-  private resetPasswordUrl = 'http://localhost:8090/auth/reset-password';
+  private resetPasswordUrl = `${API_GATEWAY}/auth/reset-password`;
 
   constructor(private http: HttpClient) {}
 
   resetPassword(username: string, newPassword: string): Observable<string> {
     const resetPasswordRequest = {
       username: username,
-      newPassword: newPassword
+      newPassword: newPassword,
     };
 
-    
-    
-    return this.http.post(this.resetPasswordUrl, resetPasswordRequest, { responseType: 'text' });
+    return this.http.post(this.resetPasswordUrl, resetPasswordRequest, {
+      responseType: 'text',
+    });
   }
 }
