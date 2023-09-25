@@ -18,7 +18,7 @@ export class ParkingSpotService {
     this.cityValue = city;
   }
 
-  API_URL = `${API_GATEWAY}/parking-area'`;
+  API_URL = `${API_GATEWAY}/parking-area`;
 
   constructor(private _httpClient: HttpClient) {}
   addParkingSpace(
@@ -43,13 +43,13 @@ export class ParkingSpotService {
   }
   getParkingAreaByCity(city: string): Observable<ParkingSpotDetails> {
     return this._httpClient.get<ParkingSpotDetails>(
-      `${this.API_URL}/public/get-by-city?city=${city}`
+      `${API_GATEWAY}/parking-area/public/get-by-city?city=${city}`
     );
   }
 
   getSpotByAreaId(areaId: string | undefined): Observable<any> {
     return this._httpClient.get<any>(
-      `${this.API_URL}/public/get-by-area/${areaId}`
+      `${API_GATEWAY}/parking-spot/public/get-by-area/${areaId}`
     );
   }
 }
