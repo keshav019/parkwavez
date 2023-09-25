@@ -1,36 +1,36 @@
-import { Component,OnInit } from '@angular/core';
-import{ Booking} from '../booking';
+import { Component, OnInit } from '@angular/core';
+import { Booking } from '../booking';
 import { BookingDataService } from '../booking-data.service';
 import { Router } from '@angular/router';
+import { ReviewService } from '../service/review.service';
 
 @Component({
   selector: 'app-booking-list',
   templateUrl: './booking-list.component.html',
-  styleUrls: ['./booking-list.component.css']
+  styleUrls: ['./booking-list.component.css'],
 })
-export class BookingListComponent implements OnInit{
+export class BookingListComponent implements OnInit {
+  bookings: Booking[] = [];
 
- bookings: Booking[]=[];
-
-  constructor(private bookingDataService: BookingDataService,
-    private router:Router){}
+  constructor(
+    private bookingDataService: BookingDataService,
+    private router: Router,
+    private reviewService: ReviewService
+  ) {}
   ngOnInit(): void {
     this.getBooking();
-}
-private getBooking(){
-  this.bookingDataService.getBookingList().subscribe(data =>{
-    this.bookings=data;
-  });
+  }
+  private getBooking() {
+    this.bookingDataService.getBookingList().subscribe((data) => {
+      this.bookings = data;
+    });
+  }
+  submitBooking() {}
 
-  
-}
-submitBooking() {
-
-}
-
-navigateToReview(){
-  this.router.navigate(['/review']);
-}
-
-
+  navigateToReview() {
+    this.router.navigate(['/review']);
+  }
+  openReviewForm(booking: any) {
+    this.reviewService.openReviewForm(booking);
+  }
 }

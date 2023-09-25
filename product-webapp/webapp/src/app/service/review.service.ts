@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewFormComponent } from '../review-form/review-form.component';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { API_GATEWAY } from '../api';
 
 @Injectable({
@@ -13,8 +12,9 @@ export class ReviewService {
 
   constructor(private dialog: MatDialog, private http: HttpClient) {}
 
-  openReviewForm() {
+  openReviewForm(booking: any) {
     this.dialog.open(ReviewFormComponent, {
+      data: { booking },
       width: '400px', // Adjust the width as needed
     });
   }
@@ -36,5 +36,11 @@ export class ReviewService {
 
   public deleteReview(userId: any) {
     return this.http.delete(this.apiUrl + '/reviewAndRating/delete/' + userId);
+  }
+
+  public getProviderId(spotId: String) {
+    return this.http.get(
+      `${this.apiUrl}/parking-spot/public/get-by-id/${spotId}`
+    );
   }
 }

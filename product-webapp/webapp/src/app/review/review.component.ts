@@ -11,7 +11,7 @@ export class ReviewComponent {
   constructor(private reviewService: ReviewService) { }
 
   openReviewForm() {
-    this.reviewService.openReviewForm();
+    // this.reviewService.openReviewForm();
   }
 
 }

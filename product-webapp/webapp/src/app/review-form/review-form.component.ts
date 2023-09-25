@@ -1,51 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ReviewService } from '../service/review.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from '../authentication.service';
-import { MatDialogRef } from '@angular/material/dialog';
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-review-form',
   templateUrl: './review-form.component.html',
-  styleUrls: ['./review-form.component.css']
+  styleUrls: ['./review-form.component.css'],
 })
-export class ReviewFormComponent {
-
-  bookingId: string='';
+export class ReviewFormComponent implements OnInit {
+  bookingId: string = '';
   rating: number | null = null;
-  reviewDesc: string='';
-  userId: string='';
-  providerId: string='';
-
-  constructor(private reviewService: ReviewService,
+  reviewDesc: string = '';
+  userId: string = '';
+  providerId: string = '';
+  reviewForm!: FormGroup;
+  dataSubscription!: Subscription;
+  constructor(
+    private reviewService: ReviewService,
     private router: Router,
-    private snackBar: MatSnackBar, private authenticationService: AuthenticationService, public dialogRef: MatDialogRef<ReviewFormComponent>,) {
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    public dialogRef: MatDialogRef<ReviewFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { booking: any }
+  ) {
+    this.reviewForm = this.fb.group({
+      userId: [this.userId],
+      bookingId: [this.data.booking.bookingId],
+      providerId: [this.providerId],
+      rating: [0],
+      reviewDesc: [''],
+    });
 
-    }
-
-
+    this.dataSubscription = this.authService.user.subscribe((user) => {
+      this.userId = user.userId;
+    });
+  }
+  ngOnInit(): void {
+    this.reviewService.getProviderId(this.data.booking.spotId).subscribe(
+      (res: any) => {
+        this.providerId = res.parkingAreaId;
+      },
+      (err) => {
+        console.log(err.message);
+      }
+    );
+  }
 
   submitReview() {
-    const reviewData = {
-      bookingId: this.bookingId,
-      rating: this.rating,
-      reviewDesc: this.reviewDesc,
-      userId: this.userId,
-      providerId: this.providerId
-    };
-
     // Call the service method to submit the review data
-    this.reviewService.submitReview(reviewData).subscribe(
+
+    this.reviewForm?.get('userId')?.setValue(this.userId);
+    this.reviewForm?.get('providerId')?.setValue(this.providerId);
+    console.log(this.reviewForm.value);
+    this.reviewService.submitReview(this.reviewForm.value).subscribe(
       (response) => {
-         // Handle success (e.g., show a success snackbar message)
-      this.showSuccessSnackbar('Review submitted successfully!');
+        // Handle success (e.g., show a success snackbar message)
+        this.showSuccessSnackbar('Review submitted successfully!');
         // Handle success (e.g., show a success message)
         console.log('Review submitted successfully:', response);
       },
       (error) => {
-         // Handle error (e.g., show an error message)
+        // Handle error (e.g., show an error message)
         console.error('Error submitting review:', error);
       }
     );
@@ -73,5 +94,4 @@ export class ReviewFormComponent {
     this.router.navigate(['/review']);
     this.onClose();
   }
-
 }
