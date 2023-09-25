@@ -1,18 +1,18 @@
 spring:
   application:
-    name:  API-GATEWAY
+    name: API-GATEWAY
   main:
     web-application-type: reactive
   cloud:
     gateway:
       routes:
-        - id: CUSTOM-BOT-SERVICE
-          uri: http://localhost:8082
+        - id: custom-bot-service
+          uri: lb://custom-bot-service
           predicates:
             - Path=/bot/**
 
         - id: notification-service
-          uri: http://localhost:8084
+          uri: lb://notification-service
           predicates:
             - Path=/notifications/**
 
@@ -22,34 +22,34 @@ spring:
             - Path=/parking-area/**,/parking-spot/**,/price-service/**,/provider-details/**
 
         - id: parking-space-booking
-          uri: http://localhost:8086
+          uri: lb://parking-space-booking
           predicates:
             - Path=/Booking/**,/producer-app/**
 
         - id: payment-service
-          uri: http://localhost:8087
+          uri: lb://payment-service
           predicates:
             - Path=/user/**
 
         - id: product-webapp
-          uri: http://localhost:8088
+          uri: lb://product-webapp
           predicates:
             - Path=/webapp/**
 
         - id: review-service
-          uri: http://localhost:8089
+          uri: lb://review-service
           predicates:
             - Path=/reviewAndRating/**
 
         - id: user-authentication-management
-          uri: http://localhost:8090
+          uri: lb://user-authentication-management
           predicates:
             - Path=/auth/**,/customer/**,/provider/**
-
-
-
-
-  
-  
-  
-  
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowed-origins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"

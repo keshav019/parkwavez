@@ -2,11 +2,16 @@ services:
 
   mysql:
     container_name: mysql
-    image: mysql
+    image: mysql:8.1.0
+    ports:
+      - "3307:3306"
+    volumes:
+      - /usr/local/mysql:/parkwavez
     environment:
       MYSQL_ROOT_PASSWORD: root
     networks:
       parkwavez-net:
+
 
   mongodb:
     container_name: mongodb
@@ -18,6 +23,7 @@ services:
     networks:
       parkwavez-net:
 
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     container_name: zookeeper
@@ -28,6 +34,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     networks:
       parkwavez-net:
+
 
   kafka:
     image: confluentinc/cp-kafka:7.0.1
@@ -45,26 +52,32 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
     networks:
       parkwavez-net:
 
+
   elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.13
     container_name: elasticsearch
-    image: elasticsearch:7.17.12
-    ports:
-      - "9200:9200"
     environment:
-      - cluster.name=elasticsearch
+      - node.name=elasticsearch
       - discovery.type=single-node
-      - 'CLI_JAVA_OPTS=-Xms2g -Xmx2g'
-      - 'bootstrap.memory_lock=true'
-      - 'discovery.type=single-node'
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
     ulimits:
       memlock:
         soft: -1
         hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
     networks:
       parkwavez-net:
+
 
   api-gateway:
     container_name: api-gateway
@@ -123,6 +136,7 @@ services:
   parking-provider-service:
     container_name: parking-provider-service
     build: parking-provider-service/
+    restart: always
     ports:
       - "8085:8085"
     environment:
@@ -140,7 +154,7 @@ services:
 
   parking-space-booking:
     container_name: parking-space-booking
-    build: parking-sapce-booking/
+    build: parking-space-booking/
     restart: always
     ports:
       - "8086:8086"
@@ -156,9 +170,8 @@ services:
 
   payment-service:
     container_name: payment-service
-    build:
-      context: ./payment-service
-      dockerfile: Dockerfile
+    build: payment-service/
+    restart: always
     ports:
       - "8087:8087"
     depends_on:
@@ -168,16 +181,17 @@ services:
       - spring.profiles.active=docker
     networks:
       parkwavez-net:
-    restart: on-failure
+
 
   product-webapp:
     container_name: product-webapp
-    build: product-webapp
+    build: product-webapp/
+    restart: always
     ports:
       - "8099:8099"
     depends_on:
       - eureka-server
-    restart: on-failure
+      - api-gateway
     environment:
       - spring.profiles.active=docker
     networks:
@@ -203,6 +217,7 @@ services:
   user-authentication-service:
     container_name: user-authentication-service
     build: user-authentication-management/
+    restart: always
     ports:
       - "8090:8090"
     depends_on:
@@ -213,8 +228,11 @@ services:
       - spring.profiles.active=docker
     networks:
       parkwavez-net:
-    restart: on-failure
+
+
+volumes:
+  esdata1:
+    driver: local
 
 networks:
   parkwavez-net:
-

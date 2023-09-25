@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ParkingAreaN } from '../models/ParkingAreaN'
+import { ParkingAreaN } from '../models/ParkingAreaN';
+import { API_GATEWAY } from 'src/app/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParkingAreaServiceN {
-  private cityValue:string = '';
+  private cityValue: string = '';
 
   getCity(): string {
     return this.cityValue;
@@ -17,8 +18,7 @@ export class ParkingAreaServiceN {
     this.cityValue = city;
   }
 
-
-  API_URL = 'http://localhost:8085/parking-area';
+  API_URL = `${API_GATEWAY}/parking-area`;
   constructor(private _httpClient: HttpClient) {}
   addParkingSpace(
     providerId: string,
@@ -34,21 +34,24 @@ export class ParkingAreaServiceN {
       `${this.API_URL}/provider/${providerId}/get`
     );
   }
- 
+
   getParkingAreaById(areaId: string): Observable<ParkingAreaN> {
     return this._httpClient.get<ParkingAreaN>(
       `${this.API_URL}/public/get/${areaId}`
     );
   }
-  getParkingAreaByCity(city: string) : Observable<ParkingAreaN> {
+  getParkingAreaByCity(city: string): Observable<ParkingAreaN> {
     return this._httpClient.get<ParkingAreaN>(
-      `http://localhost:8085/parking-area/public/get-by-city?city=${city}`
+      `http://localhost:8004/parking-area/public/get-by-city?city=${city}`
     );
   }
 
-  getParkingAreaByNearByLocation(lat: number,lon: number) : Observable<ParkingAreaN> {
+  getParkingAreaByNearByLocation(
+    lat: number,
+    lon: number
+  ): Observable<ParkingAreaN> {
     return this._httpClient.get<ParkingAreaN>(
-      `http://localhost:8085/parking-area/public/get-near-by?latitude=${lat}&longitude=${lon}&range=200000&unit=MILES&sortBy=areaId_desc&page=1`
+      `http://localhost:8004/parking-area/public/get-near-by?latitude=${lat}&longitude=${lon}&range=200000&unit=MILES&sortBy=areaId_desc&page=1`
     );
   }
 }
