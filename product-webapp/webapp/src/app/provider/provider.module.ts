@@ -34,6 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { ProfileImageComponent } from './components/profile-image/profile-image.component';
+import { LoactionSelectorComponent } from './components/loaction-selector/loaction-selector.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ProfileImageComponent } from './components/profile-image/profile-image.
     EditSpotComponent,
     VaccantSpaceComponent,
     ProfileImageComponent,
+    LoactionSelectorComponent,
   ],
   imports: [
     CommonModule,

@@ -19,7 +19,7 @@ public class KafkaMessageListener {
     @Autowired
 	private NotificationService notificationService;
     
-    @KafkaListener(topics = "user-registration-topic", groupId = "group14")
+    @KafkaListener(topics = "user-registration-topic", groupId = "bookinggroup")
     public void consume(UserDTO user) {
     	try {
         log.info("consumer consume {}", user);

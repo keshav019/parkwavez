@@ -4,58 +4,84 @@
       <h1>Booking Your Spot</h1>
       <!-- <app-booking-list></app-booking-list> -->
       <!-- <button id="bookinglistbtn" color="primary" mat-raised-button (click)="bookingList()">See Booking List</button> -->
-      <hr>
+      <hr />
     </div>
     <form [formGroup]="bookingForm">
-    <!-- <div mat-dialog.content class="content" > -->
-    <div class="input">
-      <div class="row">
-        <mat-form-field class="wide-input-field" appearance="outline">
-          <mat-label>Check_In</mat-label>
-          <input matInput type="datetime-local" formControlName="check_In" formControlName="check_In">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field class="wide-input-field" appearance="outline">
-          <mat-label>Check_Out</mat-label>
-          <input matInput type="datetime-local" formControlName="check_Out">
-        </mat-form-field>
-      </div>
-
-      <div class="row">
-        <mat-form-field class="wide-input-field" appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="emailId">
-        </mat-form-field>
-      </div>
-
-
-
-      <h2 *ngIf="price===0">Please select the charge type</h2>
-
       <div class="row">
         <mat-form-field class="full-width">
-          <mat-label>Charge Type</mat-label>
-          <mat-select (valueChange)="getPrice()" required formControlName="chargeType">
-            <mat-option *ngFor="let chargeType of chargeTypes" [value]="chargeType">
+          <mat-label>Plan</mat-label>
+          <mat-select [(value)]="plan" (valueChange)="selectPlan()" required>
+            <mat-option
+              *ngFor="let chargeType of chargeTypes"
+              [value]="chargeType"
+            >
               {{ chargeType }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-    </div>
+      <div class="input">
+        <div class="row">
+          <mat-form-field class="wide-input-field" appearance="outline">
+            <mat-label>Check_In</mat-label>
+            <input
+              matInput
+              type="datetime-local"
+              formControlName="check_In"
+              formControlName="check_In"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row mb-0">
+          <mat-form-field class="wide-input-field" appearance="outline">
+            <mat-label>Check_Out</mat-label>
+            <input
+              matInput
+              type="datetime-local"
+              formControlName="check_Out"
+              *ngIf="!isDisable"
+            />
+            <input
+              matInput
+              type="datetime-local"
+              [value]="checkOut"
+              disabled
+              *ngIf="isDisable"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="wide-input-field" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="emailId" />
+          </mat-form-field>
+        </div>
+        <div class="price-container">
+          <button
+            class="price-button"
+            color="primary"
+            (click)="getPrice()"
+            mat-raised-button
+          >
+            Get Price
+          </button>
+          <h2 *ngIf="price != 0">Price: {{ price }}</h2>
+        </div>
+      </div>
 
-    <h2 *ngIf="price!=0">Price: {{price}}</h2>
-
-    <div mat-dialog.action>
-      <button id="canclebtn" mat-raised-button (click)="moveToSpotBooking()">Cancel</button>
-      <button id="submitbtn" color="primary" (click)="moveToPayment(); move()" mat-raised-button> Submit </button>
-    </div>
-
+      <div mat-dialog.action class="action">
+        <button id="canclebtn" mat-raised-button (click)="moveToSpotBooking()">
+          Cancel
+        </button>
+        <button
+          id="submitbtn"
+          color="primary"
+          (click)="moveToPayment(); move()"
+          mat-raised-button
+        >
+          Submit
+        </button>
+      </div>
     </form>
-
-
-
   </div>
-
 </div>
