@@ -24,7 +24,6 @@
 	<modules>
 		<module>parking-provider-service</module>
 		<module>parking-space-booking</module>
-		<module>custom-bot-service</module>
 		<module>notification-service</module>
 		<module>review-service</module>
 		<module>payment-service</module>
