@@ -36,9 +36,7 @@ public class NotificationServiceImpl implements NotificationService{
 		simpleMailMessage.setTo(email);
 		simpleMailMessage.setSubject(subject);
 		simpleMailMessage.setText(emailBody);
-		
-		this.mailSender.send(simpleMailMessage);
-		
+		this.mailSender.send(simpleMailMessage);	
 	}
 
 }
